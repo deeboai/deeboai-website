@@ -69,7 +69,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link to="/deeboai-studio" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  DeeboAI Studio
+                  Deebo Studio
                 </Link>
               </li>
               <li>

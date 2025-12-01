@@ -99,7 +99,7 @@ const DeeboAIStudio = () => {
               className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-background/70 px-5 py-2 text-xs uppercase tracking-[0.35em] text-primary/80"
             >
               <Sparkles className="h-4 w-4" />
-              DeeboAI Studio
+              Deebo Studio
             </span>
             <h1
               ref={heroHeadingRef}
@@ -120,7 +120,7 @@ const DeeboAIStudio = () => {
               Right in Your DAW
             </h2>
             <p ref={heroParagraphRef} className="text-lg text-muted-foreground leading-relaxed">
-              DeeboAI Studio automates explicit content editing, reconstructs pristine audio, and keeps
+              Deebo Studio automates explicit content editing, reconstructs pristine audio, and keeps
               your creative intent front and center—whether you are prepping for broadcast, sync, or
               global streaming.
             </p>
@@ -128,15 +128,32 @@ const DeeboAIStudio = () => {
               ref={heroCtaRef}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <Button size="lg" className="hover:shadow-lg hover:shadow-primary/40">
-                Request Early Access
+              <Button 
+                size="lg" 
+                className="hover:shadow-lg hover:shadow-primary/40"
+                asChild
+              >
+                <a 
+                  href="https://deebostudio.deeboai.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Try our MVP!
+                </a>
               </Button>
-              <Button
-                size="lg"
+              <Button 
+                size="lg" 
                 variant="outline"
                 className="hover:bg-primary/10 hover:text-primary"
+                asChild
               >
-                View Product Roadmap
+                <a 
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfPkXCW7DHtFrEMjEgQJrpc5l5_2IDxQsJsZ-wJtiZViQP3tA/viewform?usp=dialog"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Request Early Access
+                </a>
               </Button>
             </div>
           </div>
@@ -194,7 +211,7 @@ const DeeboAIStudio = () => {
               <span className="text-primary font-bold">15 seconds</span> with 50+ languages.
             </h3>
             <p className="text-muted-foreground text-base">
-              See DeeboAI Studio transform explicit tracks into clean releases—maintaining energy,
+              See Deebo Studio transform explicit tracks into clean releases—maintaining energy,
               timing, and clarity automatically.
             </p>
           </div>

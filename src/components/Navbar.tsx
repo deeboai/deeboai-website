@@ -31,7 +31,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
     { name: "Products", path: "/products" },
-    { name: "DeeboAI Studio", path: "/deeboai-studio" },
+    { name: "Deebo Studio", path: "/deeboai-studio" },
     { name: "Partners", path: "/partners" },
     { name: "Team", path: "/team" },
     { name: "Contact", path: "/contact" },
