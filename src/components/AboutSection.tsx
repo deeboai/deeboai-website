@@ -22,7 +22,7 @@ const values = [
 const milestones = [
   {
     year: "Nov 2024",
-    title: "DeeboAI Studio Prototype",
+    title: "Deebo Studio Prototype",
     description: "Launched our audio automation pilot, helping creators turn explicit edits around in seconds.",
   },
   {

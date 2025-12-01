@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const products = [
   {
-    name: "DeeboAI Studio",
+    name: "Deebo Studio",
     tagline: "AI Audio Automation",
     description:
       "Studio-grade audio editing accelerated by speech isolation, profanity detection, and timeline-aware automation.",

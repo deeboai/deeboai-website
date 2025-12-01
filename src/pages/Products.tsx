@@ -20,11 +20,11 @@ type ProductCard = {
 const Products = () => {
   const products: ProductCard[] = [
     {
-      name: "DeeboAI Studio",
+      name: "Deebo Studio",
       tagline: "AI Audio Editing Suite",
       status: "In Development",
       description:
-        "Revolutionary AI-powered audio processing platform designed to transform how engineers and editors finish mixes. DeeboAI Studio handles censoring, imputation, and lyric suggestions right in the DAW.",
+        "Revolutionary AI-powered audio processing platform designed to transform how engineers and editors finish mixes. Deebo Studio handles censoring, imputation, and lyric suggestions right in the DAW.",
       features: [
         "Context-aware explicit content detection",
         "Timing-preserving audio imputation",
