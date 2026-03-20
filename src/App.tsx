@@ -10,7 +10,6 @@ import Products from "./pages/Products";
 import Partners from "./pages/Partners";
 import Team from "./pages/Team";
 import Contact from "./pages/Contact";
-import DeeboAIStudio from "./pages/DeeboAIStudio";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,7 +25,6 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/deeboai-studio" element={<DeeboAIStudio />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />

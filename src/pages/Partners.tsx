@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Handshake, Heart, Globe2 } from "lucide-react";
+import { Heart, Globe2, Stethoscope } from "lucide-react";
 
 type Partner = {
   name: string;
@@ -15,15 +15,28 @@ type Partner = {
 };
 
 const Partners = () => {
+  // This page is reserved for external collaborators and partner categories rather than DeeboAI's
+  // own product lineup. If a product is listed here, it should be because the collaboration itself
+  // is part of the story, not because the product exists.
   const partners: Partner[] = [
     {
-      name: "SynnovaRx",
-      type: "Healthcare Partner",
+      name: "MyelomaRisk",
+      type: "Clinical Product Collaboration",
       icon: Heart,
       description:
-        "Our flagship healthcare partnership focused on revolutionizing medication management through intelligent EHR integration.",
-      collaboration: "Joint product development and go-to-market strategy",
-      impact: "Transforming patient medication transparency",
+        "A medical risk assessment calculator for multiple myeloma and related plasma cell disorders developed with Mayo Clinic hematologists.",
+      collaboration: "Clinical workflow translation, product design, and software development spanning a collaboration that began in 2023",
+      impact: "Helping make risk stratification and prognosis support more usable in practice, with the work incorporated into DeeboAI in 2026.",
+      href: "https://myelomarisk.com",
+    },
+    {
+      name: "Clinical Collaborators",
+      type: "Advisory & Domain Expertise",
+      icon: Stethoscope,
+      description:
+        "Physicians, specialists, and healthcare domain experts who help pressure-test product assumptions and keep clinical software grounded in real care settings.",
+      collaboration: "Advisory input, workflow validation, and domain expertise across healthcare-facing products",
+      impact: "Improving the precision, safety, and usability of the tools DeeboAI brings to market.",
     },
     {
       name: "Linque Resourcing",
@@ -34,15 +47,6 @@ const Partners = () => {
       collaboration: "End-to-end UX, copy, and development of linqueresourcing.com",
       impact: "Delivered an accessible, high-performance site that accelerated lead generation.",
       href: "https://linqueresourcing.com",
-    },
-    {
-      name: "Strategic Alliances",
-      type: "Industry Collaborators",
-      icon: Handshake,
-      description:
-        "Select technology and creative partners who help us pressure-test ideas and ship resilient products.",
-      collaboration: "Joint workshops, pilot deployments, and ongoing feedback loops",
-      impact: "Ensuring DeeboAI solutions are grounded in real operational needs.",
     },
   ];
 
@@ -58,7 +62,7 @@ const Partners = () => {
               Our <span className="text-gradient">Partners</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Strategic collaborations driving innovation and delivering exceptional results
+              Strategic collaborations shaping the healthcare and software products we are building today
             </p>
           </div>
         </div>
@@ -123,17 +127,16 @@ const Partners = () => {
               <h2 className="text-3xl font-bold mb-6 text-center">Partnership Philosophy</h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p>
-                  At DeeboAI, we believe that the best solutions emerge from collaborative innovation.
-                  Our partnerships are built on mutual respect, shared vision, and a commitment to
-                  excellence.
+                  At DeeboAI, the best products come from close collaboration with domain experts,
+                  operators, and teams living inside the workflow every day.
                 </p>
                 <p>
-                  We seek partners who share our mission to make AI accessible and practical—companies
-                  and organizations that are as passionate about solving real problems as we are.
+                  We look for partners who care about precision, usability, and real-world adoption,
+                  especially in healthcare and other high-context environments.
                 </p>
                 <p>
-                  Whether you're a technology provider, industry leader, or innovative startup, we're
-                  always exploring new opportunities to create value together.
+                  Whether the work is a clinical tool, a product platform, or a high-performance
+                  digital experience, we build best when the collaboration is hands-on and outcome-driven.
                 </p>
               </div>
             </div>

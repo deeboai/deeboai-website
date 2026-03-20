@@ -133,12 +133,12 @@ const Team = () => {
             </div>
             <h1 className="text-5xl md:text-6xl font-bold leading-tight">
               Builders who blend{" "}
-              <span className="text-gradient">engineering rigor</span> with creative empathy.
+              <span className="text-gradient">engineering rigor</span> with real-world domain context.
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We are technologists, musicians, and operators obsessed with removing friction from
-              complex workflows. Our founders design AI systems that feel fluid for everyone—from
-              mix engineers to clinical teams.
+              We build for people operating inside complex systems. The focus now is clinical
+              intelligence, decision support, and trustworthy software that fits naturally into the
+              way teams already work.
             </p>
           </div>
         </div>
@@ -149,6 +149,10 @@ const Team = () => {
           {teamMembers.map((member, index) => (
             <TeamMemberCard key={member.id} member={member} index={index} />
           ))}
+          <div className="mx-auto max-w-3xl rounded-2xl border border-border/60 bg-background/40 px-6 py-5 text-center text-sm text-muted-foreground">
+            <span className="font-medium text-foreground">Legacy note:</span> Albert Osakwe was one
+            of DeeboAI&apos;s co-founders and helped shape the company&apos;s earliest technical vision.
+          </div>
         </div>
       </section>
 
@@ -162,8 +166,9 @@ const Team = () => {
               <h2 className="text-3xl font-semibold">How We Operate</h2>
               <p className="text-muted-foreground leading-relaxed">
                 AI should be invisible until the moment it adds value. We prototype fast, validate
-                in real environments, and harden systems with measurable success criteria. From
-                studio desks to hospital floors, we engage frontline teams to co-design the future.
+                in real environments, and harden systems with measurable success criteria. The goal
+                is software that earns adoption because it is genuinely useful, not because it is
+                flashy.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
@@ -194,14 +199,14 @@ const Team = () => {
             </div>
             <div className="rounded-3xl border border-primary/20 bg-primary/10 p-8 space-y-5 text-sm text-primary">
               <p>
-                “We keep the feedback loop tight: ideas move from whiteboard to user tests in days.
-                The goal is trust—AI should feel like an intuitive teammate, not a black box.”
+                “We keep the feedback loop tight: ideas move from whiteboard to real user testing
+                quickly. The goal is trust, clarity, and software that fits the workflow from day one.”
               </p>
               <div className="flex items-center gap-4 text-foreground">
                 <div className="flex flex-col">
-                  <span className="font-medium">Amadou & Albert</span>
+                  <span className="font-medium">Amadou Touré</span>
                   <span className="text-xs text-primary/70 tracking-[0.35em] uppercase">
-                    Co-Founders · DeeboAI
+                    Founder · DeeboAI
                   </span>
                 </div>
               </div>
