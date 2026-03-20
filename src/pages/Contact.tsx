@@ -32,7 +32,7 @@ const Contact = () => {
 
     const body = encodeURIComponent(lines.join("\n"));
     const subject = encodeURIComponent(`New inquiry from ${formData.name || "your site"}`);
-    const mailtoUrl = `mailto:etoure33@gmail.com?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:amadou@deeboai.com?subject=${subject}&body=${body}`;
 
     window.location.href = mailtoUrl;
     toast.success("Opening your email client…");
@@ -74,10 +74,10 @@ const Contact = () => {
                     <div>
                       <p className="font-medium mb-1">Email</p>
                       <a
-                        href="mailto:etoure33@gmail.com"
+                        href="mailto:amadou@deeboai.com"
                         className="text-muted-foreground hover:text-primary transition-colors"
                       >
-                        etoure33@gmail.com
+                        amadou@deeboai.com
                       </a>
                     </div>
                   </div>

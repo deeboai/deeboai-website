@@ -21,9 +21,9 @@ const services = [
   {
     icon: Cloud,
     title: "Industry SaaS & Integrations",
-    description: "Regulated-ready SaaS for healthcare, automotive, and media operators.",
-    features: ["HIPAA/HITRUST-aligned infrastructure", "Event-driven integrations", "Analytics & business intelligence"],
-    caption: "Proven playbooks refined in real clinics, shops, and studios.",
+    description: "Regulated-ready SaaS and data products for healthcare teams and specialized operators.",
+    features: ["Clinical workflow tools", "Event-driven integrations", "Analytics & business intelligence"],
+    caption: "Current work spans ZynthRx, MyelomaRisk, and custom systems for high-context teams.",
   },
 ];
 
@@ -44,7 +44,7 @@ const ServicesPreview = () => {
             Our <span className="text-gradient">Services</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Strategic partners for teams shipping AI-first experiences from prototype to production.
+            Strategic partners for teams building practical AI products from discovery through deployment.
           </p>
         </div>
 

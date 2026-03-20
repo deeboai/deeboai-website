@@ -1,12 +1,13 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import whiteOnBlack from "@/assets/logos/white_on_black.PNG?url";
 import synnovaImage from "@/assets/srx.jpg?url";
-import autoflowImage from "@/assets/autoflow.jpg?url";
+import heroImage from "@/assets/hero-ai-network.jpg";
 import { Link } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 
+// These are the active DeeboAI product initiatives that should appear as current offerings.
+// Historical projects that are no longer owned by DeeboAI belong in About, not here.
 type ProductCard = {
   name: string;
   tagline: string;
@@ -20,54 +21,37 @@ type ProductCard = {
 const Products = () => {
   const products: ProductCard[] = [
     {
-      name: "Deebo Studio",
-      tagline: "AI Audio Editing Suite",
+      name: "ZynthRx",
+      tagline: "Medication Intelligence Platform",
       status: "In Development",
       description:
-        "Revolutionary AI-powered audio processing platform designed to transform how engineers and editors finish mixes. Deebo Studio handles censoring, imputation, and lyric suggestions right in the DAW.",
+        "ZynthRx is DeeboAI's medication intelligence platform focused on making treatment plans easier to understand and easier to act on. The product is designed to bridge provider context, patient comprehension, and workflow-native decision support.",
       features: [
-        "Context-aware explicit content detection",
-        "Timing-preserving audio imputation",
-        "Lyric replacement recommendations",
-        "Multilingual speech differentiation",
-        "DAW-ready automation playlists",
+        "Patient-friendly medication summaries",
+        "Indication-based medication context",
+        "Clinical workflow alignment",
+        "Provider-facing decision support views",
+        "Interoperability-minded architecture",
       ],
-      technologies: ["Python", "TensorFlow", "PyTorch", "WebAssembly", "Edge Workers"],
-      image: whiteOnBlack,
-    },
-    {
-      name: "SynnovaRx",
-      tagline: "Healthcare Intelligence Platform",
-      status: "In Development",
-      description:
-        "Bridging the gap between medication management and patient understanding. SynnovaRx integrates directly into EHR systems to provide indication-based, patient-friendly medication lists that enhance transparency and improve health outcomes.",
-      features: [
-        "EHR system integration",
-        "Patient-friendly medication lists",
-        "Indication-based organization",
-        "Real-time synchronization",
-        "HIPAA-compliant architecture",
-        "Provider dashboard",
-      ],
-      technologies: ["React", "PostgreSQL", "FHIR", "HL7", "AWS"],
+      technologies: ["React", "TypeScript", "FHIR", "Clinical Data Modeling", "AWS"],
       image: synnovaImage,
     },
     {
-      name: "AutoFlow",
-      tagline: "Smart Scheduling & Operations",
-      status: "In Negotiation",
+      name: "MyelomaRisk",
+      tagline: "Myeloma Risk Calculator",
+      status: "Active Collaboration",
       description:
-        "Streamlined operations platform designed specifically for automotive service companies. AutoFlow optimizes scheduling, resource allocation, and customer management to drive efficiency and profitability.",
+        "MyelomaRisk provides risk stratification and prognosis calculations for multiple myeloma and related plasma cell disorders. The collaboration began in 2023 before DeeboAI was formed and was incorporated into DeeboAI's product portfolio in 2026.",
       features: [
-        "Intelligent scheduling system",
-        "Resource management",
-        "Customer portal",
-        "Automated reminders",
-        "Analytics dashboard",
-        "Mobile accessibility",
+        "Risk stratification calculators",
+        "Prognosis-oriented clinical workflows",
+        "Support for myeloma and related plasma cell disorders",
+        "Clinician-facing decision support experience",
+        "Collaboration with Mayo Clinic hematologists",
+        "Focused healthcare UX and deployment",
       ],
-      technologies: ["Next.js", "TypeScript", "PostgreSQL", "Redis"],
-      image: autoflowImage,
+      technologies: ["React", "TypeScript", "Clinical Logic", "Risk Modeling", "Healthcare UX"],
+      image: heroImage,
     },
   ];
 
@@ -83,7 +67,7 @@ const Products = () => {
               Our <span className="text-gradient">Products</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Flagship software solutions bringing AI innovation to real-world industries
+              Focused software products built around medication intelligence and clinical risk support
             </p>
           </div>
         </div>
@@ -179,7 +163,7 @@ const Products = () => {
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-4xl font-bold">Want to Build Your Own?</h2>
             <p className="text-xl text-muted-foreground">
-              We help companies develop custom AI solutions and SaaS platforms
+              We partner with teams that need custom AI products, clinical tooling, and durable software systems
             </p>
             <Button asChild size="lg">
               <Link to="/services">Explore Our Services</Link>

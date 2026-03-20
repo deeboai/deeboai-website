@@ -1,5 +1,4 @@
 import amadouImage from "@/assets/amadou.jpeg";
-import albertImage from "@/assets/albert.jpeg";
 import kurtImage from "@/assets/kurt.jpeg";
 
 export interface TeamMember {
@@ -18,60 +17,35 @@ export interface TeamMember {
   image: string;
 }
 
+// Only include people who should appear publicly on the active team page. Former collaborators,
+// alumni, or historical contributors should be referenced in narrative copy only when needed.
 export const teamMembers: TeamMember[] = [
   {
     id: "amadou-toure",
     name: "Amadou Touré",
-    title: "Co-Founder · Chief Executive Officer",
-    roleLabel: "Founder",
+    title: "Founder · Chief Executive Officer",
+    roleLabel: "Founder & CEO",
     bio:
-      "Amadou brings a multidisciplinary background in computer science, data analytics, computer security, and machine learning. With hands-on experience building secure tools and research applications, he aligns DeeboAI's software with the real needs of creatives and operators.",
+      "Amadou brings a multidisciplinary background in computer science, data analytics, computer security, and machine learning. He leads DeeboAI's product direction across clinical intelligence, decision support, and applied AI systems built for real operators.",
     expertise: [
       "Applied Machine Learning",
-      "Music Technology",
+      "Healthcare AI",
       "Data Analytics",
       "Product Strategy",
     ],
     focus: [
-      "Translating field research into intuitive products",
+      "Translating field research into intuitive software",
       "Designing secure, scalable AI workflows",
-      "Championing artist-first launch strategies",
+      "Building clinical and operational tools that teams will actually adopt",
     ],
-    currentRole: "Data Scientist · Baltimore Health Analytics",
+    currentRole: "Founder · DeeboAI",
     highlight:
-      "Spearheaded collaborations that bridge technology with artistry, helping independent musicians adopt AI tooling without sacrificing creative control.",
+      "Leads collaborations spanning medication intelligence, clinical risk assessment, and custom product development with a focus on trustworthy deployment.",
     quote:
-      "“AI should disappear into the background so that the creative feels effortless. When we hit that balance, teams can scale without losing their craft.”",
-    email: "etoure33@gmail.com",
+      "“The standard is simple: build AI that fits the workflow, earns trust quickly, and produces something useful on day one.”",
+    email: "amadou@deeboai.com",
     linkedin: "https://www.linkedin.com/in/elhadjiatoure/",
     image: amadouImage,
-  },
-  {
-    id: "albert-osakwe",
-    name: "Albert Osakwe",
-    title: "Co-Founder · Chief Technology Officer",
-    roleLabel: "Founder",
-    bio:
-      "Albert is a software engineer specializing in artificial intelligence and natural language processing with a track record of delivering durable, high-impact systems.",
-    expertise: [
-      "AI Architecture & Integration",
-      "Infrastructure Automation",
-      "Data Engineering",
-      "Audio Intelligence",
-    ],
-    focus: [
-      "Designing ML pipelines with measurable outcomes",
-      "Operationalizing AI and automation across industries",
-      "Mentoring teams on scalable engineering practices",
-    ],
-    currentRole: "Data Engineer · Meta",
-    highlight:
-      "Leads the algorithm development and integration efforts that allow DeeboAI to deliver precise, efficient audio editing workflows for mixers and broadcasters.",
-    quote:
-      "“It's not enough for models to be clever—they have to deliver predictable outcomes, integrate cleanly, and earn the trust of the teams they support.”",
-    email: "osakwe05@gmail.com",
-    linkedin: "https://www.linkedin.com/in/aaosakwe/",
-    image: albertImage,
   },
   {
     id: "kurt-waltenbaugh",

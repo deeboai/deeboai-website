@@ -1,34 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import whiteOnBlack from "@/assets/logos/white_on_black.PNG?url";
 import synnovaImage from "@/assets/srx.jpg?url";
-import autoflowImage from "@/assets/autoflow.jpg?url";
+import heroImage from "@/assets/hero-ai-network.jpg";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// Homepage product preview stays intentionally small: current flagship products plus a clear
+// services CTA in the third slot so the section does not imply a nonexistent third flagship.
 const products = [
   {
-    name: "Deebo Studio",
-    tagline: "AI Audio Automation",
+    name: "ZynthRx",
+    tagline: "Medication Intelligence",
     description:
-      "Studio-grade audio editing accelerated by speech isolation, profanity detection, and timeline-aware automation.",
-    status: "In Development",
-    image: whiteOnBlack,
-  },
-  {
-    name: "SynnovaRx",
-    tagline: "Healthcare Intelligence",
-    description:
-      "Patient-friendly medication intelligence layered into EHRs with indication-based insights and adherence analytics.",
+      "Patient-friendly medication intelligence layered into care workflows with clearer indications, context, and decision support.",
     status: "In Development",
     image: synnovaImage,
   },
   {
-    name: "AutoFlow",
-    tagline: "Smart Scheduling & Ops",
+    name: "MyelomaRisk",
+    tagline: "Clinical Risk Assessment",
     description:
-      "Adaptive scheduling and workflows empowering automotive service teams with real-time availability and demand forecasting.",
-    status: "In Negotiation",
-    image: autoflowImage,
+      "Risk stratification and prognosis tooling for multiple myeloma and related plasma cell disorders, carried into DeeboAI in 2026 after the collaboration began in 2023.",
+    status: "Active Collaboration",
+    image: heroImage,
   },
 ];
 
@@ -52,7 +46,7 @@ const ProductsPreview = () => {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-element">
+        <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-element">
           {products.map((product) => (
             <div
               key={product.name}
@@ -90,6 +84,29 @@ const ProductsPreview = () => {
               </div>
             </div>
           ))}
+
+          <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-border/70 bg-card/80 p-8">
+            <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 animated-aurora" />
+            <div className="relative space-y-6">
+              <div className="inline-flex items-center gap-3 text-[0.65rem] uppercase tracking-[0.35em] text-muted-foreground/70">
+                <span className="rounded-full bg-background/70 px-3 py-1">Custom Builds</span>
+                <span>Services</span>
+              </div>
+              <div className="space-y-3">
+                <h3 className="text-2xl font-bold text-foreground">Need something purpose-built?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  We partner with teams that need custom AI software, clinical workflow tools, and
+                  operator-ready systems rather than off-the-shelf demos.
+                </p>
+              </div>
+            </div>
+            <Button asChild variant="ghost" className="relative justify-start px-0 text-primary">
+              <Link to="/services">
+                Explore our services
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+              </Link>
+            </Button>
+          </div>
         </div>
 
         <div className="text-center mt-16">

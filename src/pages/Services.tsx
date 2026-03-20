@@ -20,7 +20,7 @@ const Services = () => {
     {
       icon: Brain,
       title: "AI Systems & Product Development",
-      description: "Transform your business with enterprise-grade AI solutions.",
+      description: "Design and ship AI products that solve specific workflow problems, not generic demos.",
       features: [
         "Machine Learning Models",
         "Natural Language Processing",
@@ -50,19 +50,19 @@ const Services = () => {
     {
       icon: Cloud,
       title: "SaaS Solutions",
-      description: "Full-stack SaaS platforms built for scale.",
+      description: "Full-stack software platforms built for regulated, operational, and healthcare contexts.",
       features: [
-        "Healthcare Management Systems",
-        "Automotive Scheduling Platforms",
-        "Enterprise Workflow Automation",
-        "Cloud Infrastructure",
-        "API Development & Integration",
-        "Multi-tenant Architecture",
+        "Healthcare decision-support products",
+        "Risk calculators and clinical tools",
+        "Enterprise workflow automation",
+        "Cloud infrastructure",
+        "API development and integration",
+        "Multi-tenant architecture",
       ],
-      technologies: ["AWS", "PostgreSQL", "Redis", "Docker", "Kubernetes"],
+      technologies: ["AWS", "PostgreSQL", "FHIR", "Docker", "TypeScript"],
       products: [
-        { name: "SynnovaRx", status: "In Development" },
-        { name: "AutoFlow", status: "In Negotiation" },
+        { name: "ZynthRx", status: "In Development" },
+        { name: "MyelomaRisk", status: "Active Collaboration" },
       ],
     },
   ];
@@ -79,7 +79,7 @@ const Services = () => {
               Our <span className="text-gradient">Services</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Comprehensive AI solutions tailored to solve your most complex challenges
+              Product strategy, engineering, and applied AI for teams solving complex real-world problems
             </p>
           </div>
         </div>
@@ -170,7 +170,7 @@ const Services = () => {
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-4xl font-bold">Ready to Get Started?</h2>
             <p className="text-xl text-muted-foreground">
-              Let's build something extraordinary together
+              Let&apos;s design software that fits the workflow and proves its value quickly
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild size="lg">

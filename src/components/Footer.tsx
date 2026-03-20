@@ -15,7 +15,7 @@ const Footer = () => {
               Building AI systems that work where it matters.
             </p>
             <p className="text-xs text-muted-foreground">
-              Minneapolis, MN · <a href="mailto:etoure33@gmail.com" className="underline underline-offset-2 hover:text-primary transition-colors">etoure33@gmail.com</a>
+              Minneapolis, MN · <a href="mailto:amadou@deeboai.com" className="underline underline-offset-2 hover:text-primary transition-colors">amadou@deeboai.com</a>
             </p>
           </div>
 
@@ -68,18 +68,18 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Products</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/deeboai-studio" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Deebo Studio
+                <Link to="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  ZynthRx
                 </Link>
               </li>
               <li>
                 <Link to="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  SynnovaRx
+                  MyelomaRisk
                 </Link>
               </li>
               <li>
-                <Link to="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  AutoFlow
+                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Custom AI Solutions
                 </Link>
               </li>
             </ul>

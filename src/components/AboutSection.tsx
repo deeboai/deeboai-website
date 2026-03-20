@@ -1,6 +1,8 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Target, Zap, Users } from "lucide-react";
 
+// Keep this section aligned with the current company narrative. Historical entries may include
+// pre-incorporation work when it directly explains today's DeeboAI products and positioning.
 const values = [
   {
     icon: Target,
@@ -21,24 +23,29 @@ const values = [
 
 const milestones = [
   {
-    year: "Nov 2024",
-    title: "Deebo Studio Prototype",
-    description: "Launched our audio automation pilot, helping creators turn explicit edits around in seconds.",
+    year: "2023",
+    title: "MyelomaRisk Collaboration Begins",
+    description: "The underlying MyelomaRisk collaboration started before DeeboAI existed, laying the foundation for later clinical risk tooling work.",
   },
   {
-    year: "Mar 2025",
-    title: "Impact Challenge Finalists",
-    description: "Placed 2nd at Carleton College's Impact Challenge, earning $5K to accelerate product development.",
+    year: "2024",
+    title: "Applied AI Product Work",
+    description: "Early work on products including Deebo Studio sharpened our approach to workflow-native AI and rapid product iteration.",
   },
   {
-    year: "Aug 2025",
-    title: "Website Consulting",
-    description: "Introduced bespoke web design services—bringing brands like Linque Resourcing to market.",
+    year: "2025",
+    title: "Healthcare Focus Deepened",
+    description: "Expanded clinical advisory and product discovery efforts around medication transparency and decision support.",
   },
   {
-    year: "Oct 2025",
-    title: "Healthcare Consulting",
-    description: "Expanded into clinical advisory, paving the way for SynnovaRx’s decision-support platform.",
+    year: "2025",
+    title: "ZynthRx Platform Direction",
+    description: "Refined our medication intelligence platform around patient-friendly understanding, provider context, and workflow fit.",
+  },
+  {
+    year: "2026",
+    title: "MyelomaRisk Joins DeeboAI",
+    description: "The ongoing MyelomaRisk work was brought into DeeboAI's portfolio, connecting a 2023 clinical collaboration to the company's healthcare product direction.",
   },
 ];
 
@@ -59,31 +66,32 @@ const AboutSection = () => {
             About <span className="text-gradient">DeeboAI</span>
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Founded by <span className="text-foreground font-medium">Amadou Touré</span> and{" "}
-            <span className="text-foreground font-medium">Albert Osakwe</span>, DeeboAI is an AI
-            product studio delivering audio innovation, healthcare intelligence, and resilient SaaS
-            infrastructure. We combine deep ML research with production-grade engineering to get AI
-            where it matters most.
+            Founded by <span className="text-foreground font-medium">Amadou Touré</span>, DeeboAI
+            is an applied AI company focused on clinical intelligence, risk assessment, and
+            production-grade software for teams working in complex environments. Past work including
+            Deebo Studio helped shape our product instincts, but today our focus is healthcare
+            tooling and durable operator-facing systems.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left text-sm text-muted-foreground/90 glass-panel border border-border/80 rounded-2xl p-8">
             <div className="space-y-2">
-              <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Audio</p>
+              <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Clinical AI</p>
               <p>
-                AI-native tooling for broadcasters, editors, and artists with lightning-fast
-                automation.
+                Risk assessment, medication intelligence, and decision-support software built for
+                real healthcare workflows.
               </p>
             </div>
             <div className="space-y-2">
               <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Healthcare</p>
               <p>
-                Patient-friendly transparency and clinical decision support embedded in existing
-                workflows.
+                Patient-friendly transparency and clinician-aligned product design embedded into
+                existing care systems.
               </p>
             </div>
             <div className="space-y-2">
               <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Enterprise</p>
               <p>
-                Full-stack SaaS, data platforms, and consulting for operators scaling their services.
+                Full-stack SaaS, analytics infrastructure, and custom software for operators scaling
+                specialized services.
               </p>
             </div>
           </div>
@@ -116,14 +124,15 @@ const AboutSection = () => {
               <div className="space-y-3 md:max-w-sm">
                 <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Trajectory</p>
                 <h3 className="text-2xl font-semibold text-foreground">
-                  From audio pioneers to full-spectrum AI builders.
+                  From experimental AI builds to focused healthcare products.
                 </h3>
                 <p className="text-muted-foreground">
-                  Our founding insight: automation must honor craft. Today, the same principle guides
-                  AI infrastructure for clinics, garages, and studios alike.
+                  Our throughline has stayed the same: build software around the actual workflow.
+                  That lesson carried from early product work into today&apos;s healthcare and
+                  decision-support platforms.
                 </p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
                 {milestones.map((milestone) => (
                   <div key={milestone.year} className="relative">
                     <div className="absolute left-0 top-0 h-full w-px bg-primary/40 sm:right-0 sm:left-auto sm:w-full sm:h-px sm:top-auto sm:bottom-0 sm:bg-gradient-to-r sm:from-primary/60 sm:via-primary/20 sm:to-transparent" />

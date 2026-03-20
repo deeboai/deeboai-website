@@ -38,9 +38,9 @@ const Hero = () => {
             ref={textRef}
             className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto reveal-element"
           >
-            DeeboAI designs AI-native platforms that automate audio editing, accelerate healthcare
-            workflows, and unlock decision-ready data. We bridge research-grade innovation with
-            enduring, production-ready software.
+            DeeboAI builds clinical intelligence software, risk assessment tools, and custom AI
+            systems that help healthcare teams and operators move faster with more confidence. We
+            turn high-stakes workflows into practical, production-ready products.
           </p>
 
           <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 reveal-element">
@@ -66,9 +66,9 @@ const Hero = () => {
 
           <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 reveal-element">
             {[
-              { value: "3+", label: "Active & emerging products across industries" },
-              { value: "50+", label: "Languages orchestrated for AI-led audio cleanup" },
-              { value: "100%", label: "Deployments powered by ethical, explainable AI" },
+              { value: "2", label: "Current flagship healthcare products on the roadmap" },
+              { value: "1", label: "Mayo Clinic-aligned risk assessment collaboration highlighted today" },
+              { value: "100%", label: "Practical builds designed around real operator workflows" },
             ].map((stat) => (
               <div
                 key={stat.label}
