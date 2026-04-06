@@ -8,6 +8,8 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
     --background: 220 14% 6%;
     --foreground: 220 18% 96%;
 
@@ -45,8 +47,17 @@ All colors MUST be HSL.
     
     --shadow-glow: 0 0 40px hsla(217, 91%, 60%, 0.3);
     --shadow-elegant: 0 20px 50px -10px hsla(0, 0%, 0%, 0.5);
-    
+
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 220 18% 96%;
+    --sidebar-primary: 208 92% 62%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 12% 16%;
+    --sidebar-accent-foreground: 220 18% 96%;
+    --sidebar-border: 220 12% 18%;
+    --sidebar-ring: 208 92% 62%;
   }
 }
 
@@ -59,6 +70,7 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-feature-settings: "cv11", "ss01";
     font-optical-sizing: auto;
+    font-family: var(--font-sans);
   }
 
   html {

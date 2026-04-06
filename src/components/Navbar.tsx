@@ -1,14 +1,18 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoMark from "@/assets/logos/white_on_black_no_background.png";
+
+const logoMark = "/assets/logos/white_on_black_no_background.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +29,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -51,7 +55,7 @@ const Navbar = () => {
 
         <div className="container mx-auto px-4 relative">
           <div className="flex items-center justify-between h-20">
-            <Link to="/" className="flex items-center space-x-3 group">
+            <Link href="/" className="flex items-center space-x-3 group">
               <img
                 src={logoMark}
                 alt="DeeboAI brand"
@@ -64,15 +68,15 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
-                  to={link.path}
-                  className={`relative text-sm font-medium transition-all duration-200 hover:text-primary ${
-                    location.pathname === link.path ? "text-primary" : "text-foreground/80"
+                  href={link.path}
+                    className={`relative text-sm font-medium transition-all duration-200 hover:text-primary ${
+                    pathname === link.path ? "text-primary" : "text-foreground/80"
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
                   <span
                     className={`absolute inset-x-0 -bottom-1 h-0.5 rounded-full bg-primary transition-opacity duration-200 ${
-                      location.pathname === link.path ? "opacity-100" : "opacity-0 group-hover:opacity-60"
+                      pathname === link.path ? "opacity-100" : "opacity-0 group-hover:opacity-60"
                     }`}
                   />
                 </Link>
@@ -107,9 +111,9 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
-                  to={link.path}
+                  href={link.path}
                   className={`block text-sm font-medium transition-colors hover:text-primary ${
-                    location.pathname === link.path ? "text-primary" : "text-foreground/80"
+                    pathname === link.path ? "text-primary" : "text-foreground/80"
                   }`}
                 >
                   {link.name}

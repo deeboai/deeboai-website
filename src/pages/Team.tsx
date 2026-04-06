@@ -1,3 +1,5 @@
+"use client";
+
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
@@ -5,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { teamMembers, type TeamMember } from "@/lib/team-data";
 import { Linkedin, Mail, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const TeamMemberCard = ({ member, index }: { member: TeamMember; index: number }) => {
   const cardRef = useScrollReveal<HTMLDivElement>({ threshold: 0.2, rootMargin: "-10% 0px" });
@@ -233,10 +235,10 @@ const Team = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild size="lg">
-                <Link to="/contact">Start a conversation</Link>
+                <Link href="/contact">Start a conversation</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="hover:bg-primary/10">
-                <Link to="/services">View our capabilities</Link>
+                <Link href="/services">View our capabilities</Link>
               </Button>
             </div>
           </div>

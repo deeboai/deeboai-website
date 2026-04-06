@@ -1,7 +1,9 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Brain, Code, Cloud, CheckCircle2 } from "lucide-react";
 
 type ServiceItem = {
@@ -179,7 +181,7 @@ const Services = () => {
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link to="/products">View Our Products</Link>
+                <Link href="/products">View Our Products</Link>
               </Button>
             </div>
           </div>

@@ -1,10 +1,13 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import synnovaImage from "@/assets/srx.jpg?url";
-import heroImage from "@/assets/hero-ai-network.jpg";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
+
+const synnovaImage = "/assets/srx.jpg";
+const heroImage = "/assets/hero-ai-network.jpg";
 
 // These are the active DeeboAI product initiatives that should appear as current offerings.
 // Historical projects that are no longer owned by DeeboAI belong in About, not here.
@@ -144,7 +147,7 @@ const Products = () => {
                             Interested in {product.name}? Get in touch to see how it can transform your operations.
                           </p>
                           <Button asChild variant="default" className="w-full">
-                            <Link to="/contact">Request Information</Link>
+                            <Link href="/contact">Request Information</Link>
                           </Button>
                         </div>
                       </div>
@@ -166,7 +169,7 @@ const Products = () => {
               We partner with teams that need custom AI products, clinical tooling, and durable software systems
             </p>
             <Button asChild size="lg">
-              <Link to="/services">Explore Our Services</Link>
+              <Link href="/services">Explore Our Services</Link>
             </Button>
           </div>
         </div>

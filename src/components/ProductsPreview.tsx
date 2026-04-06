@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import synnovaImage from "@/assets/srx.jpg?url";
-import heroImage from "@/assets/hero-ai-network.jpg";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+
+const synnovaImage = "/assets/srx.jpg";
+const heroImage = "/assets/hero-ai-network.jpg";
 
 // Homepage product preview stays intentionally small: current flagship products plus a clear
 // services CTA in the third slot so the section does not imply a nonexistent third flagship.
@@ -74,7 +75,7 @@ const ProductsPreview = () => {
               <div className="flex flex-1 flex-col justify-between gap-6 px-8 py-8 bg-card/90">
                 <p className="text-muted-foreground leading-relaxed">{product.description}</p>
                 <Button asChild variant="ghost" className="justify-start px-0 text-primary">
-                  <Link to="/products">
+                  <Link href="/products">
                     Explore the roadmap
                     <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1.5">
                       →
@@ -101,7 +102,7 @@ const ProductsPreview = () => {
               </div>
             </div>
             <Button asChild variant="ghost" className="relative justify-start px-0 text-primary">
-              <Link to="/services">
+              <Link href="/services">
                 Explore our services
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
               </Link>
@@ -111,7 +112,7 @@ const ProductsPreview = () => {
 
         <div className="text-center mt-16">
           <Button asChild size="lg">
-            <Link to="/products">Discover All Products</Link>
+            <Link href="/products">Discover All Products</Link>
           </Button>
         </div>
       </div>

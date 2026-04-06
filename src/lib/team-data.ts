@@ -1,5 +1,5 @@
-import amadouImage from "@/assets/amadou.jpeg";
-import kurtImage from "@/assets/kurt.jpeg";
+const amadouImage = "/assets/amadou.jpeg";
+const kurtImage = "/assets/kurt.jpeg";
 
 export interface TeamMember {
   id: string;
