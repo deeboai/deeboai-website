@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import heroImage from "@/assets/hero-ai-network.jpg";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+
+const heroImage = "/assets/hero-ai-network.jpg";
 
 const Hero = () => {
   const headingRef = useScrollReveal<HTMLHeadingElement>({ threshold: 0.3 });
@@ -49,7 +50,7 @@ const Hero = () => {
               size="lg"
               className="group hover:shadow-lg hover:shadow-primary/45 transition-all duration-300"
             >
-              <Link to="/contact">
+              <Link href="/contact">
                 Build With Us
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
@@ -60,7 +61,7 @@ const Hero = () => {
               variant="outline"
               className="hover:bg-primary/10 hover:text-primary transition-all duration-300"
             >
-              <Link to="/products">Explore Our Products</Link>
+              <Link href="/products">Explore Our Products</Link>
             </Button>
           </div>
 

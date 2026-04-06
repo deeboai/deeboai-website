@@ -1,3 +1,5 @@
+"use client";
+
 import { MutableRefObject, useEffect, useRef } from "react";
 
 type ScrollRevealOptions = {
@@ -54,4 +56,3 @@ export const useScrollReveal = <T extends HTMLElement>(
 
   return elementRef;
 };
-

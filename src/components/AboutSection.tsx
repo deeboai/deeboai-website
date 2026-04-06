@@ -134,7 +134,7 @@ const AboutSection = () => {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
                 {milestones.map((milestone) => (
-                  <div key={milestone.year} className="relative">
+                  <div key={`${milestone.year}-${milestone.title}`} className="relative">
                     <div className="absolute left-0 top-0 h-full w-px bg-primary/40 sm:right-0 sm:left-auto sm:w-full sm:h-px sm:top-auto sm:bottom-0 sm:bg-gradient-to-r sm:from-primary/60 sm:via-primary/20 sm:to-transparent" />
                     <div className="space-y-2">
                       <span className="text-sm font-semibold text-primary">{milestone.year}</span>

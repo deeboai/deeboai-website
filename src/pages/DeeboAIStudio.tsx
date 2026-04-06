@@ -1,3 +1,5 @@
+"use client";
+
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
@@ -9,16 +11,17 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import heroVideo from "@/assets/deeboai_page/deebo_ai_cover.mov";
-import dawImage from "@/assets/deeboai_page/daw_picture.jpg";
-import rapperImage from "@/assets/deeboai_page/rapper_in_studio.jpg";
-import writingImage from "@/assets/deeboai_page/writing_lyrics.jpg";
-import djBackground from "@/assets/deeboai_page/dj_in_studio.jpg";
-import kendrickExplicit from "@/assets/deeboai_page/kendrick-explicit.mov";
-import kendrickClean from "@/assets/deeboai_page/kendrick_clean.mov";
-import coleExplicit from "@/assets/deeboai_page/j.-cole.clean.mov";
-import coleClean from "@/assets/deeboai_page/j.-cole-clean.mov";
 import { Sparkles } from "lucide-react";
+
+const heroVideo = "/assets/deeboai_page/deebo_ai_cover.mov";
+const dawImage = "/assets/deeboai_page/daw_picture.jpg";
+const rapperImage = "/assets/deeboai_page/rapper_in_studio.jpg";
+const writingImage = "/assets/deeboai_page/writing_lyrics.jpg";
+const djBackground = "/assets/deeboai_page/dj_in_studio.jpg";
+const kendrickExplicit = "/assets/deeboai_page/kendrick-explicit.mov";
+const kendrickClean = "/assets/deeboai_page/kendrick_clean.mov";
+const coleExplicit = "/assets/deeboai_page/j.-cole.clean.mov";
+const coleClean = "/assets/deeboai_page/j.-cole-clean.mov";
 
 const services = [
   {

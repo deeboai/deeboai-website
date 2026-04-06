@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import logoMark from "@/assets/logos/white_on_black_no_background.png";
+import Link from "next/link";
+
+const logoMark = "/assets/logos/white_on_black_no_background.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,17 +25,17 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Company</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/team" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/team" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Team
                 </Link>
               </li>
               <li>
-                <Link to="/partners" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/partners" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Partners
                 </Link>
               </li>
@@ -46,17 +47,17 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   AI Systems
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Website Consulting
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   SaaS Solutions
                 </Link>
               </li>
@@ -68,17 +69,17 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Products</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   ZynthRx
                 </Link>
               </li>
               <li>
-                <Link to="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   MyelomaRisk
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Custom AI Solutions
                 </Link>
               </li>

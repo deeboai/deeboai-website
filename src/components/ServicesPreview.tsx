@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { ArrowRight, Brain, Cloud, Code } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const services = [
   {
@@ -95,7 +95,7 @@ const ServicesPreview = () => {
           </h3>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg">
-              <Link to="/services">
+              <Link href="/services">
                 View All Services
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
