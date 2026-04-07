@@ -1,0 +1,10 @@
+# This overrides any legacy static-site settings so Netlify builds the current Next.js app.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # The project pins Node 22 locally and does not support Node 25+.
+  NODE_VERSION = "22"
+  # Supabase project URL and anon key are intentionally public client values, so Netlify should not block deploys when they appear in built chunks.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY"
