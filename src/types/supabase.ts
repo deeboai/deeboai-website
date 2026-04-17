@@ -382,6 +382,62 @@ export type Database = {
           legacy_personal_cashflow_entry_id?: string | null;
         };
       };
+      housing_monthly_entries: {
+        Row: {
+          id: string;
+          created_at: string;
+          updated_at: string;
+          user_id: string;
+          entry_date: string;
+          base_rent: number;
+          parking: number;
+          utilities: number;
+          insurance: number;
+          maintenance: number;
+          home_state: string | null;
+          home_square_feet: number | null;
+          office_square_feet: number | null;
+          notes: string | null;
+          entry_month: number;
+          entry_year: number;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          user_id: string;
+          entry_date: string;
+          base_rent?: number;
+          parking?: number;
+          utilities?: number;
+          insurance?: number;
+          maintenance?: number;
+          home_state?: string | null;
+          home_square_feet?: number | null;
+          office_square_feet?: number | null;
+          notes?: string | null;
+          entry_month: number;
+          entry_year: number;
+        };
+        Update: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          user_id?: string;
+          entry_date?: string;
+          base_rent?: number;
+          parking?: number;
+          utilities?: number;
+          insurance?: number;
+          maintenance?: number;
+          home_state?: string | null;
+          home_square_feet?: number | null;
+          office_square_feet?: number | null;
+          notes?: string | null;
+          entry_month?: number;
+          entry_year?: number;
+        };
+      };
       tax_reserves: {
         Row: {
           id: string;

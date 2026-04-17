@@ -3,4 +3,4 @@
 Legacy route kept for compatibility.
 
 - Requests here redirect into `Housing`.
-- Shared housing bills now live inside the dedicated housing-deduction ledger.
+- Shared housing totals now live inside the dedicated monthly housing ledger.
