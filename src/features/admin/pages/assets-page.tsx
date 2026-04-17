@@ -38,6 +38,7 @@ import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
 import { useAdminReferenceData } from "@/features/admin/hooks/use-admin-reference-data";
 import { calculateBusinessUseAmount, sumBy } from "@/features/admin/lib/calculations";
+import { getLocalDateInputValue } from "@/features/admin/lib/date";
 import { deleteRow, listRows, upsertRow } from "@/features/admin/lib/data-client";
 import { formatCurrency, formatDate } from "@/features/admin/lib/format";
 import type { Database } from "@/types/supabase";
@@ -62,7 +63,7 @@ type AssetDraft = {
 const emptyDraft: AssetDraft = {
   asset_name: "",
   business_id: "",
-  purchase_date: new Date().toISOString().slice(0, 10),
+  purchase_date: getLocalDateInputValue(),
   cost: "",
   business_use_percent: "100",
   asset_category: "equipment",

@@ -37,10 +37,13 @@ import { EmptyState } from "@/features/admin/components/empty-state";
 import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
 import { DEFAULT_EXPENSE_CATEGORIES, PAYMENT_METHOD_OPTIONS } from "@/features/admin/config/defaults";
+import { useAdminPreference, usePreferredOptions } from "@/features/admin/hooks/use-admin-preferences";
 import { useAdminReferenceData } from "@/features/admin/hooks/use-admin-reference-data";
 import { calculateDeductibleAmount, getTaxPeriod, sumBy } from "@/features/admin/lib/calculations";
+import { getLocalDateInputValue } from "@/features/admin/lib/date";
 import { deleteRow, getSignedReceiptUrl, listRows, upsertRow } from "@/features/admin/lib/data-client";
 import { formatCurrency, formatDate } from "@/features/admin/lib/format";
+import { sanitizeFileName } from "@/lib/input-security";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser";
 import type { Database } from "@/types/supabase";
 
@@ -65,7 +68,7 @@ type ExpenseDraft = {
 };
 
 const emptyDraft: ExpenseDraft = {
-  expense_date: new Date().toISOString().slice(0, 10),
+  expense_date: getLocalDateInputValue(),
   vendor: "",
   business_id: "",
   expense_category: "software",
@@ -92,10 +95,6 @@ function createDraftFromRow(row: ExpenseRow): ExpenseDraft {
   };
 }
 
-function normalizeFileName(fileName: string) {
-  return fileName.toLowerCase().replace(/[^a-z0-9.\-_]+/g, "-");
-}
-
 export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
   const queryClient = useQueryClient();
   const referenceQuery = useAdminReferenceData();
@@ -114,6 +113,20 @@ export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
   const [toDate, setToDate] = useState("");
 
   const businesses = referenceQuery.data?.businesses ?? [];
+  const { storedValue: preferredBusinessId, rememberValue: rememberBusinessId } = useAdminPreference("expenses.business_id");
+  const { storedValue: preferredExpenseCategory, rememberValue: rememberExpenseCategory } = useAdminPreference("expenses.category");
+  const { storedValue: preferredPaymentMethod, rememberValue: rememberPaymentMethod } = useAdminPreference("expenses.payment_method");
+  const orderedBusinesses = usePreferredOptions(businesses, (business) => business.id, preferredBusinessId);
+  const orderedExpenseCategories = usePreferredOptions(
+    [...DEFAULT_EXPENSE_CATEGORIES],
+    (category) => category,
+    preferredExpenseCategory,
+  );
+  const orderedPaymentMethods = usePreferredOptions(
+    [...PAYMENT_METHOD_OPTIONS],
+    (method) => method,
+    preferredPaymentMethod,
+  );
   const entries = expensesQuery.data ?? [];
   const amount = Number(draft.amount || 0);
   const businessUsePercent = Number(draft.business_use_percent || 0);
@@ -148,7 +161,7 @@ export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
       // Upload the receipt before saving the row so the saved path is immediately usable.
       if (receiptFile) {
         const supabase = getSupabaseBrowserClient();
-        const filePath = `${userId}/${Date.now()}-${normalizeFileName(receiptFile.name)}`;
+        const filePath = `${userId}/${Date.now()}-${sanitizeFileName(receiptFile.name)}`;
         const { error } = await supabase.storage
           .from("expense-receipts")
           .upload(filePath, receiptFile, { upsert: false });
@@ -182,6 +195,9 @@ export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
       });
     },
     onSuccess: () => {
+      rememberBusinessId(draft.business_id);
+      rememberExpenseCategory(draft.expense_category);
+      rememberPaymentMethod(draft.payment_method);
       toast.success(editingRow ? "Expense updated." : "Expense created.");
       setDialogOpen(false);
       setEditingRow(null);
@@ -208,10 +224,14 @@ export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
   });
 
   function openCreateDialog() {
+    const preferredBusiness = businesses.find((business) => business.id === preferredBusinessId);
+
     setEditingRow(null);
     setDraft({
       ...emptyDraft,
-      business_id: businesses[0]?.id ?? "",
+      business_id: preferredBusiness?.id ?? businesses[0]?.id ?? "",
+      expense_category: preferredExpenseCategory || emptyDraft.expense_category,
+      payment_method: preferredPaymentMethod || emptyDraft.payment_method,
     });
     setReceiptFile(null);
     setDialogOpen(true);
@@ -281,7 +301,7 @@ export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All businesses</SelectItem>
-                {businesses.map((business) => (
+                {orderedBusinesses.map((business) => (
                   <SelectItem key={business.id} value={business.id}>
                     {business.name}
                   </SelectItem>
@@ -294,7 +314,7 @@ export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All categories</SelectItem>
-                {DEFAULT_EXPENSE_CATEGORIES.map((category) => (
+                {orderedExpenseCategories.map((category) => (
                   <SelectItem key={category} value={category}>
                     {category}
                   </SelectItem>
@@ -433,7 +453,7 @@ export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
                     <SelectValue placeholder="Select a business" />
                   </SelectTrigger>
                   <SelectContent>
-                    {businesses.map((business) => (
+                    {orderedBusinesses.map((business) => (
                       <SelectItem key={business.id} value={business.id}>
                         {business.name}
                       </SelectItem>
@@ -461,7 +481,7 @@ export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
                     <SelectValue placeholder="Select a category" />
                   </SelectTrigger>
                   <SelectContent>
-                    {DEFAULT_EXPENSE_CATEGORIES.map((category) => (
+                    {orderedExpenseCategories.map((category) => (
                       <SelectItem key={category} value={category}>
                         {category}
                       </SelectItem>
@@ -503,7 +523,7 @@ export function ExpensesPage({ userId, userEmail }: ExpensesPageProps) {
                     <SelectValue placeholder="Select payment method" />
                   </SelectTrigger>
                   <SelectContent>
-                    {PAYMENT_METHOD_OPTIONS.map((method) => (
+                    {orderedPaymentMethods.map((method) => (
                       <SelectItem key={method} value={method}>
                         {method}
                       </SelectItem>

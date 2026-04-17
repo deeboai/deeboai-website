@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
@@ -65,14 +66,14 @@ const Products = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-background to-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold">
               Our <span className="text-gradient">Products</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               Focused software products built around medication intelligence and clinical risk support
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -81,7 +82,7 @@ const Products = () => {
         <div className="container mx-auto px-4">
           <div className="space-y-24">
             {products.map((product, index) => (
-              <div key={index} className="max-w-6xl mx-auto">
+              <Reveal key={index} className="max-w-6xl mx-auto" delayMs={index * 90}>
                 <div className="bg-card rounded-2xl border border-border overflow-hidden">
                   <div
                     className="relative h-56 w-full bg-cover bg-center border-b border-border"
@@ -154,7 +155,7 @@ const Products = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -163,7 +164,7 @@ const Products = () => {
       {/* CTA Section */}
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-4xl font-bold">Want to Build Your Own?</h2>
             <p className="text-xl text-muted-foreground">
               We partner with teams that need custom AI products, clinical tooling, and durable software systems
@@ -171,7 +172,7 @@ const Products = () => {
             <Button asChild size="lg">
               <Link href="/services">Explore Our Services</Link>
             </Button>
-          </div>
+          </Reveal>
         </div>
       </section>
 

@@ -36,8 +36,10 @@ import { EmptyState } from "@/features/admin/components/empty-state";
 import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
 import { DEFAULT_INCOME_CATEGORIES } from "@/features/admin/config/defaults";
+import { useAdminPreference, usePreferredOptions } from "@/features/admin/hooks/use-admin-preferences";
 import { useAdminReferenceData } from "@/features/admin/hooks/use-admin-reference-data";
 import { calculateNetReceived, getTaxPeriod, sumBy } from "@/features/admin/lib/calculations";
+import { getLocalDateInputValue } from "@/features/admin/lib/date";
 import { deleteRow, listRows, upsertRow } from "@/features/admin/lib/data-client";
 import { formatCurrency, formatDate } from "@/features/admin/lib/format";
 import { toast } from "@/components/ui/sonner";
@@ -61,7 +63,7 @@ type IncomeDraft = {
 };
 
 const emptyDraft: IncomeDraft = {
-  received_on: new Date().toISOString().slice(0, 10),
+  received_on: getLocalDateInputValue(),
   payer_client: "",
   business_id: "",
   income_category: "other",
@@ -101,6 +103,14 @@ export function IncomePage({ userId, userEmail }: IncomePageProps) {
 
   const entries = incomeQuery.data ?? [];
   const businesses = referenceQuery.data?.businesses ?? [];
+  const { storedValue: preferredBusinessId, rememberValue: rememberBusinessId } = useAdminPreference("income.business_id");
+  const { storedValue: preferredIncomeCategory, rememberValue: rememberIncomeCategory } = useAdminPreference("income.category");
+  const orderedBusinesses = usePreferredOptions(businesses, (business) => business.id, preferredBusinessId);
+  const orderedIncomeCategories = usePreferredOptions(
+    [...DEFAULT_INCOME_CATEGORIES],
+    (category) => category,
+    preferredIncomeCategory,
+  );
   const grossAmount = Number(draft.gross_amount || 0);
   const feesWithheld = Number(draft.fees_withheld || 0);
   const netReceived = calculateNetReceived(grossAmount, feesWithheld);
@@ -142,6 +152,8 @@ export function IncomePage({ userId, userEmail }: IncomePageProps) {
       });
     },
     onSuccess: () => {
+      rememberBusinessId(draft.business_id);
+      rememberIncomeCategory(draft.income_category);
       toast.success(editingRow ? "Income entry updated." : "Income entry created.");
       setDialogOpen(false);
       setEditingRow(null);
@@ -167,10 +179,13 @@ export function IncomePage({ userId, userEmail }: IncomePageProps) {
   });
 
   function openCreateDialog() {
+    const preferredBusiness = businesses.find((business) => business.id === preferredBusinessId);
+
     setEditingRow(null);
     setDraft({
       ...emptyDraft,
-      business_id: businesses[0]?.id ?? "",
+      business_id: preferredBusiness?.id ?? businesses[0]?.id ?? "",
+      income_category: preferredIncomeCategory || emptyDraft.income_category,
     });
     setDialogOpen(true);
   }
@@ -227,7 +242,7 @@ export function IncomePage({ userId, userEmail }: IncomePageProps) {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All businesses</SelectItem>
-                {businesses.map((business) => (
+                {orderedBusinesses.map((business) => (
                   <SelectItem key={business.id} value={business.id}>
                     {business.name}
                   </SelectItem>
@@ -240,7 +255,7 @@ export function IncomePage({ userId, userEmail }: IncomePageProps) {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All categories</SelectItem>
-                {DEFAULT_INCOME_CATEGORIES.map((category) => (
+                {orderedIncomeCategories.map((category) => (
                   <SelectItem key={category} value={category}>
                     {category}
                   </SelectItem>
@@ -347,7 +362,7 @@ export function IncomePage({ userId, userEmail }: IncomePageProps) {
                     <SelectValue placeholder="Select a business" />
                   </SelectTrigger>
                   <SelectContent>
-                    {businesses.map((business) => (
+                    {orderedBusinesses.map((business) => (
                       <SelectItem key={business.id} value={business.id}>
                         {business.name}
                       </SelectItem>
@@ -375,7 +390,7 @@ export function IncomePage({ userId, userEmail }: IncomePageProps) {
                     <SelectValue placeholder="Select a category" />
                   </SelectTrigger>
                   <SelectContent>
-                    {DEFAULT_INCOME_CATEGORIES.map((category) => (
+                    {orderedIncomeCategories.map((category) => (
                       <SelectItem key={category} value={category}>
                         {category}
                       </SelectItem>

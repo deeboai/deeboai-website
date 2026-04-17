@@ -2,7 +2,9 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
+import { GOOGLE_APPOINTMENT_SCHEDULING_URL } from "@/lib/contact";
 import Link from "next/link";
 import { Brain, Code, Cloud, CheckCircle2 } from "lucide-react";
 
@@ -76,14 +78,14 @@ const Services = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-background to-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold">
               Our <span className="text-gradient">Services</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               Product strategy, engineering, and applied AI for teams solving complex real-world problems
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -92,8 +94,10 @@ const Services = () => {
         <div className="container mx-auto px-4">
           <div className="space-y-24">
             {services.map((service, index) => (
-              <div
+              <Reveal
                 key={index}
+                delayMs={index * 80}
+                variant={index % 2 === 0 ? "left" : "right"}
                 className={`flex flex-col ${
                   index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                 } gap-12 items-center`}
@@ -160,7 +164,7 @@ const Services = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -169,22 +173,22 @@ const Services = () => {
       {/* CTA Section */}
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-4xl font-bold">Ready to Get Started?</h2>
             <p className="text-xl text-muted-foreground">
               Let&apos;s design software that fits the workflow and proves its value quickly
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild size="lg">
-                <a href="https://calendly.com/etoure33/30min" target="_blank" rel="noreferrer">
-                  Request a Consultation
+                <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
+                  Book an Appointment
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link href="/products">View Our Products</Link>
               </Button>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 

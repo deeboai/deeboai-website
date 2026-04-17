@@ -1,13 +1,11 @@
 import {
-  BriefcaseBusiness,
   CarFront,
   ChartSpline,
   CircleHelp,
   CircleDollarSign,
   CreditCard,
-  Landmark,
+  House,
   ReceiptText,
-  PiggyBank,
   Settings,
   ShieldAlert,
 } from "lucide-react";
@@ -16,56 +14,55 @@ import type { AdminNavigationItem } from "@/types/admin";
 
 export const ADMIN_NAVIGATION: AdminNavigationItem[] = [
   {
+    section: "Operations",
     href: "/admin",
     label: "Dashboard",
     icon: ChartSpline,
   },
   {
+    section: "Operations",
     href: "/admin/income",
     label: "Income",
     icon: CircleDollarSign,
   },
   {
+    section: "Operations",
     href: "/admin/w2-paychecks",
     label: "W-2 Paychecks",
     icon: ReceiptText,
   },
   {
+    section: "Operations",
     href: "/admin/expenses",
     label: "Expenses",
     icon: CreditCard,
   },
   {
+    section: "Operations",
     href: "/admin/mileage",
     label: "Mileage",
     icon: CarFront,
   },
   {
-    href: "/admin/personal-cash-flow",
-    label: "Personal Cash Flow",
-    icon: Landmark,
-  },
-  {
-    href: "/admin/tax-reserves",
-    label: "Tax Reserves",
-    icon: PiggyBank,
-  },
-  {
+    section: "Taxes",
     href: "/admin/tax-planning",
-    label: "Tax Planning",
+    label: "Estimated Taxes",
     icon: ShieldAlert,
   },
   {
-    href: "/admin/assets",
-    label: "Assets",
-    icon: BriefcaseBusiness,
+    section: "Taxes",
+    href: "/admin/housing",
+    label: "Housing",
+    icon: House,
   },
   {
+    section: "Admin",
     href: "/admin/settings",
     label: "Settings",
     icon: Settings,
   },
   {
+    section: "Admin",
     href: "/admin/help",
     label: "Help",
     icon: CircleHelp,

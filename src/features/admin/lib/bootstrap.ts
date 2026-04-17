@@ -16,7 +16,6 @@ function inferUsername(user: User) {
   return user.email ? user.email.split("@")[0] : null;
 }
 
-// The bootstrap step ensures every authenticated user lands in a usable workspace on first sign-in.
 export async function ensureAdminWorkspace(user: User) {
   const supabase = (await getSupabaseServerClient()) as any;
 

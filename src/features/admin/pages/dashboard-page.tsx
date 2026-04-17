@@ -26,42 +26,43 @@ import { AdminShell } from "@/features/admin/components/admin-shell";
 import { EmptyState } from "@/features/admin/components/empty-state";
 import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
-import { listRows } from "@/features/admin/lib/data-client";
-import { formatCompactCurrency, formatCurrency, formatDate } from "@/features/admin/lib/format";
 import { sumBy } from "@/features/admin/lib/calculations";
-import { calculateQuarterlyRisk } from "@/features/admin/lib/tax-planning";
-import type { Database } from "@/types/supabase";
+import { compareDateOnlyDescending, getDateMonth } from "@/features/admin/lib/date";
+import { listRows } from "@/features/admin/lib/data-client";
+import { formatCurrency, formatDate } from "@/features/admin/lib/format";
+import {
+  calculateHousingDeductionSummary,
+  calculateQuarterlyRisk,
+  getNextQuarterlyDueDate,
+} from "@/features/admin/lib/tax-planning";
 
 type DashboardPageProps = {
   userEmail: string;
 };
 
-type BusinessRow = Database["public"]["Tables"]["businesses"]["Row"];
-type IncomeRow = Database["public"]["Tables"]["income_entries"]["Row"];
-type ExpenseRow = Database["public"]["Tables"]["expense_entries"]["Row"];
-type MileageRow = Database["public"]["Tables"]["mileage_entries"]["Row"];
-type PersonalCashflowRow = Database["public"]["Tables"]["personal_cashflow_entries"]["Row"];
-type TaxReserveRow = Database["public"]["Tables"]["tax_reserves"]["Row"];
-type SettingsRow = Database["public"]["Tables"]["user_settings"]["Row"];
-type W2PaycheckRow = Database["public"]["Tables"]["w2_paychecks"]["Row"];
-
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-function getCurrentQuarter(date = new Date()) {
-  return Math.floor(date.getMonth() / 3) + 1;
-}
 
 export function DashboardPage({ userEmail }: DashboardPageProps) {
   const dashboardQuery = useQuery({
     queryKey: ["dashboard-page-data"],
     queryFn: async () => {
-      const [businesses, incomeEntries, expenseEntries, mileageEntries, personalCashflowEntries, taxReserves, settingsRows, taxPlanningProfiles, w2Paychecks] =
+      const [
+        businesses,
+        incomeEntries,
+        expenseEntries,
+        mileageEntries,
+        housingEntries,
+        taxReserves,
+        settingsRows,
+        taxPlanningProfiles,
+        w2Paychecks,
+      ] =
         await Promise.all([
           listRows("businesses", { orderBy: "name", ascending: true }),
           listRows("income_entries", { orderBy: "received_on", ascending: false }),
           listRows("expense_entries", { orderBy: "expense_date", ascending: false }),
           listRows("mileage_entries", { orderBy: "trip_date", ascending: false }),
-          listRows("personal_cashflow_entries", { orderBy: "entry_date", ascending: false }),
+          listRows("housing_deduction_entries", { orderBy: "entry_date", ascending: false }),
           listRows("tax_reserves", { orderBy: "reserve_date", ascending: false }),
           listRows("user_settings", { orderBy: "created_at", ascending: true }),
           listRows("tax_planning_profiles", { orderBy: "tax_year", ascending: false }),
@@ -73,7 +74,7 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
         incomeEntries,
         expenseEntries,
         mileageEntries,
-        personalCashflowEntries,
+        housingEntries,
         taxReserves,
         settings: settingsRows[0] ?? null,
         taxPlanningProfiles,
@@ -84,8 +85,6 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
 
   const today = new Date();
   const currentYear = today.getFullYear();
-  const currentMonth = today.getMonth() + 1;
-  const currentQuarter = getCurrentQuarter(today);
 
   const data = dashboardQuery.data;
   const settings = data?.settings ?? null;
@@ -95,8 +94,7 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
   const incomeThisYear = (data?.incomeEntries ?? []).filter((entry) => entry.tax_year === currentYear);
   const expensesThisYear = (data?.expenseEntries ?? []).filter((entry) => entry.tax_year === currentYear);
   const mileageThisYear = (data?.mileageEntries ?? []).filter((entry) => entry.tax_year === currentYear);
-  const personalThisYear = (data?.personalCashflowEntries ?? []).filter((entry) => entry.entry_year === currentYear);
-  const reservesThisYear = (data?.taxReserves ?? []).filter((entry) => entry.tax_year === currentYear);
+  const housingThisYear = (data?.housingEntries ?? []).filter((entry) => entry.entry_year === currentYear);
 
   const startOfYear = new Date(Date.UTC(currentYear, 0, 1));
   const endOfYear = new Date(Date.UTC(currentYear + 1, 0, 1));
@@ -116,45 +114,9 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
   const deductibleExpensesYtd = sumBy(expensesThisYear, (entry) => entry.deductible_amount);
   const totalMileageDeductionYtd = sumBy(mileageThisYear, (entry) => entry.deductible_value);
   const netBusinessProfitYtd = total1099IncomeYtd - deductibleExpensesYtd;
-  const reserveTargetYtd = sumBy(reservesThisYear, (entry) => entry.reserve_amount);
-  const reserveActualYtd = sumBy(
-    reservesThisYear.filter((entry) => entry.was_transferred),
-    (entry) => entry.reserve_amount,
-  );
-
-  const monthlyCashFlowIncome =
-    sumBy(
-      incomeThisYear.filter((entry) => new Date(entry.received_on).getUTCMonth() + 1 === currentMonth),
-      (entry) => entry.net_received,
-    ) +
-    (w2PaychecksThisYear.length
-      ? sumBy(
-          w2PaychecksThisYear.filter((entry) => new Date(entry.pay_date).getUTCMonth() + 1 === currentMonth),
-          (entry) => entry.net_pay,
-        )
-      : settings?.w2_annual_income
-        ? settings.w2_annual_income / 12
-        : 0);
-  const monthlyCashFlowBusinessExpenses = sumBy(
-    expensesThisYear.filter((entry) => new Date(entry.expense_date).getUTCMonth() + 1 === currentMonth),
-    (entry) => entry.amount,
-  );
-  const monthlyCashFlowPersonal = sumBy(
-    personalThisYear.filter((entry) => entry.entry_month === currentMonth),
-    (entry) => entry.amount,
-  );
-  const monthlyCashFlowNet =
-    monthlyCashFlowIncome - monthlyCashFlowBusinessExpenses - monthlyCashFlowPersonal;
-
-  const quarterlyReserveTarget = sumBy(
-    reservesThisYear.filter((entry) => entry.tax_quarter === currentQuarter),
-    (entry) => entry.reserve_amount,
-  );
-  const quarterlyReserveActual = sumBy(
-    reservesThisYear.filter((entry) => entry.tax_quarter === currentQuarter && entry.was_transferred),
-    (entry) => entry.reserve_amount,
-  );
+  const housingSummary = calculateHousingDeductionSummary(housingThisYear);
   const quarterlyRisk = calculateQuarterlyRisk(currentPlanningProfile, data?.taxReserves ?? []);
+  const nextQuarterlyDueDate = getNextQuarterlyDueDate(today, currentYear);
   const planningSetupMissing = !currentPlanningProfile && today.getMonth() >= 1;
   const showTaxAlerts =
     planningSetupMissing ||
@@ -164,11 +126,11 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
   const chartData = MONTH_NAMES.map((label, index) => {
     const monthNumber = index + 1;
     const income = sumBy(
-      incomeThisYear.filter((entry) => new Date(entry.received_on).getUTCMonth() + 1 === monthNumber),
+      incomeThisYear.filter((entry) => getDateMonth(entry.received_on) === monthNumber),
       (entry) => entry.gross_amount,
     );
     const expenses = sumBy(
-      expensesThisYear.filter((entry) => new Date(entry.expense_date).getUTCMonth() + 1 === monthNumber),
+      expensesThisYear.filter((entry) => getDateMonth(entry.expense_date) === monthNumber),
       (entry) => entry.deductible_amount,
     );
 
@@ -213,21 +175,13 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
       amount: -entry.amount,
       helper: entry.expense_category,
     })),
-    ...(data?.personalCashflowEntries ?? []).map((entry) => ({
+    ...housingThisYear.map((entry) => ({
       id: entry.id,
       date: entry.entry_date,
-      type: "Personal",
-      label: entry.category,
+      type: "Housing",
+      label: entry.detail ?? entry.category,
       amount: -entry.amount,
-      helper: entry.subcategory ?? "Personal cash flow",
-    })),
-    ...(data?.taxReserves ?? []).map((entry) => ({
-      id: entry.id,
-      date: entry.reserve_date,
-      type: "Tax Reserve",
-      label: entry.destination_account ?? "Tax reserve",
-      amount: -entry.reserve_amount,
-      helper: entry.was_transferred ? "Transferred" : "Target only",
+      helper: entry.category,
     })),
     ...(data?.w2Paychecks ?? []).map((entry) => ({
       id: entry.id,
@@ -238,13 +192,13 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
       helper: `${formatCurrency(entry.gross_pay, true)} gross`,
     })),
   ]
-    .sort((left, right) => new Date(right.date).getTime() - new Date(left.date).getTime())
+    .sort((left, right) => compareDateOnlyDescending(left.date, right.date))
     .slice(0, 8);
 
   return (
     <AdminShell
       title="Dashboard"
-      subtitle="Year-round visibility across W-2 baseline income, self-employment activity, reserves, and personal cash flow."
+      subtitle="Year-round visibility across W-2 income, self-employment activity, estimated-tax exposure, and housing deduction support."
       userEmail={userEmail}
     >
       {dashboardQuery.isLoading ? (
@@ -257,12 +211,12 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
         <div className="space-y-6">
           {showTaxAlerts ? (
             <SectionCard
-              title="Tax Alerts"
-              description="These alerts are based on the planning inputs saved for the current tax year and any reserve entries marked as actual IRS or state payments."
+              title="Estimated-Tax Alerts"
+              description="This is the main readout for whether quarterly estimated payments may be needed based on the current-year planning inputs, withholding, and any recorded tax payments."
             >
               <div className="grid gap-4 lg:grid-cols-3">
                 <div className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-4">
-                  <p className="text-sm font-medium">Federal quarterly risk</p>
+                  <p className="text-sm font-medium">Federal estimate gap</p>
                   <p className="mt-2 text-2xl font-semibold">
                     {planningSetupMissing
                       ? "Needs setup"
@@ -272,31 +226,27 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
                   </p>
                   <p className="mt-2 text-xs text-muted-foreground">
                     {planningSetupMissing
-                      ? "Create the current-year Tax Planning record so the app can evaluate federal quarterly risk."
+                      ? "Create the current-year Estimated Taxes record so the app can evaluate federal estimated-tax exposure."
                       : quarterlyRisk
                       ? `${formatCurrency(quarterlyRisk.federalRequiredByNow)} required by now versus ${formatCurrency(quarterlyRisk.federalCoveredByNow)} covered`
-                      : "Add quarterly-risk inputs on the Tax Planning page"}
+                      : "Add estimated-tax inputs on the Estimated Taxes page"}
                   </p>
                 </div>
                 <div className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-4">
-                  <p className="text-sm font-medium">State quarterly risk</p>
+                  <p className="text-sm font-medium">Next due date</p>
                   <p className="mt-2 text-2xl font-semibold">
                     {planningSetupMissing
                       ? "Needs setup"
-                      : quarterlyRisk
-                      ? quarterlyRisk.annualStateSafeHarbor > 0
-                        ? quarterlyRisk.stateGap > 0
-                          ? formatCurrency(quarterlyRisk.stateGap)
-                          : "On track"
-                        : "N/A"
-                      : "Add inputs"}
+                      : nextQuarterlyDueDate
+                        ? formatDate(nextQuarterlyDueDate.toISOString().slice(0, 10))
+                        : "Tax year complete"}
                   </p>
                   <p className="mt-2 text-xs text-muted-foreground">
                     {planningSetupMissing
-                      ? "Finish Tax Planning setup before relying on the state alert."
-                      : quarterlyRisk?.annualStateSafeHarbor
-                      ? `${formatCurrency(quarterlyRisk.stateRequiredByNow)} required by now versus ${formatCurrency(quarterlyRisk.stateCoveredByNow)} covered`
-                      : "Minnesota is the only state-level quarterly-risk calculation in this version"}
+                      ? "Finish the estimated-tax setup before relying on the dashboard alert."
+                      : quarterlyRisk
+                        ? `${quarterlyRisk.installmentsDue} installment${quarterlyRisk.installmentsDue === 1 ? "" : "s"} have already come due this year`
+                        : "The due-date readout becomes useful once the estimate inputs are saved"}
                   </p>
                 </div>
                 <div className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-4">
@@ -310,7 +260,7 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
                   </p>
                   <p className="mt-2 text-xs text-muted-foreground">
                     {planningSetupMissing
-                      ? `Create a ${currentYear} Tax Planning record after filing your ${currentYear - 1} return.`
+                      ? `Create a ${currentYear} Estimated Taxes record after filing your ${currentYear - 1} return.`
                       : quarterlyRisk?.reminderNeeded
                       ? `Refresh ${currentYear} planning after filing your ${currentYear - 1} return.`
                       : `Current-year planning was already updated after filing your ${currentYear - 1} return.`}
@@ -357,21 +307,24 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
               helper={`${sumBy(mileageThisYear, (entry) => entry.miles).toFixed(1)} miles logged year to date`}
             />
             <MetricCard
-              label="Tax reserve target vs actual"
-              value={`${formatCompactCurrency(reserveActualYtd)} / ${formatCompactCurrency(reserveTargetYtd)}`}
-              helper="Transferred reserve amount compared with planned reserve targets"
-              tone={reserveActualYtd >= reserveTargetYtd && reserveTargetYtd > 0 ? "positive" : "warning"}
+              label="Housing costs logged"
+              value={formatCurrency(housingSummary.totalEntered)}
+              helper="Rent, utilities, internet, insurance, and home maintenance logged this year"
             />
             <MetricCard
-              label="Monthly cash flow snapshot"
-              value={formatCurrency(monthlyCashFlowNet)}
-              helper={`${formatCurrency(monthlyCashFlowIncome)} in, ${formatCurrency(monthlyCashFlowBusinessExpenses + monthlyCashFlowPersonal)} out this month`}
-              tone={monthlyCashFlowNet >= 0 ? "positive" : "warning"}
+              label="Housing deduction tracked"
+              value={housingThisYear.length ? formatCurrency(housingSummary.totalDeductible) : "Add inputs"}
+              helper={
+                housingThisYear.length
+                  ? "Current allocation based on the office share saved on each housing bill"
+                  : "Add housing bills and office square footage on Housing"
+              }
+              tone={housingThisYear.length ? "positive" : "warning"}
             />
             <MetricCard
-              label="Quarterly reserve snapshot"
-              value={`${formatCompactCurrency(quarterlyReserveActual)} / ${formatCompactCurrency(quarterlyReserveTarget)}`}
-              helper={`Quarter ${currentQuarter} reserve progress`}
+              label="Housing months logged"
+              value={`${housingSummary.monthsLogged}/12`}
+              helper="Unique months with housing entries recorded this year"
             />
           </div>
 
@@ -431,7 +384,7 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
           <div className="grid gap-6 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
             <SectionCard
               title="Recent transactions"
-              description="A merged timeline across income, expenses, personal cash flow, and reserve activity."
+              description="A merged timeline across income, expenses, housing, and W-2 activity."
             >
               {recentTransactions.length ? (
                 <Table>
@@ -464,7 +417,7 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
               ) : (
                 <EmptyState
                   title="No transactions yet"
-                  description="Create income, expense, or cash-flow entries to populate the dashboard timeline."
+                  description="Create income, expense, housing, or W-2 entries to populate the dashboard timeline."
                 />
               )}
             </SectionCard>
@@ -514,28 +467,44 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
               >
                 <div className="space-y-4">
                   <div className="rounded-2xl border border-border/70 bg-background/60 p-4">
-                    <p className="text-sm text-muted-foreground">Current reserve gap</p>
+                    <p className="text-sm text-muted-foreground">Federal estimate gap</p>
                     <p className="mt-2 text-2xl font-semibold">
-                      {formatCurrency(Math.max(reserveTargetYtd - reserveActualYtd, 0))}
+                      {planningSetupMissing
+                        ? "Needs setup"
+                        : quarterlyRisk
+                          ? quarterlyRisk.federalGap > 0
+                            ? formatCurrency(quarterlyRisk.federalGap)
+                            : "On track"
+                          : "Not set"}
                     </p>
                     <p className="mt-2 text-xs text-muted-foreground">
-                      The amount still marked as a target rather than an actual transfer.
+                      {planningSetupMissing
+                        ? "Open Estimated Taxes and save the current-year setup after filing your last return."
+                        : "This is the main dashboard signal for whether estimated payments may be needed."}
                     </p>
                   </div>
                   <div className="rounded-2xl border border-border/70 bg-background/60 p-4">
-                    <p className="text-sm text-muted-foreground">Personal cash outflow YTD</p>
+                    <p className="text-sm text-muted-foreground">Next estimated-tax due date</p>
                     <p className="mt-2 text-2xl font-semibold">
-                      {formatCurrency(sumBy(personalThisYear, (entry) => entry.amount))}
+                      {nextQuarterlyDueDate
+                        ? formatDate(nextQuarterlyDueDate.toISOString().slice(0, 10))
+                        : "Tax year complete"}
+                    </p>
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      {quarterlyRisk
+                        ? `${quarterlyRisk.installmentsDue} installment${quarterlyRisk.installmentsDue === 1 ? "" : "s"} have already come due this year.`
+                        : "Save the Estimated Taxes inputs to turn this into a live planning signal."}
                     </p>
                   </div>
                   <div className="rounded-2xl border border-border/70 bg-background/60 p-4">
-                    <p className="text-sm text-muted-foreground">Taxes withheld from W-2 paychecks</p>
+                    <p className="text-sm text-muted-foreground">Housing deduction tracked</p>
                     <p className="mt-2 text-2xl font-semibold">
-                      {w2PaychecksThisYear.length
-                        ? formatCurrency(w2FederalWithheldYtd + w2StateWithheldYtd)
-                        : settings?.w2_annual_tax_withheld
-                          ? formatCurrency(settings.w2_annual_tax_withheld)
-                          : "Not set"}
+                      {housingThisYear.length ? formatCurrency(housingSummary.totalDeductible) : "Not set"}
+                    </p>
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      {housingThisYear.length
+                        ? "Built from the logged housing bills and the office share saved on each bill."
+                        : "Add housing bills and apartment square footage on Housing."}
                     </p>
                   </div>
                 </div>

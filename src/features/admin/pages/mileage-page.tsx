@@ -36,8 +36,10 @@ import { AdminShell } from "@/features/admin/components/admin-shell";
 import { EmptyState } from "@/features/admin/components/empty-state";
 import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
+import { useAdminPreference, usePreferredOptions } from "@/features/admin/hooks/use-admin-preferences";
 import { useAdminReferenceData } from "@/features/admin/hooks/use-admin-reference-data";
 import { calculateMileageValue, getTaxPeriod, sumBy } from "@/features/admin/lib/calculations";
+import { getDateMonth, getDateYear, getLocalDateInputValue } from "@/features/admin/lib/date";
 import { deleteRow, listRows, upsertRow } from "@/features/admin/lib/data-client";
 import { formatCurrency, formatDate } from "@/features/admin/lib/format";
 import { getFederalBusinessMileageRate } from "@/features/admin/lib/tax-planning";
@@ -63,7 +65,7 @@ type MileageDraft = {
 };
 
 const emptyDraft: MileageDraft = {
-  trip_date: new Date().toISOString().slice(0, 10),
+  trip_date: getLocalDateInputValue(),
   business_id: "",
   purpose: "",
   origin_location: "",
@@ -97,6 +99,8 @@ export function MileagePage({ userId, userEmail }: MileagePageProps) {
   });
 
   const businesses = referenceQuery.data?.businesses ?? [];
+  const { storedValue: preferredBusinessId, rememberValue: rememberBusinessId } = useAdminPreference("mileage.business_id");
+  const orderedBusinesses = usePreferredOptions(businesses, (business) => business.id, preferredBusinessId);
   const mileageRateOverride = referenceQuery.data?.settings?.default_mileage_rate ?? 0;
   const currentYearMileageRate =
     mileageRateOverride > 0 ? mileageRateOverride : getFederalBusinessMileageRate(new Date().getFullYear());
@@ -125,9 +129,7 @@ export function MileagePage({ userId, userEmail }: MileagePageProps) {
   const totalDeductible = sumBy(filteredEntries, (entry) => entry.deductible_value);
   const monthlySummary = Array.from({ length: 12 }, (_, index) => {
     const monthNumber = index + 1;
-    const monthEntries = filteredEntries.filter(
-      (entry) => new Date(entry.trip_date).getUTCMonth() + 1 === monthNumber,
-    );
+    const monthEntries = filteredEntries.filter((entry) => getDateMonth(entry.trip_date) === monthNumber);
 
     return {
       label: new Date(Date.UTC(2025, index, 1)).toLocaleString("en-US", { month: "short" }),
@@ -167,6 +169,7 @@ export function MileagePage({ userId, userEmail }: MileagePageProps) {
       });
     },
     onSuccess: () => {
+      rememberBusinessId(draft.business_id);
       toast.success(editingRow ? "Mileage entry updated." : "Mileage entry created.");
       setDialogOpen(false);
       setEditingRow(null);
@@ -194,11 +197,12 @@ export function MileagePage({ userId, userEmail }: MileagePageProps) {
   function openCreateDialog() {
     const autoMileageRate =
       mileageRateOverride > 0 ? mileageRateOverride : getFederalBusinessMileageRate(new Date().getFullYear());
+    const preferredBusiness = businesses.find((business) => business.id === preferredBusinessId);
 
     setEditingRow(null);
     setDraft({
       ...emptyDraft,
-      business_id: businesses[0]?.id ?? "",
+      business_id: preferredBusiness?.id ?? businesses[0]?.id ?? "",
       mileage_rate: String(autoMileageRate),
     });
     setDialogOpen(true);
@@ -259,7 +263,7 @@ export function MileagePage({ userId, userEmail }: MileagePageProps) {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All businesses</SelectItem>
-                {businesses.map((business) => (
+                {orderedBusinesses.map((business) => (
                   <SelectItem key={business.id} value={business.id}>
                     {business.name}
                   </SelectItem>
@@ -385,8 +389,8 @@ export function MileagePage({ userId, userEmail }: MileagePageProps) {
                   onChange={(event) =>
                     setDraft((current) => {
                       const nextDate = event.target.value;
-                      const currentYearForDraft = new Date(current.trip_date).getUTCFullYear();
-                      const nextYear = new Date(nextDate).getUTCFullYear();
+                      const currentYearForDraft = getDateYear(current.trip_date);
+                      const nextYear = getDateYear(nextDate);
                       const currentAutoMileageRate =
                         mileageRateOverride > 0
                           ? mileageRateOverride

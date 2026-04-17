@@ -11,7 +11,7 @@ const PAGE_GUIDES = [
   {
     title: "Dashboard",
     description:
-      "This is the summary layer. It rolls up W-2 paychecks, self-employment income, business expenses, mileage, tax reserves, and personal cash flow into year-to-date, monthly, and quarterly views.",
+      "This is the summary layer. It rolls up W-2 paychecks, self-employment income, business expenses, mileage, estimated-tax exposure, and housing deduction support into year-to-date views.",
   },
   {
     title: "Income",
@@ -34,24 +34,14 @@ const PAGE_GUIDES = [
       "Use this for business driving only. Each trip should be its own row with date, purpose, route, and miles. The app applies the business mileage rate for that tax year unless you override it.",
   },
   {
-    title: "Personal Cash Flow",
+    title: "Estimated Taxes",
     description:
-      "Use this for rent, utilities, groceries, insurance, internet, parking, subscriptions, and other living costs. This keeps personal cash flow separate from business deductions while still feeding the home-office calculator.",
+      "Use this once you have filed the prior year's return. It tells you whether quarterly estimated payments may be needed based on your saved safe-harbor inputs, withholding, and recorded tax payments.",
   },
   {
-    title: "Tax Reserves",
+    title: "Housing",
     description:
-      "Use this to track money you want to set aside for taxes and also to record actual IRS or state estimated-tax payments. A reserve transfer is not automatically treated as a tax payment unless you mark it that way.",
-  },
-  {
-    title: "Tax Planning",
-    description:
-      "Use this once you have filed the prior year's return. It calculates quarterly-risk alerts from prior-year tax numbers, your current-year W-2 withholding, and any reserve entries that were actual tax payments.",
-  },
-  {
-    title: "Assets",
-    description:
-      "Use this for larger business purchases such as laptops, monitors, cameras, desks, and other equipment that you want tracked separately from routine expenses.",
+      "Use this for monthly rent, utilities, internet, insurance, and home-maintenance bills. Each row stores the apartment state and square-footage context that was true for that bill.",
   },
   {
     title: "Settings",
@@ -69,25 +59,25 @@ const OPERATING_RULES = [
 ] as const;
 
 const HOME_OFFICE_RULES = [
-  "Enter rent, utilities, internet, insurance, and home maintenance in Personal Cash Flow throughout the year.",
-  "Enter home square footage, office square footage, qualifying months, and direct office-only costs on Tax Planning.",
-  "The app then calculates business-use percentage, rent allocation, utilities allocation, internet allocation, insurance allocation, and maintenance allocation for the selected tax year.",
-  "The simplified and regular home-office methods are shown side by side so you can compare them.",
+  "Enter rent, utilities, internet, insurance, and home maintenance on the Housing page throughout the year.",
+  "Each housing bill keeps its own apartment state and square-footage context, so you are not relying on one fragile default profile.",
+  "The app calculates the deductible share bill by bill and rolls the totals up for tax-season review.",
+  "Use the saved defaults only as entry shortcuts. The real source of truth is the context stored on each bill.",
 ] as const;
 
 const TAX_ALERT_RULES = [
-  "Quarterly-risk alerts are planning alerts. They are there to tell you when you may be under-covered relative to the saved planning inputs.",
+  "Estimated-tax alerts are planning alerts. They are there to tell you when you may be under-covered relative to the saved planning inputs.",
   "W-2 salary is not what drives the tax-risk calculation. W-2 withholding is what matters.",
-  "Federal and state alerts improve as you enter actual W-2 paycheck data and actual tax payments.",
-  "After you file each tax return, update Tax Planning with the prior-year tax numbers so the next year's risk alerts are using fresh data.",
+  "Federal and state alerts improve as you enter actual W-2 paycheck data and actual estimated-tax payments.",
+  "After you file each tax return, update Estimated Taxes with the prior-year tax numbers so the next year's alerts are using fresh data.",
 ] as const;
 
 const GET_STARTED_STEPS = [
   "Backfill every 2026 W-2 paycheck you have received so far.",
-  "Backfill 2026 personal living costs such as rent, electricity, utilities, internet, insurance, and home maintenance.",
-  "Backfill 2026 self-employment income, business expenses, mileage trips, and tax reserve transfers.",
-  "Mark any reserve entries that were actual IRS or state estimated-tax payments.",
-  "Open Tax Planning and enter the prior-year filed-return inputs once they are known.",
+  "Backfill 2026 monthly housing bills such as rent, electricity, utilities, internet, insurance, and home maintenance.",
+  "Backfill 2026 self-employment income, business expenses, and mileage trips.",
+  "Open Estimated Taxes and enter the prior-year filed-return inputs once they are known.",
+  "Open Housing and make sure each bill has the right apartment state and square-footage context.",
   "Use the Dashboard as the reading layer and the entry pages as the writing layer.",
 ] as const;
 
@@ -95,7 +85,7 @@ export function HelpPage({ userEmail }: HelpPageProps) {
   return (
     <AdminShell
       title="Help"
-      subtitle="Detailed guidance on what each page does, what you should enter, and how the app turns those entries into dashboard and tax-planning outputs."
+      subtitle="Detailed guidance on what each page does, what you should enter, and how the app turns those entries into dashboard and estimated-tax outputs."
       userEmail={userEmail}
     >
       <div className="space-y-6">
@@ -107,11 +97,11 @@ export function HelpPage({ userEmail }: HelpPageProps) {
             <p>
               This app is not meant to be driven by static monthly assumptions. It is meant to be driven by real entries:
               actual paychecks, actual tutoring payouts, actual expenses, actual rent payments, actual utility bills,
-              actual mileage trips, and actual reserve transfers.
+              actual mileage trips, and actual estimated-tax payments.
             </p>
             <p>
-              The main idea is simple: write data in the ledger pages, then read the rollups on the Dashboard and Tax
-              Planning pages.
+              The main idea is simple: write data in the ledger pages, then read the rollups on the Dashboard and
+              Estimated Taxes and Housing pages.
             </p>
           </div>
         </SectionCard>
@@ -143,7 +133,7 @@ export function HelpPage({ userEmail }: HelpPageProps) {
 
         <div className="grid gap-6 xl:grid-cols-2">
           <SectionCard
-            title="Home Office"
+            title="Housing Deduction"
             description="This part of the app is there to help you calculate the office share of your shared living costs."
           >
             <div className="space-y-3 text-sm text-muted-foreground">
@@ -154,7 +144,7 @@ export function HelpPage({ userEmail }: HelpPageProps) {
           </SectionCard>
 
           <SectionCard
-            title="Quarterly Tax Alerts"
+            title="Estimated-Tax Alerts"
             description="These alerts are planning signals, not filing software."
           >
             <div className="space-y-3 text-sm text-muted-foreground">
@@ -181,4 +171,3 @@ export function HelpPage({ userEmail }: HelpPageProps) {
     </AdminShell>
   );
 }
-

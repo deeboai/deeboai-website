@@ -66,6 +66,15 @@ export const DEFAULT_PERSONAL_CATEGORIES = [
   "miscellaneous",
 ] as const;
 
+export const DEFAULT_HOUSING_CATEGORIES = [
+  "rent",
+  "electricity",
+  "utilities",
+  "internet",
+  "insurance",
+  "home maintenance",
+] as const;
+
 export const PAYMENT_METHOD_OPTIONS = [
   "business debit",
   "business credit",

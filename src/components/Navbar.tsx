@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GOOGLE_APPOINTMENT_SCHEDULING_URL } from "@/lib/contact";
 
 const logoMark = "/assets/logos/white_on_black_no_background.png";
 
@@ -87,8 +88,8 @@ const Navbar = () => {
                 size="sm"
                 className="hover:shadow-lg hover:shadow-primary/40 transition-all duration-300"
               >
-                <a href="https://calendly.com/etoure33/30min" target="_blank" rel="noreferrer">
-                  Request a Consultation
+                <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
+                  Book an Appointment
                 </a>
               </Button>
             </div>
@@ -120,8 +121,8 @@ const Navbar = () => {
                 </Link>
               ))}
               <Button asChild variant="default" size="sm" className="w-full">
-                <a href="https://calendly.com/etoure33/30min" target="_blank" rel="noreferrer">
-                  Request a Consultation
+                <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
+                  Book an Appointment
                 </a>
               </Button>
             </div>

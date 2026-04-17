@@ -16,7 +16,14 @@ export async function getSupabaseServerClient() {
       },
       setAll(cookiesToSet) {
         cookiesToSet.forEach(({ name, value, options }) => {
-          cookieStore.set(name, value, options);
+          try {
+            // Next.js only allows cookie writes inside Server Actions and Route Handlers. During a normal server
+            // render we let middleware own session refreshes, so the read-only render path intentionally skips writes.
+            cookieStore.set(name, value, options);
+          } catch {
+            // The middleware refreshes auth cookies before the request reaches the page, so ignoring render-time
+            // cookie writes keeps server components compatible with Next.js without dropping auth support.
+          }
         });
       },
     },

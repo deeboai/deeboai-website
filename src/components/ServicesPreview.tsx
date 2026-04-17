@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { GOOGLE_APPOINTMENT_SCHEDULING_URL } from "@/lib/contact";
 import { ArrowRight, Brain, Cloud, Code } from "lucide-react";
 import Link from "next/link";
 
@@ -101,7 +102,7 @@ const ServicesPreview = () => {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="hover:bg-primary/10">
-              <a href="https://calendly.com/etoure33/30min" target="_blank" rel="noreferrer">
+              <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
                 Book a discovery call
               </a>
             </Button>

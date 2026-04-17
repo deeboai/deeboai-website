@@ -1,3 +1,6 @@
+"use client";
+
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { cn } from "@/lib/utils";
 
 type SectionCardProps = {
@@ -15,10 +18,12 @@ export function SectionCard({
   children,
   className,
 }: SectionCardProps) {
+  const revealRef = useScrollReveal<HTMLElement>();
+
   return (
     <section
+      ref={revealRef}
       className={cn(
-        // Grid children need min-w-0 so wide content can shrink instead of overflowing into neighboring columns.
         "min-w-0 rounded-3xl border border-border/70 bg-card/90 p-6 shadow-lg shadow-black/10",
         className,
       )}

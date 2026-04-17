@@ -9,6 +9,7 @@ type HomeOfficeSpacePeriodRow = Database["public"]["Tables"]["home_office_space_
 type TaxReserveRow = Database["public"]["Tables"]["tax_reserves"]["Row"];
 type W2PaycheckRow = Database["public"]["Tables"]["w2_paychecks"]["Row"];
 type PersonalCashflowRow = Database["public"]["Tables"]["personal_cashflow_entries"]["Row"];
+type HousingDeductionEntryRow = Database["public"]["Tables"]["housing_deduction_entries"]["Row"];
 
 const FEDERAL_BUSINESS_MILEAGE_RATE_BY_YEAR: Record<number, number> = {
   2024: 0.67,
@@ -41,6 +42,17 @@ export function getQuarterlyInstallmentsDue(date = new Date(), taxYear = date.ge
   return dueDates.reduce((count, dueDate) => (date >= dueDate ? count + 1 : count), 0);
 }
 
+export function getNextQuarterlyDueDate(date = new Date(), taxYear = date.getFullYear()) {
+  const dueDates = [
+    new Date(Date.UTC(taxYear, 3, 15)),
+    new Date(Date.UTC(taxYear, 5, 15)),
+    new Date(Date.UTC(taxYear, 8, 15)),
+    new Date(Date.UTC(taxYear + 1, 0, 15)),
+  ];
+
+  return dueDates.find((dueDate) => date < dueDate) ?? null;
+}
+
 function getQuarterFraction(installmentsDue: number) {
   return Math.min(Math.max(installmentsDue, 0), 4) / 4;
 }
@@ -65,6 +77,69 @@ export function getStateReserveSuggestionPercent(stateValue?: string | null) {
 
 export function getQuarterlyRiskStatusLabel(gap: number) {
   return gap > 0 ? "At risk" : "On track";
+}
+
+export function calculateHousingDeductionEntry(entry: HousingDeductionEntryRow) {
+  const homeSquareFeet = entry.home_square_feet ?? 0;
+  const officeSquareFeet = entry.office_square_feet ?? 0;
+  const hasContext = homeSquareFeet > 0 && officeSquareFeet > 0 && officeSquareFeet <= homeSquareFeet;
+  const businessUsePercent = hasContext ? (officeSquareFeet / homeSquareFeet) * 100 : 0;
+  const deductibleAmount = hasContext ? roundCurrency(entry.amount * (businessUsePercent / 100)) : 0;
+
+  return {
+    hasContext,
+    businessUsePercent,
+    deductibleAmount,
+  };
+}
+
+export function calculateHousingDeductionSummary(entries: HousingDeductionEntryRow[]) {
+  const entriesWithComputedValues = entries.map((entry) => {
+    const computed = calculateHousingDeductionEntry(entry);
+
+    return {
+      ...entry,
+      ...computed,
+    };
+  });
+
+  const monthsLogged = new Set(entries.map((entry) => entry.entry_month)).size;
+  const entriesMissingContext = entriesWithComputedValues.filter((entry) => !entry.hasContext).length;
+  const totalEntered = roundCurrency(
+    entriesWithComputedValues.reduce((total, entry) => total + entry.amount, 0),
+  );
+  const totalDeductible = roundCurrency(
+    entriesWithComputedValues.reduce((total, entry) => total + entry.deductibleAmount, 0),
+  );
+
+  const categoryTotals = Array.from(
+    entriesWithComputedValues.reduce((map, entry) => {
+      const current = map.get(entry.category) ?? {
+        category: entry.category,
+        totalEntered: 0,
+        totalDeductible: 0,
+      };
+
+      current.totalEntered += entry.amount;
+      current.totalDeductible += entry.deductibleAmount;
+      map.set(entry.category, current);
+
+      return map;
+    }, new Map<string, { category: string; totalEntered: number; totalDeductible: number }>()),
+  ).map(([, value]) => ({
+    ...value,
+    totalEntered: roundCurrency(value.totalEntered),
+    totalDeductible: roundCurrency(value.totalDeductible),
+  }));
+
+  return {
+    entries: entriesWithComputedValues,
+    monthsLogged,
+    entriesMissingContext,
+    totalEntered,
+    totalDeductible,
+    categoryTotals,
+  };
 }
 
 export function calculateQuarterlyRisk(
