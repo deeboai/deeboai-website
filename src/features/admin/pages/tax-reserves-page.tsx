@@ -38,6 +38,7 @@ import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
 import { useAdminReferenceData } from "@/features/admin/hooks/use-admin-reference-data";
 import { calculateReserveAmount, getTaxPeriod, sumBy } from "@/features/admin/lib/calculations";
+import { getLocalDateInputValue } from "@/features/admin/lib/date";
 import { deleteRow, listRows, upsertRow } from "@/features/admin/lib/data-client";
 import { formatCurrency, formatDate } from "@/features/admin/lib/format";
 import type { Database } from "@/types/supabase";
@@ -63,7 +64,7 @@ type TaxReserveDraft = {
 };
 
 const emptyDraft: TaxReserveDraft = {
-  reserve_date: new Date().toISOString().slice(0, 10),
+  reserve_date: getLocalDateInputValue(),
   business_id: "",
   source_income_amount: "",
   reserve_percent: "0",

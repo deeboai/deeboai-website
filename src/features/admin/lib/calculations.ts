@@ -1,11 +1,12 @@
+import { getDateMonth, getDateYear } from "@/features/admin/lib/date";
+
 export function roundCurrency(value: number) {
   return Math.round(value * 100) / 100;
 }
 
 export function getTaxPeriod(dateValue: string) {
-  const date = new Date(dateValue);
-  const taxYear = date.getUTCFullYear();
-  const taxQuarter = Math.floor(date.getUTCMonth() / 3) + 1;
+  const taxYear = getDateYear(dateValue);
+  const taxQuarter = Math.floor((getDateMonth(dateValue) - 1) / 3) + 1;
 
   return {
     taxYear,
@@ -14,11 +15,9 @@ export function getTaxPeriod(dateValue: string) {
 }
 
 export function getEntryMonth(dateValue: string) {
-  const date = new Date(dateValue);
-
   return {
-    entryMonth: date.getUTCMonth() + 1,
-    entryYear: date.getUTCFullYear(),
+    entryMonth: getDateMonth(dateValue),
+    entryYear: getDateYear(dateValue),
   };
 }
 

@@ -2,6 +2,8 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { GoogleAppointmentButton } from "@/components/google-appointment-button";
+import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Mail, MapPin, Calendar } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { buildContactMailtoHref, DEEBOAI_CONTACT_EMAIL } from "@/lib/contact";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,21 +25,14 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const lines = [
-      formData.message,
-      "",
-      `Thanks,`,
-      formData.name,
-      formData.email,
-      formData.company ? formData.company : undefined,
-      formData.inquiryType ? `Inquiry Type: ${formData.inquiryType}` : undefined,
-    ].filter(Boolean) as string[];
+    if (!formData.inquiryType) {
+      toast.error("Select an inquiry type before sending your message.");
+      return;
+    }
 
-    const body = encodeURIComponent(lines.join("\n"));
-    const subject = encodeURIComponent(`New inquiry from ${formData.name || "your site"}`);
-    const mailtoUrl = `mailto:amadou@deeboai.com?subject=${subject}&body=${body}`;
+    const mailtoUrl = buildContactMailtoHref(formData);
 
-    window.location.href = mailtoUrl;
+    window.location.assign(mailtoUrl);
     toast.success("Opening your email client…");
     setFormData({ name: "", email: "", company: "", inquiryType: "", message: "" });
   };
@@ -48,7 +44,7 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-background to-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold">
               Let's <span className="text-gradient">Connect</span>
             </h1>
@@ -56,7 +52,7 @@ const Contact = () => {
               Whether you're looking to build a custom solution or explore partnership opportunities,
               we're here to help
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -65,7 +61,7 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
             {/* Contact Information */}
-            <div className="space-y-8">
+            <Reveal className="space-y-8" variant="left">
               <div>
                 <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
                 <div className="space-y-4">
@@ -76,10 +72,10 @@ const Contact = () => {
                     <div>
                       <p className="font-medium mb-1">Email</p>
                       <a
-                        href="mailto:amadou@deeboai.com"
+                        href={`mailto:${DEEBOAI_CONTACT_EMAIL}`}
                         className="text-muted-foreground hover:text-primary transition-colors"
                       >
-                        amadou@deeboai.com
+                        {DEEBOAI_CONTACT_EMAIL}
                       </a>
                     </div>
                   </div>
@@ -102,14 +98,9 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="font-medium mb-1">Schedule a Call</p>
-                      <a
-                        href="https://calendly.com/etoure33/30min"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors text-sm underline underline-offset-4"
-                      >
-                        Book via Calendly
-                      </a>
+                      <div className="pt-2">
+                        <GoogleAppointmentButton className="w-full sm:w-auto" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -136,10 +127,10 @@ const Contact = () => {
                   </li>
                 </ul>
               </div>
-            </div>
+            </Reveal>
 
             {/* Contact Form */}
-            <div className="lg:col-span-2">
+            <Reveal className="lg:col-span-2" variant="right">
               <div className="bg-card p-8 rounded-xl border border-border">
                 <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -216,7 +207,7 @@ const Contact = () => {
                   </Button>
                 </form>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>

@@ -329,6 +329,59 @@ export type Database = {
           entry_year?: number;
         };
       };
+      housing_deduction_entries: {
+        Row: {
+          id: string;
+          created_at: string;
+          updated_at: string;
+          user_id: string;
+          entry_date: string;
+          category: string;
+          detail: string | null;
+          amount: number;
+          home_state: string | null;
+          home_square_feet: number | null;
+          office_square_feet: number | null;
+          notes: string | null;
+          entry_month: number;
+          entry_year: number;
+          legacy_personal_cashflow_entry_id: string | null;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          user_id: string;
+          entry_date: string;
+          category: string;
+          detail?: string | null;
+          amount: number;
+          home_state?: string | null;
+          home_square_feet?: number | null;
+          office_square_feet?: number | null;
+          notes?: string | null;
+          entry_month: number;
+          entry_year: number;
+          legacy_personal_cashflow_entry_id?: string | null;
+        };
+        Update: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          user_id?: string;
+          entry_date?: string;
+          category?: string;
+          detail?: string | null;
+          amount?: number;
+          home_state?: string | null;
+          home_square_feet?: number | null;
+          office_square_feet?: number | null;
+          notes?: string | null;
+          entry_month?: number;
+          entry_year?: number;
+          legacy_personal_cashflow_entry_id?: string | null;
+        };
+      };
       tax_reserves: {
         Row: {
           id: string;

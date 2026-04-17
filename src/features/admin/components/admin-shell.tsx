@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { signOutAction } from "@/app/admin/actions";
+import { AdminLink } from "@/features/admin/components/admin-link";
 import { ADMIN_NAVIGATION } from "@/features/admin/config/navigation";
+import { isAdminHostname, toVisibleAdminPath } from "@/lib/admin-routing";
 import { cn } from "@/lib/utils";
 
 type AdminShellProps = {
@@ -19,6 +20,21 @@ type AdminShellProps = {
 export function AdminShell({ title, subtitle, userEmail, children }: AdminShellProps) {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isSubdomainAdminHost, setIsSubdomainAdminHost] = useState(false);
+  const navigationGroups = ADMIN_NAVIGATION.reduce<Record<string, typeof ADMIN_NAVIGATION>>((groups, item) => {
+    if (!groups[item.section]) {
+      groups[item.section] = [];
+    }
+
+    groups[item.section].push(item);
+
+    return groups;
+  }, {});
+
+  useEffect(() => {
+    // The dedicated admin hostname exposes the admin app at the root so URLs stay clean.
+    setIsSubdomainAdminHost(isAdminHostname(window.location.hostname));
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -26,7 +42,7 @@ export function AdminShell({ title, subtitle, userEmail, children }: AdminShellP
       <div className="mx-auto flex min-h-screen max-w-[1600px]">
         <aside
           className={cn(
-            "fixed inset-y-0 left-0 z-50 w-72 border-r border-border/70 bg-card/95 p-6 backdrop-blur-xl transition-transform duration-300 lg:static lg:translate-x-0",
+            "fixed inset-y-0 left-0 z-50 w-72 border-r border-border/70 bg-card/95 p-6 backdrop-blur-xl transition-transform duration-300 animate-slide-in-left lg:static lg:translate-x-0",
             isMobileOpen ? "translate-x-0" : "-translate-x-full",
           )}
         >
@@ -39,27 +55,37 @@ export function AdminShell({ title, subtitle, userEmail, children }: AdminShellP
               </p>
             </div>
 
-            <nav className="mt-10 space-y-2">
-              {ADMIN_NAVIGATION.map((item) => {
-                const active = pathname === item.href;
+            <nav className="mt-10 space-y-6">
+              {Object.entries(navigationGroups).map(([sectionLabel, items]) => (
+                <div key={sectionLabel}>
+                  <p className="px-4 text-xs uppercase tracking-[0.28em] text-muted-foreground/80">
+                    {sectionLabel}
+                  </p>
+                  <div className="mt-2 space-y-2">
+                    {items.map((item) => {
+                      const visibleHref = isSubdomainAdminHost ? toVisibleAdminPath(item.href) : item.href;
+                      const active = pathname === visibleHref;
 
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsMobileOpen(false)}
-                    className={cn(
-                      "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm transition-colors",
-                      active
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                        : "text-muted-foreground hover:bg-secondary hover:text-foreground",
-                    )}
-                  >
-                    <item.icon className="h-4 w-4" />
-                    <span>{item.label}</span>
-                  </Link>
-                );
-              })}
+                      return (
+                        <AdminLink
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setIsMobileOpen(false)}
+                          className={cn(
+                            "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm transition-colors",
+                            active
+                              ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                              : "text-muted-foreground hover:bg-secondary hover:text-foreground",
+                          )}
+                        >
+                          <item.icon className="h-4 w-4" />
+                          <span>{item.label}</span>
+                        </AdminLink>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </nav>
 
             <div className="mt-auto rounded-3xl border border-border/70 bg-background/70 p-4">
@@ -80,7 +106,7 @@ export function AdminShell({ title, subtitle, userEmail, children }: AdminShellP
         <div className="flex min-h-screen flex-1 flex-col lg:pl-0">
           <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-xl">
             <div className="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 animate-fade-in-up">
                 <button
                   type="button"
                   className="inline-flex rounded-xl border border-border/70 p-2 text-muted-foreground lg:hidden"
@@ -106,7 +132,7 @@ export function AdminShell({ title, subtitle, userEmail, children }: AdminShellP
             />
           ) : null}
 
-          <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">{children}</main>
+          <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8 animate-fade-in-up">{children}</main>
         </div>
       </div>
     </div>

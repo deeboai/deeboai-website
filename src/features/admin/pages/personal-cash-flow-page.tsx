@@ -38,6 +38,7 @@ import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
 import { DEFAULT_PERSONAL_CATEGORIES } from "@/features/admin/config/defaults";
 import { getEntryMonth, sumBy } from "@/features/admin/lib/calculations";
+import { getLocalDateInputValue } from "@/features/admin/lib/date";
 import { deleteRow, listRows, upsertRow } from "@/features/admin/lib/data-client";
 import { formatCurrency, formatDate } from "@/features/admin/lib/format";
 import type { Database } from "@/types/supabase";
@@ -58,7 +59,7 @@ type PersonalDraft = {
 };
 
 const emptyDraft: PersonalDraft = {
-  entry_date: new Date().toISOString().slice(0, 10),
+  entry_date: getLocalDateInputValue(),
   category: "rent",
   subcategory: "",
   amount: "",

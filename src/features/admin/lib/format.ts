@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { formatDateOnly, formatMonthOnly } from "@/features/admin/lib/date";
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -33,9 +33,9 @@ export function formatPercent(value: number) {
 }
 
 export function formatDate(value: string) {
-  return format(new Date(value), "MMM d, yyyy");
+  return formatDateOnly(value);
 }
 
 export function formatMonthLabel(value: string) {
-  return format(new Date(value), "MMM yyyy");
+  return formatMonthOnly(value);
 }

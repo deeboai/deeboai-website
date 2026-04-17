@@ -6,7 +6,7 @@ type ScrollRevealOptions = {
   threshold?: number;
   rootMargin?: string;
   once?: boolean;
-  initialClassName?: string;
+  initialClassName?: string | null;
   activeClassName?: string;
 };
 
@@ -29,7 +29,9 @@ export const useScrollReveal = <T extends HTMLElement>(
       return;
     }
 
-    node.classList.add(initialClassName);
+    if (initialClassName) {
+      node.classList.add(initialClassName);
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {

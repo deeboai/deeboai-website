@@ -1,3 +1,6 @@
+"use client";
+
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { cn } from "@/lib/utils";
 
 type MetricCardProps = {
@@ -8,8 +11,11 @@ type MetricCardProps = {
 };
 
 export function MetricCard({ label, value, helper, tone = "default" }: MetricCardProps) {
+  const revealRef = useScrollReveal<HTMLDivElement>();
+
   return (
     <div
+      ref={revealRef}
       className={cn(
         "rounded-3xl border border-border/70 bg-card/90 p-5 shadow-lg shadow-black/10",
         tone === "positive" && "border-emerald-500/30 bg-emerald-500/5",

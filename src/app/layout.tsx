@@ -12,6 +12,16 @@ export const metadata: Metadata = {
   },
   description:
     "DeeboAI builds AI systems, software products, and durable internal tools for complex workflows.",
+  icons: {
+    icon: [
+      { url: "/favicon/favicon.ico" },
+      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: [{ url: "/favicon/apple-touch-icon.png" }],
+    shortcut: [{ url: "/favicon/favicon.ico" }],
+  },
+  manifest: "/favicon/site.webmanifest",
 };
 
 export default function RootLayout({

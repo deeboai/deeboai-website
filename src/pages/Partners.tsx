@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Heart, Globe2, Stethoscope } from "lucide-react";
@@ -59,14 +60,14 @@ const Partners = () => {
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-background to-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold">
               Our <span className="text-gradient">Partners</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               Strategic collaborations shaping the healthcare and software products we are building today
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -103,28 +104,32 @@ const Partners = () => {
               );
 
               return partner.href ? (
-                <a
+                <Reveal
                   key={partner.name}
-                  href={partner.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-card p-8 rounded-xl border border-border hover-lift block"
+                  className="h-full"
                 >
-                  {content}
-                </a>
+                  <a
+                    href={partner.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="bg-card p-8 rounded-xl border border-border hover-lift block h-full"
+                  >
+                    {content}
+                  </a>
+                </Reveal>
               ) : (
-                <div
+                <Reveal
                   key={partner.name}
                   className="bg-card p-8 rounded-xl border border-border hover-lift"
                 >
                   {content}
-                </div>
+                </Reveal>
               );
             })}
           </div>
 
           {/* Partnership Philosophy */}
-          <div className="max-w-4xl mx-auto">
+          <Reveal className="max-w-4xl mx-auto">
             <div className="bg-secondary/50 p-12 rounded-2xl border border-border">
               <h2 className="text-3xl font-bold mb-6 text-center">Partnership Philosophy</h2>
               <div className="space-y-4 text-lg text-muted-foreground">
@@ -142,14 +147,14 @@ const Partners = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-4xl font-bold">Interested in Partnering?</h2>
             <p className="text-xl text-muted-foreground">
               Let's explore how we can build something great together
@@ -157,7 +162,7 @@ const Partners = () => {
             <Button asChild size="lg">
               <Link href="/contact">Get in Touch</Link>
             </Button>
-          </div>
+          </Reveal>
         </div>
       </section>
 

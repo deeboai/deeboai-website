@@ -29,7 +29,9 @@ import { AdminShell } from "@/features/admin/components/admin-shell";
 import { EmptyState } from "@/features/admin/components/empty-state";
 import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
+import { useAdminPreference } from "@/features/admin/hooks/use-admin-preferences";
 import { getTaxPeriod, sumBy } from "@/features/admin/lib/calculations";
+import { getLocalDateInputValue } from "@/features/admin/lib/date";
 import { deleteRow, listRows, upsertRow } from "@/features/admin/lib/data-client";
 import { formatCurrency, formatDate } from "@/features/admin/lib/format";
 import type { Database } from "@/types/supabase";
@@ -57,7 +59,7 @@ type W2PaycheckDraft = {
 };
 
 const emptyDraft: W2PaycheckDraft = {
-  pay_date: new Date().toISOString().slice(0, 10),
+  pay_date: getLocalDateInputValue(),
   employer: "",
   gross_pay: "",
   federal_tax_withheld: "0",
@@ -90,6 +92,7 @@ function createDraftFromRow(row: W2PaycheckRow): W2PaycheckDraft {
 
 export function W2PaychecksPage({ userId, userEmail }: W2PaychecksPageProps) {
   const queryClient = useQueryClient();
+  const { storedValue: preferredStateCode, rememberValue: rememberStateCode } = useAdminPreference("w2.state_code");
   const w2Query = useQuery({
     queryKey: ["w2-paychecks"],
     queryFn: () => listRows("w2_paychecks", { orderBy: "pay_date", ascending: false }),
@@ -149,6 +152,7 @@ export function W2PaychecksPage({ userId, userEmail }: W2PaychecksPageProps) {
       });
     },
     onSuccess: () => {
+      rememberStateCode(draft.state_code);
       toast.success(editingRow ? "W-2 paycheck updated." : "W-2 paycheck created.");
       setDialogOpen(false);
       setEditingRow(null);
@@ -177,7 +181,10 @@ export function W2PaychecksPage({ userId, userEmail }: W2PaychecksPageProps) {
 
   function openCreateDialog() {
     setEditingRow(null);
-    setDraft(emptyDraft);
+    setDraft({
+      ...emptyDraft,
+      state_code: preferredStateCode || emptyDraft.state_code,
+    });
     setDialogOpen(true);
   }
 
@@ -214,7 +221,7 @@ export function W2PaychecksPage({ userId, userEmail }: W2PaychecksPageProps) {
 
         <SectionCard
           title="Paycheck ledger"
-          description="Enter each paycheck as it happens so your dashboard and tax-planning views use real payroll data instead of yearly assumptions."
+          description="Enter each paycheck as it happens so your dashboard and estimated-tax views use real payroll data instead of yearly assumptions."
           action={
             <Button onClick={openCreateDialog}>
               <Plus className="mr-2 h-4 w-4" />
@@ -457,4 +464,3 @@ export function W2PaychecksPage({ userId, userEmail }: W2PaychecksPageProps) {
     </AdminShell>
   );
 }
-

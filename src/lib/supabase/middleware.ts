@@ -5,14 +5,16 @@ import { hasPublicSupabaseEnv } from "@/lib/env";
 import type { Database } from "@/types/supabase";
 
 // The middleware keeps the auth cookie fresh so server-rendered admin pages always see the latest session.
-export async function updateSession(request: NextRequest) {
+export async function updateSession(request: NextRequest, rewriteUrl?: URL) {
   if (!hasPublicSupabaseEnv) {
-    return NextResponse.next({ request });
+    return rewriteUrl ? NextResponse.rewrite(rewriteUrl, { request }) : NextResponse.next({ request });
   }
 
-  let response = NextResponse.next({
-    request,
-  });
+  let response = rewriteUrl
+    ? NextResponse.rewrite(rewriteUrl, { request })
+    : NextResponse.next({
+        request,
+      });
 
   const supabase = createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -24,9 +26,11 @@ export async function updateSession(request: NextRequest) {
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value));
-          response = NextResponse.next({
-            request,
-          });
+          response = rewriteUrl
+            ? NextResponse.rewrite(rewriteUrl, { request })
+            : NextResponse.next({
+                request,
+              });
           cookiesToSet.forEach(({ name, value, options }) => {
             response.cookies.set(name, value, options);
           });

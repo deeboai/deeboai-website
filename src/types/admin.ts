@@ -11,6 +11,7 @@ export type FilingStatus =
 export type HomeOfficeMethodPreference = "auto" | "simplified" | "regular";
 
 export type AdminNavigationItem = {
+  section: string;
   href: string;
   label: string;
   icon: LucideIcon;
