@@ -74,6 +74,12 @@ export function isKnownInternalAdminPath(pathname: string) {
   return isKnownVisibleAdminPath(toVisibleAdminPath(pathname));
 }
 
+export function isInternalAdminPathname(pathname: string) {
+  const normalizedPathname = normalizePathname(pathname);
+
+  return normalizedPathname === ADMIN_INTERNAL_PREFIX || normalizedPathname.startsWith(`${ADMIN_INTERNAL_PREFIX}/`);
+}
+
 export function buildAdminHostnameRedirectUrl(url: URL) {
   const redirectUrl = new URL(url.toString());
   redirectUrl.hostname = ADMIN_HOSTNAME;

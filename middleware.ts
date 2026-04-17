@@ -5,7 +5,7 @@ import {
   buildAdminHostnameRedirectUrl,
   buildPrimaryHostnameRedirectUrl,
   isAdminHostname,
-  isKnownInternalAdminPath,
+  isInternalAdminPathname,
   isKnownVisibleAdminPath,
   isLocalHostname,
   toInternalAdminPath,
@@ -33,7 +33,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(buildPrimaryHostnameRedirectUrl(nextUrl));
   }
 
-  if (!isLocalHostname(hostname) && isKnownInternalAdminPath(nextUrl.pathname)) {
+  if (!isLocalHostname(hostname) && isInternalAdminPathname(nextUrl.pathname)) {
     return NextResponse.redirect(buildAdminHostnameRedirectUrl(nextUrl));
   }
 
