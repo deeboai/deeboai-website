@@ -62,7 +62,7 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
           listRows("income_entries", { orderBy: "received_on", ascending: false }),
           listRows("expense_entries", { orderBy: "expense_date", ascending: false }),
           listRows("mileage_entries", { orderBy: "trip_date", ascending: false }),
-          listRows("housing_deduction_entries", { orderBy: "entry_date", ascending: false }),
+          listRows("housing_monthly_entries", { orderBy: "entry_date", ascending: false }),
           listRows("tax_reserves", { orderBy: "reserve_date", ascending: false }),
           listRows("user_settings", { orderBy: "created_at", ascending: true }),
           listRows("tax_planning_profiles", { orderBy: "tax_year", ascending: false }),
@@ -179,9 +179,9 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
       id: entry.id,
       date: entry.entry_date,
       type: "Housing",
-      label: entry.detail ?? entry.category,
-      amount: -entry.amount,
-      helper: entry.category,
+      label: `Housing ${entry.entry_year}-${String(entry.entry_month).padStart(2, "0")}`,
+      amount: -(entry.base_rent + entry.parking + entry.utilities + entry.insurance + entry.maintenance),
+      helper: "Monthly housing row",
     })),
     ...(data?.w2Paychecks ?? []).map((entry) => ({
       id: entry.id,
@@ -309,15 +309,15 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
             <MetricCard
               label="Housing costs logged"
               value={formatCurrency(housingSummary.totalEntered)}
-              helper="Rent, utilities, internet, insurance, and home maintenance logged this year"
+              helper="Monthly rent, parking, utilities, insurance, and maintenance logged this year"
             />
             <MetricCard
               label="Housing deduction tracked"
               value={housingThisYear.length ? formatCurrency(housingSummary.totalDeductible) : "Add inputs"}
               helper={
                 housingThisYear.length
-                  ? "Current allocation based on the office share saved on each housing bill"
-                  : "Add housing bills and office square footage on Housing"
+                  ? "Current allocation based on the office share saved on each monthly housing row"
+                  : "Add monthly housing rows and office square footage on Housing"
               }
               tone={housingThisYear.length ? "positive" : "warning"}
             />
@@ -503,8 +503,8 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
                     </p>
                     <p className="mt-2 text-xs text-muted-foreground">
                       {housingThisYear.length
-                        ? "Built from the logged housing bills and the office share saved on each bill."
-                        : "Add housing bills and apartment square footage on Housing."}
+                        ? "Built from the logged monthly housing rows and the office share saved on each row."
+                        : "Add monthly housing rows and apartment square footage on Housing."}
                     </p>
                   </div>
                 </div>

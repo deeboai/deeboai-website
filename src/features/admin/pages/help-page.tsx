@@ -41,7 +41,7 @@ const PAGE_GUIDES = [
   {
     title: "Housing",
     description:
-      "Use this for monthly rent, utilities, internet, insurance, and home-maintenance bills. Each row stores the apartment state and square-footage context that was true for that bill.",
+      "Use this for one monthly housing row with base rent, parking, utilities, insurance, and maintenance. Each month stores the apartment state and square-footage context that was true for that month.",
   },
   {
     title: "Settings",
@@ -59,10 +59,10 @@ const OPERATING_RULES = [
 ] as const;
 
 const HOME_OFFICE_RULES = [
-  "Enter rent, utilities, internet, insurance, and home maintenance on the Housing page throughout the year.",
-  "Each housing bill keeps its own apartment state and square-footage context, so you are not relying on one fragile default profile.",
-  "The app calculates the deductible share bill by bill and rolls the totals up for tax-season review.",
-  "Use the saved defaults only as entry shortcuts. The real source of truth is the context stored on each bill.",
+  "Enter one monthly housing row with rent, parking, utilities, insurance, and maintenance on the Housing page throughout the year.",
+  "Each month keeps its own apartment state and square-footage context, so you are not relying on one fragile default profile.",
+  "The app calculates the deductible share month by month and rolls the totals up for tax-season review.",
+  "Parking is tracked for recordkeeping but is excluded from the home-office deduction by default.",
 ] as const;
 
 const TAX_ALERT_RULES = [
@@ -74,10 +74,10 @@ const TAX_ALERT_RULES = [
 
 const GET_STARTED_STEPS = [
   "Backfill every 2026 W-2 paycheck you have received so far.",
-  "Backfill 2026 monthly housing bills such as rent, electricity, utilities, internet, insurance, and home maintenance.",
+  "Backfill 2026 monthly housing rows with rent, parking, utilities, insurance, and maintenance.",
   "Backfill 2026 self-employment income, business expenses, and mileage trips.",
   "Open Estimated Taxes and enter the prior-year filed-return inputs once they are known.",
-  "Open Housing and make sure each bill has the right apartment state and square-footage context.",
+  "Open Housing and make sure each month has the right apartment state and square-footage context.",
   "Use the Dashboard as the reading layer and the entry pages as the writing layer.",
 ] as const;
 

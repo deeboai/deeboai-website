@@ -36,7 +36,7 @@ type TaxPlanningPageProps = {
 };
 
 type TaxPlanningRow = Database["public"]["Tables"]["tax_planning_profiles"]["Row"];
-type HousingEntryRow = Database["public"]["Tables"]["housing_deduction_entries"]["Row"];
+type HousingMonthlyEntryRow = Database["public"]["Tables"]["housing_monthly_entries"]["Row"];
 
 type TaxPlanningDraft = {
   tax_year: string;
@@ -60,11 +60,10 @@ const FILING_STATUS_OPTIONS: Array<{ label: string; value: FilingStatus }> = [
 
 const HOUSING_CATEGORY_LABELS: Record<string, string> = {
   rent: "Rent",
-  electricity: "Electricity",
   utilities: "Utilities",
-  internet: "Internet",
   insurance: "Insurance",
-  "home maintenance": "Home maintenance",
+  maintenance: "Maintenance",
+  parking: "Parking",
 };
 
 function getDefaultState(referenceData: ReturnType<typeof useAdminReferenceData>["data"]) {
@@ -143,7 +142,7 @@ export function TaxPlanningPage({ userId, userEmail }: TaxPlanningPageProps) {
         listRows("tax_planning_profiles", { orderBy: "tax_year", ascending: false }),
         listRows("tax_reserves", { orderBy: "reserve_date", ascending: false }),
         listRows("w2_paychecks", { orderBy: "pay_date", ascending: false }),
-        listRows("housing_deduction_entries", { orderBy: "entry_date", ascending: false }),
+        listRows("housing_monthly_entries", { orderBy: "entry_date", ascending: false }),
       ]);
 
       return {
@@ -190,7 +189,7 @@ export function TaxPlanningPage({ userId, userEmail }: TaxPlanningPageProps) {
       : "All due dates passed";
 
   const housingEntriesForYear = (planningQuery.data?.housingEntries ?? []).filter(
-    (entry: HousingEntryRow) => entry.entry_year === selectedTaxYear,
+    (entry: HousingMonthlyEntryRow) => entry.entry_year === selectedTaxYear,
   );
   const housingSummary = calculateHousingDeductionSummary(housingEntriesForYear);
   const federalEstimateStatusLabel = readyQuarterlyRisk
@@ -597,7 +596,7 @@ export function TaxPlanningPage({ userId, userEmail }: TaxPlanningPageProps) {
 
         <SectionCard
           title="Housing deduction support"
-          description="Housing is now tracked bill by bill in its own tab. Each bill keeps the state and square-footage context that was true for that month, and the deduction totals roll up here automatically."
+          description="Housing is now tracked one row per month in its own tab. Rent, utilities, insurance, and maintenance feed the home-office deduction, while parking is tracked separately and excluded from the deduction by default."
           action={
             <Button asChild>
               <AdminLink href="/admin/housing">Open housing tab</AdminLink>
@@ -606,22 +605,27 @@ export function TaxPlanningPage({ userId, userEmail }: TaxPlanningPageProps) {
         >
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             <MetricCard
-              label="Housing bills logged"
+              label="Housing costs logged"
               value={formatCurrency(housingSummary.totalEntered)}
-              helper={`Shared housing costs entered for ${selectedTaxYear}`}
+              helper={`Monthly housing totals entered for ${selectedTaxYear}`}
+            />
+            <MetricCard
+              label="Deductible-eligible costs"
+              value={formatCurrency(housingSummary.totalEligible)}
+              helper="Rent, utilities, insurance, and maintenance tracked for home-office support"
             />
             <MetricCard
               label="Deductible share tracked"
               value={formatCurrency(housingSummary.totalDeductible)}
-              helper="Calculated bill by bill from the office share saved on each entry"
+              helper="Calculated month by month from the saved office share"
             />
             <MetricCard
               label="Months logged"
               value={`${housingSummary.monthsLogged}/12`}
-              helper="Unique months with at least one housing bill recorded"
+              helper="Unique months with a housing row recorded"
             />
             <MetricCard
-              label="Bills missing context"
+              label="Months missing context"
               value={String(housingSummary.entriesMissingContext)}
               helper="Rows without usable square-footage data do not contribute to the deduction"
               tone={housingSummary.entriesMissingContext ? "warning" : "positive"}
@@ -646,8 +650,8 @@ export function TaxPlanningPage({ userId, userEmail }: TaxPlanningPageProps) {
               ))
             ) : (
               <EmptyState
-                title="No housing bills logged yet"
-                description="Use the Housing tab for monthly rent, utilities, internet, insurance, and home-maintenance bills."
+                title="No housing rows logged yet"
+                description="Use the Housing tab for monthly rent, parking, utilities, insurance, and maintenance totals."
               />
             )}
           </div>

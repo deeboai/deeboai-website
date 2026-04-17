@@ -13,6 +13,7 @@ export type AppTableName =
   | "mileage_entries"
   | "personal_cashflow_entries"
   | "housing_deduction_entries"
+  | "housing_monthly_entries"
   | "tax_reserves"
   | "assets"
   | "profiles"

@@ -9,7 +9,7 @@ type HomeOfficeSpacePeriodRow = Database["public"]["Tables"]["home_office_space_
 type TaxReserveRow = Database["public"]["Tables"]["tax_reserves"]["Row"];
 type W2PaycheckRow = Database["public"]["Tables"]["w2_paychecks"]["Row"];
 type PersonalCashflowRow = Database["public"]["Tables"]["personal_cashflow_entries"]["Row"];
-type HousingDeductionEntryRow = Database["public"]["Tables"]["housing_deduction_entries"]["Row"];
+type HousingMonthlyEntryRow = Database["public"]["Tables"]["housing_monthly_entries"]["Row"];
 
 const FEDERAL_BUSINESS_MILEAGE_RATE_BY_YEAR: Record<number, number> = {
   2024: 0.67,
@@ -79,21 +79,54 @@ export function getQuarterlyRiskStatusLabel(gap: number) {
   return gap > 0 ? "At risk" : "On track";
 }
 
-export function calculateHousingDeductionEntry(entry: HousingDeductionEntryRow) {
+const HOUSING_MONTHLY_CATEGORY_CONFIG = [
+  {
+    amountKey: "base_rent",
+    category: "rent",
+  },
+  {
+    amountKey: "parking",
+    category: "parking",
+  },
+  {
+    amountKey: "utilities",
+    category: "utilities",
+  },
+  {
+    amountKey: "insurance",
+    category: "insurance",
+  },
+  {
+    amountKey: "maintenance",
+    category: "maintenance",
+  },
+] as const;
+
+function getHousingEligibleAmount(entry: HousingMonthlyEntryRow) {
+  return entry.base_rent + entry.utilities + entry.insurance + entry.maintenance;
+}
+
+export function calculateHousingDeductionEntry(entry: HousingMonthlyEntryRow) {
   const homeSquareFeet = entry.home_square_feet ?? 0;
   const officeSquareFeet = entry.office_square_feet ?? 0;
   const hasContext = homeSquareFeet > 0 && officeSquareFeet > 0 && officeSquareFeet <= homeSquareFeet;
   const businessUsePercent = hasContext ? (officeSquareFeet / homeSquareFeet) * 100 : 0;
-  const deductibleAmount = hasContext ? roundCurrency(entry.amount * (businessUsePercent / 100)) : 0;
+  const totalEntered = roundCurrency(
+    entry.base_rent + entry.parking + entry.utilities + entry.insurance + entry.maintenance,
+  );
+  const eligibleAmount = roundCurrency(getHousingEligibleAmount(entry));
+  const deductibleAmount = hasContext ? roundCurrency(eligibleAmount * (businessUsePercent / 100)) : 0;
 
   return {
     hasContext,
     businessUsePercent,
+    totalEntered,
+    eligibleAmount,
     deductibleAmount,
   };
 }
 
-export function calculateHousingDeductionSummary(entries: HousingDeductionEntryRow[]) {
+export function calculateHousingDeductionSummary(entries: HousingMonthlyEntryRow[]) {
   const entriesWithComputedValues = entries.map((entry) => {
     const computed = calculateHousingDeductionEntry(entry);
 
@@ -106,7 +139,10 @@ export function calculateHousingDeductionSummary(entries: HousingDeductionEntryR
   const monthsLogged = new Set(entries.map((entry) => entry.entry_month)).size;
   const entriesMissingContext = entriesWithComputedValues.filter((entry) => !entry.hasContext).length;
   const totalEntered = roundCurrency(
-    entriesWithComputedValues.reduce((total, entry) => total + entry.amount, 0),
+    entriesWithComputedValues.reduce((total, entry) => total + entry.totalEntered, 0),
+  );
+  const totalEligible = roundCurrency(
+    entriesWithComputedValues.reduce((total, entry) => total + entry.eligibleAmount, 0),
   );
   const totalDeductible = roundCurrency(
     entriesWithComputedValues.reduce((total, entry) => total + entry.deductibleAmount, 0),
@@ -114,15 +150,21 @@ export function calculateHousingDeductionSummary(entries: HousingDeductionEntryR
 
   const categoryTotals = Array.from(
     entriesWithComputedValues.reduce((map, entry) => {
-      const current = map.get(entry.category) ?? {
-        category: entry.category,
-        totalEntered: 0,
-        totalDeductible: 0,
-      };
+      const businessUseFactor = entry.businessUsePercent / 100;
 
-      current.totalEntered += entry.amount;
-      current.totalDeductible += entry.deductibleAmount;
-      map.set(entry.category, current);
+      HOUSING_MONTHLY_CATEGORY_CONFIG.forEach(({ amountKey, category }) => {
+        const current = map.get(category) ?? {
+          category,
+          totalEntered: 0,
+          totalDeductible: 0,
+        };
+        const amount = entry[amountKey];
+        const isDeductibleCategory = category !== "parking";
+
+        current.totalEntered += amount;
+        current.totalDeductible += isDeductibleCategory && entry.hasContext ? amount * businessUseFactor : 0;
+        map.set(category, current);
+      });
 
       return map;
     }, new Map<string, { category: string; totalEntered: number; totalDeductible: number }>()),
@@ -137,6 +179,7 @@ export function calculateHousingDeductionSummary(entries: HousingDeductionEntryR
     monthsLogged,
     entriesMissingContext,
     totalEntered,
+    totalEligible,
     totalDeductible,
     categoryTotals,
   };
