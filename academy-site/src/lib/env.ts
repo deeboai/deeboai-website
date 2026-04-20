@@ -5,7 +5,6 @@ const resendApiKey = process.env.RESEND_API_KEY ?? "";
 const academyFromEmail = process.env.ACADEMY_FROM_EMAIL ?? "";
 const academyNotificationEmail = process.env.ACADEMY_NOTIFICATION_EMAIL ?? "";
 
-// Keeping env access centralized prevents ad hoc process.env reads from leaking into client code.
 export const env = {
   publicSupabaseUrl,
   publicSupabaseAnonKey,
@@ -22,15 +21,7 @@ export const hasAcademyEmailEnv = Boolean(resendApiKey && academyFromEmail);
 export function assertPublicSupabaseEnv() {
   if (!hasPublicSupabaseEnv) {
     throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY. Set them in your environment before using the admin app.",
-    );
-  }
-}
-
-export function assertServiceRoleKey() {
-  if (!hasServiceRoleKey) {
-    throw new Error(
-      "Missing SUPABASE_SERVICE_ROLE_KEY. Set it in your environment to allow username-based sign-in and other server-only admin helpers.",
+      "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY. Set them before using the Academy intake flow.",
     );
   }
 }
@@ -39,6 +30,14 @@ export function assertAcademyEmailEnv() {
   if (!hasAcademyEmailEnv) {
     throw new Error(
       "Missing RESEND_API_KEY or ACADEMY_FROM_EMAIL. Set them before sending Academy intake emails.",
+    );
+  }
+}
+
+export function assertServiceRoleKey() {
+  if (!hasServiceRoleKey) {
+    throw new Error(
+      "Missing SUPABASE_SERVICE_ROLE_KEY. Set it before enabling signed testimonial video uploads.",
     );
   }
 }

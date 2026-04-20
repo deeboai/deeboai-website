@@ -12,7 +12,7 @@ const Hero = () => {
   const statsRef = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         <img
           src={heroImage}
@@ -24,11 +24,11 @@ const Hero = () => {
         <div className="absolute inset-x-0 -top-32 h-64 blur-[120px] bg-primary/40 opacity-60" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 pt-24 pb-16">
+      <div className="container relative z-10 mx-auto px-4 pb-16 pt-28 sm:pt-32">
         <div className="max-w-5xl mx-auto text-center space-y-10">
           <h1
             ref={headingRef}
-            className="text-5xl md:text-7xl font-bold leading-tight tracking-tight mx-auto reveal-element"
+            className="mx-auto text-4xl font-bold leading-tight tracking-tight reveal-element sm:text-5xl md:text-7xl"
           >
             Build{" "}
             <span className="text-gradient">intelligent experiences</span>{" "}
@@ -37,14 +37,17 @@ const Hero = () => {
 
           <p
             ref={textRef}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto reveal-element"
+            className="mx-auto max-w-3xl text-lg text-muted-foreground reveal-element sm:text-xl md:text-2xl"
           >
             DeeboAI builds clinical intelligence software, risk assessment tools, and custom AI
             systems that help healthcare teams and operators move faster with more confidence. We
             turn high-stakes workflows into practical, production-ready products.
           </p>
 
-          <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 reveal-element">
+          <div
+            ref={ctaRef}
+            className="flex flex-col items-stretch justify-center gap-4 pt-2 reveal-element sm:flex-row sm:items-center"
+          >
             <Button
               asChild
               size="lg"
@@ -65,7 +68,8 @@ const Hero = () => {
             </Button>
           </div>
 
-          <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 reveal-element">
+          {/* Long stat labels need more breathing room on tablets before expanding to three columns. */}
+          <div ref={statsRef} className="grid grid-cols-1 gap-6 pt-6 reveal-element sm:grid-cols-2 xl:grid-cols-3">
             {[
               { value: "2", label: "Current flagship healthcare products on the roadmap" },
               { value: "1", label: "Mayo Clinic-aligned risk assessment collaboration highlighted today" },
@@ -86,7 +90,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+      <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 sm:flex">
         <div className="text-xs uppercase tracking-[0.35em] text-muted-foreground/80">Scroll</div>
         <div className="h-16 w-[1px] bg-gradient-to-b from-primary via-primary/40 to-transparent animate-pulse" />
       </div>

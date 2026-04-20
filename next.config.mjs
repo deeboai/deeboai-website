@@ -2,6 +2,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const academySiteUrl = process.env.ACADEMY_SITE_URL ?? "https://academy.deeboai.com";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -45,6 +46,21 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    // The main DeeboAI site should hand Academy traffic off to the standalone Academy deployment.
+    return [
+      {
+        source: "/academy",
+        destination: academySiteUrl,
+        permanent: false,
+      },
+      {
+        source: "/academy/:path*",
+        destination: `${academySiteUrl}/:path*`,
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {

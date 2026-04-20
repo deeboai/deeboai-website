@@ -8,15 +8,22 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Two columns at mid widths prevent the footer columns from collapsing into cramped text blocks. */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
             <img src={logoMark} alt="DeeboAI brand" className="h-20 w-auto" loading="lazy" />
             <p className="text-sm text-muted-foreground">
               Building AI systems that work where it matters.
             </p>
-            <p className="text-xs text-muted-foreground">
-              Minneapolis, MN · <a href="mailto:amadou@deeboai.com" className="underline underline-offset-2 hover:text-primary transition-colors">amadou@deeboai.com</a>
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              Minneapolis, MN ·{" "}
+              <a
+                href="mailto:support@deeboai.com"
+                className="break-all underline underline-offset-2 hover:text-primary transition-colors"
+              >
+                support@deeboai.com
+              </a>
             </p>
           </div>
 
@@ -28,6 +35,14 @@ const Footer = () => {
                 <Link href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Home
                 </Link>
+              </li>
+              <li>
+                <a
+                  href="https://academy.deeboai.com"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Academy
+                </a>
               </li>
               <li>
                 <Link href="/team" className="text-sm text-muted-foreground hover:text-primary transition-colors">

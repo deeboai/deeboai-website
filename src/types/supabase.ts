@@ -706,6 +706,59 @@ export type Database = {
           tax_quarter?: number;
         };
       };
+      academy_intake_submissions: {
+        Row: {
+          id: string;
+          created_at: string;
+          updated_at: string;
+          parent_full_name: string;
+          parent_email: string;
+          parent_phone: string | null;
+          student_first_name: string;
+          grade: string;
+          subject: string;
+          goals: string;
+          session_format: string;
+          status: string;
+          accepted_client_agreement: boolean;
+          accepted_terms: boolean;
+          accepted_privacy: boolean;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          parent_full_name: string;
+          parent_email: string;
+          parent_phone?: string | null;
+          student_first_name: string;
+          grade: string;
+          subject: string;
+          goals: string;
+          session_format: string;
+          status?: string;
+          accepted_client_agreement?: boolean;
+          accepted_terms?: boolean;
+          accepted_privacy?: boolean;
+        };
+        Update: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          parent_full_name?: string;
+          parent_email?: string;
+          parent_phone?: string | null;
+          student_first_name?: string;
+          grade?: string;
+          subject?: string;
+          goals?: string;
+          session_format?: string;
+          status?: string;
+          accepted_client_agreement?: boolean;
+          accepted_terms?: boolean;
+          accepted_privacy?: boolean;
+        };
+      };
       assets: {
         Row: {
           id: string;

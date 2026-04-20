@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "@/index.css";
 
 import { AppProviders } from "@/components/providers/app-providers";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://deeboai.com"),
@@ -12,6 +13,30 @@ export const metadata: Metadata = {
   },
   description:
     "DeeboAI builds AI systems, software products, and durable internal tools for complex workflows.",
+  openGraph: {
+    title: "DeeboAI",
+    description:
+      "DeeboAI builds AI systems, software products, and durable internal tools for complex workflows.",
+    url: "https://deeboai.com",
+    siteName: "DeeboAI",
+    images: [
+      {
+        url: "/assets/logos/white_on_black.PNG",
+        width: 1200,
+        height: 1200,
+        alt: "DeeboAI logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DeeboAI",
+    description:
+      "DeeboAI builds AI systems, software products, and durable internal tools for complex workflows.",
+    images: ["/assets/logos/white_on_black.PNG"],
+  },
   icons: {
     icon: [
       { url: "/favicon/favicon.ico" },
@@ -32,7 +57,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
-        <AppProviders>{children}</AppProviders>
+        <AppProviders>
+          <ScrollToTop />
+          {children}
+        </AppProviders>
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import {
   sanitizePlainText,
 } from "@/lib/input-security";
 
-export const DEEBOAI_CONTACT_EMAIL = "amadou@deeboai.com";
+export const DEEBOAI_CONTACT_EMAIL = "support@deeboai.com";
 
 export const GOOGLE_APPOINTMENT_SCHEDULING_URL =
   "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2-QG9RFTSoUAau6Rh1u79xVafPpywL2B6ZxaQVrU3cx1uT6YUp3KZE18TRgSDb03jCCk0Xs32g?gv=true";

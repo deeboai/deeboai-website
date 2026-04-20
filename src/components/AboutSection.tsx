@@ -47,6 +47,11 @@ const milestones = [
     title: "MyelomaRisk Joins DeeboAI",
     description: "The ongoing MyelomaRisk work was brought into DeeboAI's portfolio, connecting a 2023 clinical collaboration to the company's healthcare product direction.",
   },
+  {
+    year: "2026",
+    title: "Deebo Academy Launches",
+    description: "Deebo Academy launched as a separate education vertical for structured tutoring, extending the company's systems-oriented operating model into academic support.",
+  },
 ];
 
 const AboutSection = () => {
@@ -124,15 +129,15 @@ const AboutSection = () => {
               <div className="space-y-3 md:max-w-sm">
                 <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Trajectory</p>
                 <h3 className="text-2xl font-semibold text-foreground">
-                  From experimental AI builds to focused healthcare products.
+                  From experimental AI builds to focused healthcare products and adjacent verticals.
                 </h3>
                 <p className="text-muted-foreground">
                   Our throughline has stayed the same: build software around the actual workflow.
-                  That lesson carried from early product work into today&apos;s healthcare and
-                  decision-support platforms.
+                  That lesson carried from early product work into today&apos;s healthcare,
+                  decision-support, and structured service platforms.
                 </p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
                 {milestones.map((milestone) => (
                   <div key={`${milestone.year}-${milestone.title}`} className="relative">
                     <div className="absolute left-0 top-0 h-full w-px bg-primary/40 sm:right-0 sm:left-auto sm:w-full sm:h-px sm:top-auto sm:bottom-0 sm:bg-gradient-to-r sm:from-primary/60 sm:via-primary/20 sm:to-transparent" />
