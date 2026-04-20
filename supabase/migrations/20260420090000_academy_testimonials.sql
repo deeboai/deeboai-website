@@ -13,9 +13,13 @@ create table if not exists public.academy_testimonials (
   impression text,
   video_path text,
   video_url text,
+  moderation_status text not null default 'approved',
   is_published boolean not null default true,
   constraint academy_testimonials_content_check check (
     (impression is not null and char_length(trim(impression)) > 0) or video_url is not null
+  ),
+  constraint academy_testimonials_moderation_status_check check (
+    moderation_status in ('pending', 'approved', 'rejected')
   )
 );
 

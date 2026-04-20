@@ -759,6 +759,53 @@ export type Database = {
           accepted_privacy?: boolean;
         };
       };
+      academy_testimonials: {
+        Row: {
+          id: string;
+          created_at: string;
+          updated_at: string;
+          first_name: string;
+          last_name: string;
+          class_year: string;
+          tutor_name: string;
+          subject: string;
+          impression: string | null;
+          video_path: string | null;
+          video_url: string | null;
+          moderation_status: string;
+          is_published: boolean;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          first_name: string;
+          last_name: string;
+          class_year: string;
+          tutor_name: string;
+          subject: string;
+          impression?: string | null;
+          video_path?: string | null;
+          video_url?: string | null;
+          moderation_status?: string;
+          is_published?: boolean;
+        };
+        Update: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          first_name?: string;
+          last_name?: string;
+          class_year?: string;
+          tutor_name?: string;
+          subject?: string;
+          impression?: string | null;
+          video_path?: string | null;
+          video_url?: string | null;
+          moderation_status?: string;
+          is_published?: boolean;
+        };
+      };
       assets: {
         Row: {
           id: string;
