@@ -3,6 +3,7 @@ import {
   ChartSpline,
   CircleHelp,
   CircleDollarSign,
+  ClipboardList,
   CreditCard,
   House,
   MessageSquareQuote,
@@ -55,6 +56,12 @@ export const ADMIN_NAVIGATION: AdminNavigationItem[] = [
     href: "/admin/housing",
     label: "Housing",
     icon: House,
+  },
+  {
+    section: "Admin",
+    href: "/admin/intake",
+    label: "Academy Intake",
+    icon: ClipboardList,
   },
   {
     section: "Admin",
