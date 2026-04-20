@@ -1,6 +1,10 @@
 [build]
-  # This Netlify config is meant to be used with the site's base directory set to `academy-site`.
-  command = "npm run build"
+  # Netlify runs monorepo package builds from the repository root when the package directory is set,
+  # so target the Academy app explicitly instead of the root Next.js app.
+  command = "npm --prefix academy-site run build"
+  # The OpenNext adapter needs a real build output directory instead of defaulting to the package
+  # directory itself, which Netlify treats as an invalid publish target for Next.js.
+  publish = "academy-site/.next"
 
 [build.environment]
   NODE_VERSION = "22"
