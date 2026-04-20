@@ -43,7 +43,7 @@ export const teamMembers: TeamMember[] = [
       "Leads collaborations spanning medication intelligence, clinical risk assessment, and custom product development with a focus on trustworthy deployment.",
     quote:
       "“The standard is simple: build AI that fits the workflow, earns trust quickly, and produces something useful on day one.”",
-    email: "amadou@deeboai.com",
+    email: "support@deeboai.com",
     linkedin: "https://www.linkedin.com/in/elhadjiatoure/",
     image: amadouImage,
   },
