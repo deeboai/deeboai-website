@@ -68,6 +68,7 @@ export const teamMembers: TeamMember[] = [
     currentRole: "Product Strategy Leader · Formerly Optum (UnitedHealth)",
     highlight:
       "Guided DeeboAI through its formative milestones with a focus on customer impact and resilient growth.",
+    quote: "",
     linkedin: "https://www.linkedin.com/in/waltenbaugh/",
     image: kurtImage,
   },
