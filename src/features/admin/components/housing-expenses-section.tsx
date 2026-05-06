@@ -165,6 +165,10 @@ export function HousingExpensesSection({
       setDialogOpen(false);
       setEditingRow(null);
       setDraft(buildEmptyDraft(selectedTaxYear));
+      // The legacy housing editor can now render inside /admin/housing, so refresh both the shared
+      // personal-cash-flow query and the Housing page container after every mutation.
+      queryClient.invalidateQueries({ queryKey: ["personal-cashflow-entries"] });
+      queryClient.invalidateQueries({ queryKey: ["housing-page-data"] });
       queryClient.invalidateQueries({ queryKey: ["tax-planning-page-data"] });
       queryClient.invalidateQueries({ queryKey: ["dashboard-page-data"] });
     },
@@ -177,6 +181,8 @@ export function HousingExpensesSection({
     mutationFn: (id: string) => deleteRow("personal_cashflow_entries", id),
     onSuccess: () => {
       toast.success("Housing expense deleted.");
+      queryClient.invalidateQueries({ queryKey: ["personal-cashflow-entries"] });
+      queryClient.invalidateQueries({ queryKey: ["housing-page-data"] });
       queryClient.invalidateQueries({ queryKey: ["tax-planning-page-data"] });
       queryClient.invalidateQueries({ queryKey: ["dashboard-page-data"] });
     },

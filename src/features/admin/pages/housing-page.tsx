@@ -34,6 +34,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/sonner";
 import { AdminShell } from "@/features/admin/components/admin-shell";
 import { EmptyState } from "@/features/admin/components/empty-state";
+import { HousingExpensesSection } from "@/features/admin/components/housing-expenses-section";
 import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
 import { useAdminPreference } from "@/features/admin/hooks/use-admin-preferences";
@@ -51,6 +52,7 @@ type HousingPageProps = {
 };
 
 type HousingMonthlyEntryRow = Database["public"]["Tables"]["housing_monthly_entries"]["Row"];
+type PersonalCashflowRow = Database["public"]["Tables"]["personal_cashflow_entries"]["Row"];
 
 type HousingMonthlyDraft = {
   entry_date: string;
@@ -156,6 +158,12 @@ export function HousingPage({ userId, userEmail }: HousingPageProps) {
   const housingQuery = useQuery({
     queryKey: ["housing-page-data"],
     queryFn: async () => listRows("housing_monthly_entries", { orderBy: "entry_date", ascending: false }),
+  });
+  const legacyHousingQuery = useQuery({
+    queryKey: ["personal-cashflow-entries"],
+    // Legacy housing expenses still live in personal_cashflow_entries, so the Housing page needs to
+    // load them here now that the old personal cash-flow route redirects into this screen.
+    queryFn: async () => listRows("personal_cashflow_entries", { orderBy: "entry_date", ascending: false }),
   });
 
   const taxYears = useMemo(() => {
@@ -469,6 +477,12 @@ export function HousingPage({ userId, userEmail }: HousingPageProps) {
             </div>
           </SectionCard>
         </div>
+
+        <HousingExpensesSection
+          entries={(legacyHousingQuery.data ?? []) as PersonalCashflowRow[]}
+          selectedTaxYear={selectedTaxYear}
+          userId={userId}
+        />
       </div>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
