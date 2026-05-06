@@ -9,32 +9,98 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Mail, MapPin, Calendar } from "lucide-react";
+import { Calendar, Loader2, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { buildContactMailtoHref, DEEBOAI_CONTACT_EMAIL } from "@/lib/contact";
+import { DEEBOAI_CONTACT_EMAIL } from "@/lib/contact";
+
+type ContactFormData = {
+  name: string;
+  email: string;
+  company: string;
+  phone: string;
+  serviceInterest: string;
+  message: string;
+  website: string;
+};
+
+type ContactFormErrors = Partial<Record<keyof Pick<ContactFormData, "name" | "email" | "message">, string>>;
+
+const initialFormData: ContactFormData = {
+  name: "",
+  email: "",
+  company: "",
+  phone: "",
+  serviceInterest: "",
+  message: "",
+  website: "",
+};
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    inquiryType: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState<ContactFormData>(initialFormData);
+  const [errors, setErrors] = useState<ContactFormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const nextErrors: ContactFormErrors = {};
+
+    if (!formData.name.trim()) {
+      nextErrors.name = "Name is required.";
+    }
+
+    if (!emailPattern.test(formData.email.trim())) {
+      nextErrors.email = "Enter a valid email address.";
+    }
+
+    if (!formData.message.trim()) {
+      nextErrors.message = "Message is required.";
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.inquiryType) {
-      toast.error("Select an inquiry type before sending your message.");
+
+    if (!validateForm()) {
+      toast.error("Please fix the highlighted fields before sending your message.");
       return;
     }
 
-    const mailtoUrl = buildContactMailtoHref(formData);
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
 
-    window.location.assign(mailtoUrl);
-    toast.success("Opening your email client…");
-    setFormData({ name: "", email: "", company: "", inquiryType: "", message: "" });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          sourcePage: typeof window === "undefined" ? "/contact" : window.location.href,
+        }),
+      });
+
+      const result = (await response.json().catch(() => ({}))) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(result.error ?? "Unable to send your message right now.");
+      }
+
+      setFormData(initialFormData);
+      setSubmitStatus("success");
+      toast.success("Your message was sent.");
+    } catch (error) {
+      setSubmitStatus("error");
+      toast.error(error instanceof Error ? error.message : "Unable to send your message right now.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -133,7 +199,19 @@ const Contact = () => {
             <Reveal className="lg:col-span-2" variant="right">
               <div className="bg-card p-8 rounded-xl border border-border">
                 <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                  <div className="hidden" aria-hidden="true">
+                    <Label htmlFor="website">Website</Label>
+                    <Input
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website}
+                      onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="name">Name *</Label>
@@ -141,9 +219,19 @@ const Contact = () => {
                         id="name"
                         placeholder="John Doe"
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, name: e.target.value });
+                          setErrors((current) => ({ ...current, name: undefined }));
+                        }}
+                        aria-invalid={Boolean(errors.name)}
+                        aria-describedby={errors.name ? "name-error" : undefined}
                         required
                       />
+                      {errors.name && (
+                        <p id="name-error" className="text-sm text-destructive">
+                          {errors.name}
+                        </p>
+                      )}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email *</Label>
@@ -152,9 +240,19 @@ const Contact = () => {
                         type="email"
                         placeholder="john@example.com"
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, email: e.target.value });
+                          setErrors((current) => ({ ...current, email: undefined }));
+                        }}
+                        aria-invalid={Boolean(errors.email)}
+                        aria-describedby={errors.email ? "email-error" : undefined}
                         required
                       />
+                      {errors.email && (
+                        <p id="email-error" className="text-sm text-destructive">
+                          {errors.email}
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -169,25 +267,37 @@ const Contact = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="inquiryType">Inquiry Type *</Label>
-                      <Select
-                        value={formData.inquiryType}
-                        onValueChange={(value) => setFormData({ ...formData, inquiryType: value })}
-                        required
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="business">Business Inquiry</SelectItem>
-                          <SelectItem value="partnership">Partnership Proposal</SelectItem>
-                          <SelectItem value="investor">Investor Relations</SelectItem>
-                          <SelectItem value="consulting">Consulting Request</SelectItem>
-                          <SelectItem value="product">Product Information</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Label htmlFor="phone">Phone</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="(555) 123-4567"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      />
                     </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="serviceInterest">Service Interest</Label>
+                    <Select
+                      value={formData.serviceInterest}
+                      onValueChange={(value) => setFormData({ ...formData, serviceInterest: value })}
+                    >
+                      <SelectTrigger id="serviceInterest">
+                        <SelectValue placeholder="Select an area" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="managed-presence">Managed Presence</SelectItem>
+                        <SelectItem value="website">Website Consulting</SelectItem>
+                        <SelectItem value="email">Email and Google Workspace</SelectItem>
+                        <SelectItem value="ai-systems">AI Systems</SelectItem>
+                        <SelectItem value="healthcare">Healthcare Tooling</SelectItem>
+                        <SelectItem value="product">Product Information</SelectItem>
+                        <SelectItem value="partnership">Partnership Proposal</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   <div className="space-y-2">
@@ -197,13 +307,48 @@ const Contact = () => {
                       placeholder="Tell us about your project or inquiry..."
                       rows={6}
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, message: e.target.value });
+                        setErrors((current) => ({ ...current, message: undefined }));
+                      }}
+                      aria-invalid={Boolean(errors.message)}
+                      aria-describedby={errors.message ? "message-error" : undefined}
                       required
                     />
+                    {errors.message && (
+                      <p id="message-error" className="text-sm text-destructive">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full">
-                    Send Message
+                  {submitStatus === "success" && (
+                    <div
+                      className="rounded-lg border border-primary/40 bg-primary/10 px-4 py-3 text-sm text-primary"
+                      role="status"
+                    >
+                      Thanks for reaching out. We received your message and will review it soon.
+                    </div>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <div
+                      className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+                      role="alert"
+                    >
+                      We could not send your message. Please try again or email {DEEBOAI_CONTACT_EMAIL}.
+                    </div>
+                  )}
+
+                  <Button type="submit" size="lg" className="w-full" disabled={isSubmitting} aria-busy={isSubmitting}>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
                   </Button>
                 </form>
               </div>

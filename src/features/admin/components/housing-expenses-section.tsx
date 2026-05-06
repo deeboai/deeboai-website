@@ -239,12 +239,12 @@ export function HousingExpensesSection({
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
         <SectionCard
-          title="Monthly housing expenses"
-          description="This replaces the old personal-cash-flow workflow for home-office support. Existing housing entries already saved there are preserved and shown here."
+          title="Legacy housing expenses"
+          description="These are older housing expenses that were saved before the monthly worksheet became the main workflow. They stay editable here for cleanup and historical review."
           action={
             <Button onClick={openCreateDialog}>
               <Plus className="mr-2 h-4 w-4" />
-              Add housing expense
+              Add legacy housing expense
             </Button>
           }
         >

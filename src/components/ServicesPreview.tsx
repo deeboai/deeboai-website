@@ -17,7 +17,7 @@ const services = [
     title: "Experiential Web & Digital Platforms",
     description: "High-impact marketing and corporate websites handcrafted without relying on AI.",
     features: ["Dynamic storytelling websites", "Headless CMS + marketing ops", "Accessibility + performance audits"],
-    caption: "Recent launch: Linque Resourcing — a hiring firm now booking more leads through linqueresourcing.com.",
+    caption: "Recent work includes Linque Resourcing and Bigue Allure across business website and consumer brand needs.",
   },
   {
     icon: Cloud,

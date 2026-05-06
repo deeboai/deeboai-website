@@ -26,7 +26,7 @@ const PAGE_GUIDES = [
   {
     title: "Expenses",
     description:
-      "Use this for business spending. Each software bill, phone bill, bank fee, contractor payment, equipment purchase, or other deductible business expense should be entered separately.",
+      "Use this for ordinary business spending. Each software bill, phone bill, bank fee, contractor payment, or other deductible operating expense should be entered separately.",
   },
   {
     title: "Mileage",
