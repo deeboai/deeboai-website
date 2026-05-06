@@ -1,5 +1,5 @@
-# `src/types`
+# Shared Types
 
-Shared TypeScript types.
+## Purpose
 
-- Generated Supabase types live here alongside smaller hand-written app types.
+This folder contains shared TypeScript types used across the DeeboAI website.

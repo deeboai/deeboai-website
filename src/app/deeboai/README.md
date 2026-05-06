@@ -1,6 +1,5 @@
-# `src/app/deeboai`
+# DeeboAI Route
 
-DeeboAI Studio route entrypoint.
+## Purpose
 
-- The page implementation lives in `src/pages/DeeboAIStudio.tsx`.
-
+This folder contains the core DeeboAI brand or landing route.

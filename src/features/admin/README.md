@@ -1,10 +1,5 @@
-# `src/features/admin`
+# Admin Feature Module
 
-Admin feature code.
+## Purpose
 
-- `components/`: admin-only UI building blocks.
-- `config/`: navigation and option defaults.
-- `hooks/`: admin-specific client hooks.
-- `lib/`: calculations, formatting, data helpers, and bootstrap behavior.
-- `pages/`: top-level admin page implementations.
-
+This folder contains the reusable feature layer for the broader DeeboAI admin experience.

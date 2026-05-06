@@ -1,7 +1,5 @@
-# `public/favicon`
+# Favicon Assets
 
-Browser icon and manifest assets.
+## Purpose
 
-- Root metadata in `src/app/layout.tsx` points here.
-- Keep manifest paths aligned with this folder structure.
-
+This folder contains favicon files and related browser icon assets.

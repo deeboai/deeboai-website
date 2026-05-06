@@ -1,7 +1,5 @@
-# `src/features/admin/config`
+# Admin Feature Config
 
-Static admin configuration.
+## Purpose
 
-- Navigation structure and default option lists live here.
-- Update this folder first when the admin information architecture changes.
-
+This folder contains configuration files for the admin feature module, such as navigation and route metadata.

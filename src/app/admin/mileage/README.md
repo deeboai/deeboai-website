@@ -1,6 +1,5 @@
-# `src/app/admin/mileage`
+# Mileage Admin Route
 
-Mileage route entrypoint.
+## Purpose
 
-- Rendering is delegated to `src/features/admin/pages/mileage-page.tsx`.
-
+This folder contains the admin screens for mileage tracking.

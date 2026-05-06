@@ -1,5 +1,5 @@
-# `src/app/team`
+# Team Route
 
-Team route entrypoint.
+## Purpose
 
-- The page implementation lives in `src/pages/Team.tsx`.
+This folder contains the public team page.

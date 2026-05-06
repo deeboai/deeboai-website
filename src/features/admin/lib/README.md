@@ -1,7 +1,5 @@
-# `src/features/admin/lib`
+# Admin Feature Library
 
-Admin support code.
+## Purpose
 
-- Data formatting, date handling, derived calculations, Supabase helpers, and bootstrap behavior live here.
-- Changes here usually affect multiple admin pages.
-
+This folder contains non-visual helpers used by the admin feature module.

@@ -1,7 +1,5 @@
-# `src/features/admin/components`
+# Admin Feature Components
 
-Admin-specific UI components.
+## Purpose
 
-- Keep these focused on composition and rendering.
-- Shared admin workflow state should live in the page layer or hooks.
-
+This folder contains reusable components used by the admin feature module.

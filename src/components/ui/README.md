@@ -1,7 +1,5 @@
-# `src/components/ui`
+# UI Components
 
-Reusable low-level UI primitives.
+## Purpose
 
-- Treat these as shared building blocks.
-- Avoid putting domain-specific copy or business behavior here.
-
+This folder contains reusable visual primitives used across the DeeboAI website.

@@ -1,6 +1,5 @@
-# `src/app/products`
+# Products Route
 
-Products route entrypoint.
+## Purpose
 
-- The page implementation lives in `src/pages/Products.tsx`.
-
+This folder contains the public products page.

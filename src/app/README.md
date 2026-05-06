@@ -1,8 +1,9 @@
-# `src/app`
+# App Routes
 
-App Router entrypoints.
+## Purpose
 
-- Keep route files thin.
-- Route files should compose feature/page modules instead of holding business logic.
-- Root metadata, global CSS, and providers start in `layout.tsx`.
+This folder contains the routed application pages for the broader DeeboAI website.
 
+## Notes
+
+This repo still owns general DeeboAI marketing pages and non-Academy admin tooling.

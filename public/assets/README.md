@@ -1,7 +1,9 @@
-# `public/assets`
+# Public Asset Library
 
-Public marketing assets.
+## Purpose
 
-- These files are referenced by URL paths such as `/assets/...`.
-- Keep marketing media here when React does not need to import the file directly.
+This folder groups public-facing images and media used by the DeeboAI site.
 
+## Notes
+
+Assets here are referenced directly by the public pages and shared layout components.

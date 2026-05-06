@@ -1,6 +1,5 @@
-# `src/assets/deeboai_page`
+# DeeboAI Source Assets
 
-Media imported by the DeeboAI Studio page.
+## Purpose
 
-- Keep filenames stable when possible because page code references them directly.
-
+This folder contains source assets tied to the DeeboAI landing and brand pages.

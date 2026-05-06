@@ -1,6 +1,5 @@
-# `src/app/admin/help`
+# Admin Help Route
 
-Help route entrypoint.
+## Purpose
 
-- Rendering is delegated to `src/features/admin/pages/help-page.tsx`.
-
+This folder contains help or guidance pages for the broader DeeboAI admin workspace.

@@ -1,6 +1,5 @@
-# `src/features`
+# Feature Modules
 
-Feature-oriented code.
+## Purpose
 
-- Put domain behavior here when it grows beyond a small shared component.
-
+This folder contains feature-specific modules that keep larger functional areas organized.

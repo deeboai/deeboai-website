@@ -1,6 +1,5 @@
-# `src/app/admin/tax-reserves`
+# Tax Reserves Admin Route
 
-Legacy route kept for compatibility.
+## Purpose
 
-- Requests here redirect into `Estimated Taxes`.
-- Reserve context is summarized on the dashboard and inside the estimated-tax workflow.
+This folder contains the admin screens for tax-reserve tracking and planning.

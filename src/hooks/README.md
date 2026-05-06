@@ -1,6 +1,5 @@
-# `src/hooks`
+# Shared Hooks
 
-Shared React hooks.
+## Purpose
 
-- Use this folder for hooks that are not admin-only and are reused across the site.
-
+This folder contains reusable React hooks shared across the DeeboAI website.

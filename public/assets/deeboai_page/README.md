@@ -1,6 +1,5 @@
-# `public/assets/deeboai_page`
+# DeeboAI Page Assets
 
-Public media used by the DeeboAI Studio page.
+## Purpose
 
-- Prefer stable filenames because page code and external links may reference these paths directly.
-
+This folder contains public assets used by the core DeeboAI landing and marketing pages.
