@@ -1,6 +1,5 @@
-# `src/app/admin/assets`
+# Admin Assets Route
 
-Legacy route kept for compatibility.
+## Purpose
 
-- Requests here redirect into `Estimated Taxes`.
-- Do not add new page logic in this folder unless the route is intentionally restored.
+This folder contains the admin route for asset-related operations in the DeeboAI website.

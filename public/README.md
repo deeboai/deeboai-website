@@ -1,7 +1,9 @@
-# `public`
+# Public Assets
 
-Static files served as-is.
+## Purpose
 
-- Use this folder for assets that should be addressable by URL without importing them in code.
-- Keep large media organized under `assets/` and browser icon files under `favicon/`.
+This folder contains static files served directly by the DeeboAI website.
 
+## Notes
+
+Only public-safe assets belong here. Operational secrets and private admin files must never be stored in this tree.

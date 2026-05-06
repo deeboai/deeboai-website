@@ -1,6 +1,5 @@
-# `src/app/admin/w2-paychecks`
+# W-2 Paychecks Admin Route
 
-W-2 paychecks route entrypoint.
+## Purpose
 
-- Rendering is delegated to `src/features/admin/pages/w2-paychecks-page.tsx`.
-
+This folder contains the admin screens for W-2 paycheck tracking.

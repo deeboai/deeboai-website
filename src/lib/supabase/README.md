@@ -1,7 +1,9 @@
-# `src/lib/supabase`
+# Supabase Helpers
 
-Supabase client setup for browser, server, and middleware contexts.
+## Purpose
 
-- Keep auth/session wiring here.
-- Query shape and admin data behavior belong in feature code, not in these client factories.
+This folder contains Supabase-specific helpers used by the broader DeeboAI website.
 
+## Notes
+
+Keep Academy-specific operational Supabase logic in the dedicated Academy repository.

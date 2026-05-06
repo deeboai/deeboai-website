@@ -1,7 +1,10 @@
-# `src/components`
+# Shared Components
 
-Shared presentation components used across the marketing site and admin.
+## Purpose
 
-- Keep business logic out of this folder.
-- Prefer feature-specific components under `src/features/...` when a component only serves one domain.
+This folder contains reusable interface components shared across the DeeboAI website.
 
+## Major Areas
+
+- `providers`: app-level providers
+- `ui`: reusable UI primitives

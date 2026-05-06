@@ -1,6 +1,5 @@
-# `src/app/admin/housing`
+# Housing Admin Route
 
-Housing-deduction route entrypoint.
+## Purpose
 
-- Rendering is delegated to `src/features/admin/pages/housing-page.tsx`.
-- This route is the monthly housing worksheet used to support the office-use deduction.
+This folder contains the admin screens for housing-related tracking and planning.

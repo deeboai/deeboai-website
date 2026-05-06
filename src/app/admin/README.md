@@ -1,8 +1,9 @@
-# `src/app/admin`
+# Admin Routes
 
-Admin route entrypoints.
+## Purpose
 
-- Auth gating happens at the route level.
-- In production, the middleware exposes these routes through `admin.deeboai.com` and rewrites clean subdomain paths back to the internal `/admin/...` routes.
-- UI and data behavior live under `src/features/admin`.
-- Legacy routes that are no longer first-class should redirect instead of duplicating UI.
+This folder contains the broader DeeboAI admin screens.
+
+## Notes
+
+Academy operations were moved into the dedicated Academy repository. The admin pages here are for broader company and finance workflows unless otherwise noted.

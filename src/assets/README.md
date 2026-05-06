@@ -1,7 +1,5 @@
-# `src/assets`
+# Source Assets
 
-Imported media used directly by React components.
+## Purpose
 
-- Keep source files here only when they are imported from code.
-- Public URL assets belong under `public/`.
-
+This folder contains source-managed visual assets used during application development.

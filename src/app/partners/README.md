@@ -1,6 +1,5 @@
-# `src/app/partners`
+# Partners Route
 
-Partners route entrypoint.
+## Purpose
 
-- The page implementation lives in `src/pages/Partners.tsx`.
-
+This folder contains the public partners page.

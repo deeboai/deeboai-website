@@ -1,6 +1,5 @@
-# `src/app/admin/expenses`
+# Expenses Admin Route
 
-Expenses route entrypoint.
+## Purpose
 
-- Rendering is delegated to `src/features/admin/pages/expenses-page.tsx`.
-
+This folder contains the admin screens for expense tracking.

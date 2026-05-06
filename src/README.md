@@ -1,11 +1,16 @@
-# `src`
+# Source Directory
 
-Application source for the Next.js site and admin tools.
+## Purpose
 
-- `app/`: route entrypoints and layouts.
-- `pages/`: client page implementations used by route entrypoints.
-- `components/`: shared UI and layout pieces.
-- `features/admin/`: admin-only feature code.
-- `lib/`, `hooks/`, `types/`: shared utilities, hooks, and type declarations.
-- `assets/`: source-controlled media imported directly into React code.
+This folder contains the application source code for the broader DeeboAI website.
 
+## Major Areas
+
+- `app`: routed pages and admin screens
+- `assets`: source-managed visual assets
+- `components`: reusable interface components
+- `features`: feature-specific modules, especially admin tooling
+- `hooks`: shared React hooks
+- `lib`: shared helpers and integrations
+- `pages`: legacy or compatibility page structures
+- `types`: shared TypeScript types

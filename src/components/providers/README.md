@@ -1,6 +1,5 @@
-# `src/components/providers`
+# Providers
 
-Application-level React providers.
+## Purpose
 
-- Query client, theme, and global client-side wrappers start here.
-
+This folder contains application-wide provider components such as theme, state, or context wrappers.

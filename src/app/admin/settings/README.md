@@ -1,6 +1,5 @@
-# `src/app/admin/settings`
+# Settings Admin Route
 
-Settings route entrypoint.
+## Purpose
 
-- Rendering is delegated to `src/features/admin/pages/settings-page.tsx`.
-
+This folder contains settings pages for the broader DeeboAI admin workspace.

@@ -1,6 +1,5 @@
-# `public/assets/logos`
+# Logo Assets
 
-Public logo files.
+## Purpose
 
-- Use these for `<img src="/assets/logos/...">` style references.
-
+This folder contains public logo files used throughout the DeeboAI website.

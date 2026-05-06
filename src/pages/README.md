@@ -1,7 +1,5 @@
-# `src/pages`
+# Legacy Pages
 
-Marketing and public page implementations.
+## Purpose
 
-- App Router routes under `src/app/*` mostly re-export from here.
-- Keep route-level concerns in `src/app` and screen-level composition here.
-
+This folder contains legacy or compatibility page modules kept alongside the newer app-based routing structure.

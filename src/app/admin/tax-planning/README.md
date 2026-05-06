@@ -1,7 +1,5 @@
-# `src/app/admin/tax-planning`
+# Tax Planning Admin Route
 
-Estimated-taxes route entrypoint.
+## Purpose
 
-- Rendering is delegated to `src/features/admin/pages/tax-planning-page.tsx`.
-- This is the primary route for estimated-tax tracking and quarterly-payment decision support.
-- Housing bills now live in the dedicated `Housing` route.
+This folder contains the admin screens for tax-planning workflows.

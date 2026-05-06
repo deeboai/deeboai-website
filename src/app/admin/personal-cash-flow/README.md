@@ -1,6 +1,5 @@
-# `src/app/admin/personal-cash-flow`
+# Personal Cash Flow Admin Route
 
-Legacy route kept for compatibility.
+## Purpose
 
-- Requests here redirect into `Housing`.
-- Shared housing totals now live inside the dedicated monthly housing ledger.
+This folder contains the admin screens for personal cash-flow tracking.

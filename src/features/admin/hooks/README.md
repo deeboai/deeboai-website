@@ -1,6 +1,5 @@
-# `src/features/admin/hooks`
+# Admin Feature Hooks
 
-Admin-specific hooks.
+## Purpose
 
-- Use this folder for reusable client state or data-loading patterns used by multiple admin pages.
-
+This folder contains React hooks used by the admin feature module.

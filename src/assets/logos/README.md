@@ -1,6 +1,5 @@
-# `src/assets/logos`
+# Logo Source Assets
 
-Logo source files imported into React code.
+## Purpose
 
-- Use `public/assets/logos` when the file only needs a public URL.
-
+This folder contains source-managed logo assets used by the site.

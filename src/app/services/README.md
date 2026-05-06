@@ -1,6 +1,5 @@
-# `src/app/services`
+# Services Route
 
-Services route entrypoint.
+## Purpose
 
-- The page implementation lives in `src/pages/Services.tsx`.
-
+This folder contains the public services page.

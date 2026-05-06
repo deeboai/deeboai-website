@@ -1,7 +1,5 @@
-# `src/app/contact`
+# Contact Route
 
-Contact route entrypoint.
+## Purpose
 
-- This folder exists to expose the App Router route.
-- The page implementation lives in `src/pages/Contact.tsx`.
-
+This folder contains the public DeeboAI contact page.

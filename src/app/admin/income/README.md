@@ -1,6 +1,5 @@
-# `src/app/admin/income`
+# Income Admin Route
 
-Income route entrypoint.
+## Purpose
 
-- Rendering is delegated to `src/features/admin/pages/income-page.tsx`.
-
+This folder contains the admin screens for income tracking.

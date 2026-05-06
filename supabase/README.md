@@ -1,7 +1,5 @@
-# `supabase`
+# Supabase Assets
 
-Database-side project files.
+## Purpose
 
-- Schema changes belong in `migrations/`.
-- Treat migrations as append-only once applied outside local development.
-
+This folder contains database-related assets for the broader DeeboAI website.

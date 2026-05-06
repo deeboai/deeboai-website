@@ -1,7 +1,5 @@
-# `src/features/admin/pages`
+# Admin Feature Pages
 
-Admin page implementations.
+## Purpose
 
-- Each file is the main client-side screen for one admin area.
-- Keep route wrappers under `src/app/admin/*` minimal and push real page behavior here.
-
+This folder contains page-level feature modules used by the admin workspace.
