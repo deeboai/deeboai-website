@@ -22,6 +22,10 @@ const Navbar = () => {
       return pathname === "/";
     }
 
+    if (path === "/services") {
+      return pathname === "/services" || pathname.startsWith("/services/") || pathname === "/managed-presence";
+    }
+
     return pathname === path || pathname.startsWith(`${path}/`);
   };
 
