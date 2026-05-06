@@ -64,7 +64,7 @@ const Hero = () => {
               variant="outline"
               className="hover:bg-primary/10 hover:text-primary transition-all duration-300"
             >
-              <Link href="/products">Explore Our Products</Link>
+              <Link href="/services">Explore Our Services</Link>
             </Button>
           </div>
 
