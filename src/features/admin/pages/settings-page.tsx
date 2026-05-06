@@ -56,7 +56,6 @@ type SettingsDraft = {
   consulting_tax_reserve_percent: string;
   other_tax_reserve_percent: string;
   w2_annual_income: string;
-  w2_annual_tax_withheld: string;
 };
 
 type BusinessDraft = {
@@ -86,9 +85,6 @@ function buildSettingsDraft(data: ReturnType<typeof useAdminReferenceData>["data
     consulting_tax_reserve_percent: String(data?.settings?.consulting_tax_reserve_percent ?? 30),
     other_tax_reserve_percent: String(data?.settings?.other_tax_reserve_percent ?? 25),
     w2_annual_income: data?.settings?.w2_annual_income ? String(data.settings.w2_annual_income) : "",
-    w2_annual_tax_withheld: data?.settings?.w2_annual_tax_withheld
-      ? String(data.settings.w2_annual_tax_withheld)
-      : "",
   };
 }
 
@@ -135,9 +131,6 @@ export function SettingsPage({ userId, userEmail }: SettingsPageProps) {
           consulting_tax_reserve_percent: Number(settingsDraft.consulting_tax_reserve_percent || 0),
           other_tax_reserve_percent: Number(settingsDraft.other_tax_reserve_percent || 0),
           w2_annual_income: settingsDraft.w2_annual_income ? Number(settingsDraft.w2_annual_income) : null,
-          w2_annual_tax_withheld: settingsDraft.w2_annual_tax_withheld
-            ? Number(settingsDraft.w2_annual_tax_withheld)
-            : null,
           home_state: settingsDraft.home_state.trim() || null,
           current_state: settingsDraft.current_state.trim() || null,
         }),
@@ -277,20 +270,6 @@ export function SettingsPage({ userId, userEmail }: SettingsPageProps) {
               />
               <p className="text-xs text-muted-foreground">
                 Example: enter 80000 if your W-2 job pays about $80,000 per year. The dashboard uses this to estimate your W-2 income across the year.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="w2_annual_tax_withheld">Estimated taxes already taken from W-2 paychecks</Label>
-              <Input
-                id="w2_annual_tax_withheld"
-                type="number"
-                min="0"
-                step="0.01"
-                value={settingsDraft.w2_annual_tax_withheld}
-                onChange={(event) => setSettingsDraft((current) => ({ ...current, w2_annual_tax_withheld: event.target.value }))}
-              />
-              <p className="text-xs text-muted-foreground">
-                This is optional. If payroll is already withholding taxes, put your rough yearly total here so the dashboard can show taxes already being covered by your W-2 job.
               </p>
             </div>
             <div className="space-y-2">

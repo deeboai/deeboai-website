@@ -218,6 +218,11 @@ export function TaxReservesPage({ userId, userEmail }: TaxReservesPageProps) {
       return;
     }
 
+    if (draft.counts_as_federal_estimated_payment && draft.counts_as_state_estimated_payment) {
+      toast.error("Split federal and state tax payments into separate reserve entries.");
+      return;
+    }
+
     await saveMutation.mutateAsync();
   }
 
@@ -307,7 +312,9 @@ export function TaxReservesPage({ userId, userEmail }: TaxReservesPageProps) {
                       <TableCell className="text-right">{formatCurrency(entry.reserve_amount, true)}</TableCell>
                       <TableCell>{entry.was_transferred ? "Yes" : "No"}</TableCell>
                       <TableCell>
-                        {entry.counts_as_federal_estimated_payment || entry.counts_as_state_estimated_payment ? (
+                        {entry.counts_as_federal_estimated_payment && entry.counts_as_state_estimated_payment ? (
+                          <span className="text-xs text-amber-600">Split entry required</span>
+                        ) : entry.counts_as_federal_estimated_payment || entry.counts_as_state_estimated_payment ? (
                           <div className="text-xs text-muted-foreground">
                             {entry.counts_as_federal_estimated_payment ? "Federal" : null}
                             {entry.counts_as_federal_estimated_payment && entry.counts_as_state_estimated_payment ? " + " : null}
@@ -458,6 +465,7 @@ export function TaxReservesPage({ userId, userEmail }: TaxReservesPageProps) {
                       setDraft((current) => ({
                         ...current,
                         counts_as_federal_estimated_payment: event.target.checked,
+                        counts_as_state_estimated_payment: event.target.checked ? false : current.counts_as_state_estimated_payment,
                       }))
                     }
                     className="h-4 w-4 rounded border-border"
@@ -475,6 +483,7 @@ export function TaxReservesPage({ userId, userEmail }: TaxReservesPageProps) {
                       setDraft((current) => ({
                         ...current,
                         counts_as_state_estimated_payment: event.target.checked,
+                        counts_as_federal_estimated_payment: event.target.checked ? false : current.counts_as_federal_estimated_payment,
                       }))
                     }
                     className="h-4 w-4 rounded border-border"
@@ -484,7 +493,7 @@ export function TaxReservesPage({ userId, userEmail }: TaxReservesPageProps) {
                   </Label>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Leave both unchecked if the money only moved into a savings bucket and has not been paid out yet.
+                  Leave both unchecked if the money only moved into a savings bucket and has not been paid out yet. If you paid both the IRS and a state agency, record those as separate entries.
                 </p>
               </div>
             </div>

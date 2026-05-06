@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Heart, Globe2, Stethoscope } from "lucide-react";
+import { Heart, Globe2, ShoppingBag, Stethoscope } from "lucide-react";
 
 type Partner = {
   name: string;
@@ -14,6 +14,7 @@ type Partner = {
   description: string;
   collaboration: string;
   impact: string;
+  tags?: string[];
   href?: string;
 };
 
@@ -27,10 +28,37 @@ const Partners = () => {
       type: "Clinical Product Collaboration",
       icon: Heart,
       description:
-        "A medical risk assessment calculator for multiple myeloma and related plasma cell disorders developed with Mayo Clinic hematologists.",
-      collaboration: "Clinical workflow translation, product design, and software development spanning a collaboration that began in 2023",
-      impact: "Helping make risk stratification and prognosis support more usable in practice, with the work incorporated into DeeboAI in 2026.",
+        "MyelomaRisk is a medical risk assessment calculator focused on multiple myeloma and related plasma cell disorders. The project supports risk stratification, prognosis calculations, education, and research-oriented use cases for clinicians, researchers, and medical learners.",
+      collaboration:
+        "Clinical workflow translation, product design, and software development spanning a collaboration that began in 2023",
+      impact:
+        "Supporting careful risk assessment, educational use, and research-oriented clinical collaboration without replacing clinician judgment.",
+      tags: ["Medical Calculator", "Healthcare Technology", "Risk Assessment", "Research Tool"],
       href: "https://myelomarisk.com",
+    },
+    {
+      name: "Linque Resourcing",
+      type: "Client Website / Business Website",
+      icon: Globe2,
+      description:
+        "Linque Resourcing is a people-solutions and HR consulting brand focused on strategic HR support, talent acquisition, recruiting operations, and HR technology solutions. The website positions the company as a practical partner for organizations that need smarter hiring, people operations, and workforce systems.",
+      collaboration: "Business website strategy, positioning, UX, copy support, and web development",
+      impact:
+        "Created a credible digital presence for strategic HR consulting, talent acquisition, and people-operations support.",
+      tags: ["HR Consulting", "Talent Acquisition", "People Operations", "Business Website"],
+      href: "https://linqueresourcing.com",
+    },
+    {
+      name: "Bigue Allure",
+      type: "E-Commerce / Consumer Brand",
+      icon: ShoppingBag,
+      description:
+        "Bigue Allure is a Senegalese beauty and self-care brand offering bath, body, fragrance, and shea butter essentials inspired by traditional self-care rituals. The brand blends cultural heritage, natural beauty practices, and modern e-commerce presentation.",
+      collaboration: "Consumer brand web presence and e-commerce presentation support",
+      impact:
+        "Presented a Senegalese beauty and self-care brand with bath, body, fragrance, and shea butter essentials rooted in traditional care rituals.",
+      tags: ["E-Commerce", "Beauty & Self-Care", "Senegalese Brand", "Consumer Website"],
+      href: "https://bigusallure.com",
     },
     {
       name: "Clinical Collaborators",
@@ -40,16 +68,6 @@ const Partners = () => {
         "Physicians, specialists, and healthcare domain experts who help pressure-test product assumptions and keep clinical software grounded in real care settings.",
       collaboration: "Advisory input, workflow validation, and domain expertise across healthcare-facing products",
       impact: "Improving the precision, safety, and usability of the tools DeeboAI brings to market.",
-    },
-    {
-      name: "Linque Resourcing",
-      type: "Website Consulting Client",
-      icon: Globe2,
-      description:
-        "Talent acquisition firm whose new digital presence was designed and developed by our website consulting team.",
-      collaboration: "End-to-end UX, copy, and development of linqueresourcing.com",
-      impact: "Delivered an accessible, high-performance site that accelerated lead generation.",
-      href: "https://linqueresourcing.com",
     },
   ];
 
@@ -100,6 +118,16 @@ const Partners = () => {
                       <p className="text-sm text-muted-foreground">{partner.impact}</p>
                     </div>
                   </div>
+
+                  {partner.tags && (
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {partner.tags.map((tag) => (
+                        <span key={tag} className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </>
               );
 

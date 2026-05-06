@@ -10,9 +10,8 @@ The admin app is built as a real transaction/event system:
 - Every income payment is its own record.
 - Every business expense is its own record.
 - Every mileage trip is its own record.
-- Every personal cash-flow item is its own record.
+- Every monthly housing row is its own record.
 - Every reserve transfer target is its own record.
-- Every larger asset/equipment purchase is its own record.
 
 The app then summarizes those records into dashboard, monthly, quarterly, and yearly views.
 
@@ -33,9 +32,8 @@ The app then summarizes those records into dashboard, monthly, quarterly, and ye
 - Income CRUD with business/category/date filters and stored net calculations.
 - Expense CRUD with business-use allocation and private receipt uploads to Supabase Storage.
 - Mileage log with editable mileage-rate defaults and monthly/quarterly summaries.
-- Personal cash-flow tracking separate from deductible business activity.
+- Housing deduction tracking with one monthly row per month plus legacy housing-expense support.
 - Tax reserve tracking for target vs actual transfers.
-- Asset/equipment tracking with business-use allocation.
 - Settings for business management, mileage defaults, reserve defaults, W-2 baseline values, and profile/state info.
 
 ## Security Model
@@ -55,6 +53,10 @@ Copy `.env.example` to `.env.local` and set:
 NEXT_PUBLIC_SUPABASE_URL=your-project-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+RESEND_API_KEY=your-resend-api-key
+CONTACT_TO_EMAIL=support@deeboai.com
+CONTACT_FROM_EMAIL=website@your-verified-resend-domain.com
+CONTACT_REPLY_TO_EMAIL=support@deeboai.com
 ```
 
 Notes:
@@ -62,6 +64,11 @@ Notes:
 - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are required for the admin app.
 - `SUPABASE_SERVICE_ROLE_KEY` is server-only and enables username-based sign-in resolution.
 - If the service-role key is omitted, email/password sign-in still works.
+- `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL` are required for the public contact form.
+- `CONTACT_FROM_EMAIL` must use a sending domain verified in Resend.
+- `CONTACT_REPLY_TO_EMAIL` is optional. The contact API uses the submitter's email as the reply-to address when available.
+- For local contact-form testing, set these values in `.env.local`, run `npm run dev`, open `http://localhost:3000/contact`, and submit the form with a valid name, email, and message.
+- For deployed contact-form testing, set the same Resend variables in the deployment host environment, redeploy, and submit a live test message from `/contact`.
 
 ## Supabase Setup
 

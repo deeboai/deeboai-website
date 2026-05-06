@@ -232,12 +232,14 @@ export function calculateQuarterlyRisk(
   const paymentsThisYear = taxReserves.filter((entry) => entry.tax_year === profile.tax_year && entry.was_transferred);
   const federalPaymentsByNow = roundCurrency(
     paymentsThisYear
-      .filter((entry) => entry.counts_as_federal_estimated_payment)
+      // A single reserve row cannot satisfy both jurisdictions in full. Dual-flagged legacy rows are ignored
+      // until they are split into separate federal and state payment entries.
+      .filter((entry) => entry.counts_as_federal_estimated_payment && !entry.counts_as_state_estimated_payment)
       .reduce((total, entry) => total + entry.reserve_amount, 0),
   );
   const statePaymentsByNow = roundCurrency(
     paymentsThisYear
-      .filter((entry) => entry.counts_as_state_estimated_payment)
+      .filter((entry) => entry.counts_as_state_estimated_payment && !entry.counts_as_federal_estimated_payment)
       .reduce((total, entry) => total + entry.reserve_amount, 0),
   );
 

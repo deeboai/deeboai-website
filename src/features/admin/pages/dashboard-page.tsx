@@ -113,9 +113,14 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
   const totalBusinessExpensesYtd = sumBy(expensesThisYear, (entry) => entry.amount);
   const deductibleExpensesYtd = sumBy(expensesThisYear, (entry) => entry.deductible_amount);
   const totalMileageDeductionYtd = sumBy(mileageThisYear, (entry) => entry.deductible_value);
-  const netBusinessProfitYtd = total1099IncomeYtd - deductibleExpensesYtd;
   const housingSummary = calculateHousingDeductionSummary(housingThisYear);
-  const quarterlyRisk = calculateQuarterlyRisk(currentPlanningProfile, data?.taxReserves ?? []);
+  const netBusinessProfitYtd =
+    total1099IncomeYtd - deductibleExpensesYtd - totalMileageDeductionYtd - housingSummary.totalDeductible;
+  const quarterlyRisk = calculateQuarterlyRisk(
+    currentPlanningProfile,
+    data?.taxReserves ?? [],
+    data?.w2Paychecks ?? [],
+  );
   const nextQuarterlyDueDate = getNextQuarterlyDueDate(today, currentYear);
   const planningSetupMissing = !currentPlanningProfile && today.getMonth() >= 1;
   const showTaxAlerts =
@@ -129,10 +134,19 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
       incomeThisYear.filter((entry) => getDateMonth(entry.received_on) === monthNumber),
       (entry) => entry.gross_amount,
     );
-    const expenses = sumBy(
+    const deductibleExpenses = sumBy(
       expensesThisYear.filter((entry) => getDateMonth(entry.expense_date) === monthNumber),
       (entry) => entry.deductible_amount,
     );
+    const mileageDeduction = sumBy(
+      mileageThisYear.filter((entry) => getDateMonth(entry.trip_date) === monthNumber),
+      (entry) => entry.deductible_value,
+    );
+    const housingDeduction = sumBy(
+      housingSummary.entries.filter((entry) => entry.entry_month === monthNumber),
+      (entry) => entry.deductibleAmount,
+    );
+    const expenses = deductibleExpenses + mileageDeduction + housingDeduction;
 
     return {
       month: label,
@@ -145,16 +159,18 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
   const businessBreakdown = (data?.businesses ?? []).map((business) => {
     const businessIncome = incomeThisYear.filter((entry) => entry.business_id === business.id);
     const businessExpenses = expensesThisYear.filter((entry) => entry.business_id === business.id);
+    const businessMileage = mileageThisYear.filter((entry) => entry.business_id === business.id);
+    const totalBusinessDeductions =
+      sumBy(businessExpenses, (entry) => entry.deductible_amount) +
+      sumBy(businessMileage, (entry) => entry.deductible_value);
 
     return {
       id: business.id,
       name: business.name,
       kind: business.business_kind,
       income: sumBy(businessIncome, (entry) => entry.gross_amount),
-      expenses: sumBy(businessExpenses, (entry) => entry.deductible_amount),
-      net:
-        sumBy(businessIncome, (entry) => entry.gross_amount) -
-        sumBy(businessExpenses, (entry) => entry.deductible_amount),
+      expenses: totalBusinessDeductions,
+      net: sumBy(businessIncome, (entry) => entry.gross_amount) - totalBusinessDeductions,
     };
   });
 
@@ -295,7 +311,7 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
             <MetricCard
               label="Net business profit YTD"
               value={formatCurrency(netBusinessProfitYtd)}
-              helper="Gross self-employment income less deductible expenses"
+              helper="Gross self-employment income less deductible expenses, mileage, and tracked home-office support"
               tone={netBusinessProfitYtd >= 0 ? "positive" : "warning"}
             />
           </div>
@@ -330,7 +346,7 @@ export function DashboardPage({ userEmail }: DashboardPageProps) {
 
           <SectionCard
             title="Income, expenses, and net by month"
-            description="Deductible expenses are used in the monthly net figure so the chart lines up with business-profit reporting."
+            description="The monthly net figure includes deductible business expenses, mileage, and tracked housing deduction support."
           >
             <div className="grid min-w-0 gap-8 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
               <ChartContainer

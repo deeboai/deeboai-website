@@ -37,6 +37,7 @@ import { EmptyState } from "@/features/admin/components/empty-state";
 import { HousingExpensesSection } from "@/features/admin/components/housing-expenses-section";
 import { MetricCard } from "@/features/admin/components/metric-card";
 import { SectionCard } from "@/features/admin/components/section-card";
+import { DEFAULT_HOUSING_CATEGORIES } from "@/features/admin/config/defaults";
 import { useAdminPreference } from "@/features/admin/hooks/use-admin-preferences";
 import { useAdminReferenceData } from "@/features/admin/hooks/use-admin-reference-data";
 import { getEntryMonth } from "@/features/admin/lib/calculations";
@@ -74,6 +75,10 @@ const HOUSING_CATEGORY_LABELS: Record<string, string> = {
   insurance: "Insurance",
   maintenance: "Maintenance",
 };
+
+function isLegacyHousingCategory(category: string) {
+  return DEFAULT_HOUSING_CATEGORIES.includes(category as (typeof DEFAULT_HOUSING_CATEGORIES)[number]);
+}
 
 function getDefaultState(referenceData: ReturnType<typeof useAdminReferenceData>["data"]) {
   return (
@@ -175,6 +180,10 @@ export function HousingPage({ userId, userEmail }: HousingPageProps) {
   const entriesForYear = useMemo(
     () => (housingQuery.data ?? []).filter((entry) => entry.entry_year === selectedTaxYear),
     [housingQuery.data, selectedTaxYear],
+  );
+  const legacyHousingEntries = useMemo(
+    () => ((legacyHousingQuery.data ?? []) as PersonalCashflowRow[]).filter((entry) => isLegacyHousingCategory(entry.category)),
+    [legacyHousingQuery.data],
   );
   const housingSummary = calculateHousingDeductionSummary(entriesForYear);
 
@@ -427,11 +436,13 @@ export function HousingPage({ userId, userEmail }: HousingPageProps) {
                         <TableCell className="text-right">{formatCurrency(entry.deductibleAmount, true)}</TableCell>
                         <TableCell className="text-right">
                           <div className="flex justify-end gap-2">
-                            <Button variant="ghost" size="icon" onClick={() => openEditDialog(entry)}>
-                              <Edit className="h-4 w-4" />
+                            <Button variant="ghost" size="sm" onClick={() => openEditDialog(entry)}>
+                              <Edit className="mr-2 h-4 w-4" />
+                              Edit
                             </Button>
-                            <Button variant="ghost" size="icon" onClick={() => deleteMutation.mutate(entry.id)}>
-                              <Trash2 className="h-4 w-4" />
+                            <Button variant="ghost" size="sm" onClick={() => deleteMutation.mutate(entry.id)}>
+                              <Trash2 className="mr-2 h-4 w-4" />
+                              Delete
                             </Button>
                           </div>
                         </TableCell>
@@ -478,11 +489,13 @@ export function HousingPage({ userId, userEmail }: HousingPageProps) {
           </SectionCard>
         </div>
 
-        <HousingExpensesSection
-          entries={(legacyHousingQuery.data ?? []) as PersonalCashflowRow[]}
-          selectedTaxYear={selectedTaxYear}
-          userId={userId}
-        />
+        {legacyHousingEntries.length ? (
+          <HousingExpensesSection
+            entries={legacyHousingEntries}
+            selectedTaxYear={selectedTaxYear}
+            userId={userId}
+          />
+        ) : null}
       </div>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>

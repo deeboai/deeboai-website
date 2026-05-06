@@ -72,6 +72,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link
+                  href="/managed-presence"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Managed Presence
+                </Link>
+              </li>
+              <li>
                 <Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   SaaS Solutions
                 </Link>
