@@ -135,7 +135,7 @@ const managedPlans: ManagedPlan[] = [
       "Basic monthly website/email check",
     ],
     note:
-      "Workspace license cost is separate. Additional managed inboxes are $15/user/month Deebo admin fee, with Workspace cost remaining separate.",
+      "Includes one basic Google Workspace user when Deebo is managing professional email. Additional users, upgraded Workspace tiers, and special routing needs are priced in the quote.",
   },
   {
     name: "Managed Presence",
@@ -153,7 +153,7 @@ const managedPlans: ManagedPlan[] = [
       "Light UX/content/trust recommendations",
     ],
     note:
-      "Additional managed inboxes are $15/user/month Deebo admin fee. Workspace cost remains separate.",
+      "Includes one basic Google Workspace user when Deebo is managing professional email. Additional users, upgraded Workspace tiers, and special routing needs are priced in the quote.",
   },
   {
     name: "Growth Support",
@@ -169,7 +169,7 @@ const managedPlans: ManagedPlan[] = [
       "Light strategy guidance",
       "Basic landing page/content improvements",
     ],
-    note: "Additional inboxes quoted separately or custom bundled if 5+ inboxes.",
+    note: "Includes one basic Google Workspace user when Deebo is managing professional email. Additional users and upgraded Workspace tiers are quoted separately.",
   },
   {
     name: "Partner Desk",
@@ -359,8 +359,10 @@ const ManagedPresence = () => {
           <Reveal className="mx-auto max-w-4xl text-center">
             <h2 className="mb-5 text-3xl font-bold md:text-4xl">Monthly Managed Presence plans</h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Choose a monthly support level, then compare simple commitment options. Discounts apply only to Deebo
-              service fees, not Google Workspace or other third-party software costs.
+              Choose a monthly support level, then compare simple commitment options. Email-supported plans include one
+              basic Google Workspace user unless your quote says otherwise. Discounts apply to the managed service
+              portion of the plan, while extra users, upgraded Workspace tiers, and special software needs are confirmed
+              in the quote.
             </p>
           </Reveal>
 
@@ -453,7 +455,7 @@ const ManagedPresence = () => {
                       </>
                     )}
                     <p className="text-xs leading-relaxed text-muted-foreground">
-                      Workspace and third-party software costs are separate.
+                      Email-supported plans include one basic Google Workspace user unless the final quote says otherwise.
                     </p>
                   </div>
 
@@ -501,20 +503,20 @@ const ManagedPresence = () => {
         <div className="container mx-auto px-4">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr]">
             <Reveal variant="left" className="space-y-5">
-              <h2 className="text-3xl font-bold md:text-4xl">Google Workspace stays separate</h2>
+              <h2 className="text-3xl font-bold md:text-4xl">Google Workspace ownership stays clear</h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Google Workspace is calculated separately because it is a third-party software cost. Deebo service
-                discounts apply only to Deebo managed support, not Workspace seat costs.
+                Clients keep ownership of their domain and Google Workspace account. For plans that include email
+                support, Deebo can cover and manage one basic Google Workspace user as part of the quoted monthly plan.
               </p>
             </Reveal>
             <Reveal variant="right" className="rounded-2xl border border-border bg-card p-8">
               <ul className="space-y-4 text-muted-foreground">
                 {[
-                  "The client usually owns the Google Workspace account and payment method.",
-                  "Deebo may be added as an admin for setup and support.",
-                  "Workspace licenses are separate from Deebo's service fee.",
-                  "Managed inbox admin support may add a Deebo admin fee where applicable.",
-                  "Mailbox migrations, employee device support, Outlook-specific troubleshooting, and cold email infrastructure are separately quoted.",
+                  "The client owns the domain and Google Workspace account so the business keeps long-term control.",
+                  "Deebo may be added as an admin for setup, billing coordination, DNS records, routing, and support.",
+                  "Eligible email-support plans include one basic Google Workspace user unless the final quote says otherwise.",
+                  "Additional users are added at the quoted per-user price.",
+                  "Higher-tier Google Workspace subscriptions, migrations, employee device support, Outlook-specific troubleshooting, and cold email infrastructure are separately quoted.",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <MailCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
