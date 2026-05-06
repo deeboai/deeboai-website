@@ -3,7 +3,6 @@
 import Link from "next/link";
 import {
   CheckCircle2,
-  Clock,
   CreditCard,
   Globe2,
   MailCheck,
@@ -91,11 +90,9 @@ const projectPathways = [
 
 const commitmentOptions: CommitmentOption[] = [
   { id: "monthly", label: "Monthly", discount: 0, months: 1, prepaid: false },
-  { id: "3-prepaid", label: "3 months prepaid", discount: 0.05, months: 3, prepaid: true },
-  { id: "6-monthly", label: "6 months billed monthly", discount: 0.05, months: 6, prepaid: false },
-  { id: "6-prepaid", label: "6 months prepaid", discount: 0.1, months: 6, prepaid: true },
-  { id: "12-monthly", label: "12 months billed monthly", discount: 0.08, months: 12, prepaid: false },
-  { id: "12-prepaid", label: "12 months prepaid", discount: 0.15, months: 12, prepaid: true },
+  { id: "6-month", label: "6-month commitment", discount: 0.05, months: 6, prepaid: false },
+  { id: "12-month", label: "12-month commitment", discount: 0.1, months: 12, prepaid: false },
+  { id: "annual-prepaid", label: "Annual prepaid", discount: 0.12, months: 12, prepaid: true },
 ];
 
 const managedPlans: ManagedPlan[] = [
@@ -252,13 +249,13 @@ const separatelyQuoted = [
   "Emergency support outside normal availability",
 ];
 
-const addOnRates = [
-  "Small one-off change: $95 minimum",
-  "Standard hourly support: $125/hour",
-  "Strategic/technical consulting: $150/hour",
-  "Emergency support: $175/hour, 1-hour minimum",
-  "Mini project: $750-$2,500",
-  "Major feature/project: $2,500+",
+const scopedWorkExamples = [
+  "One-off website changes that exceed monthly support capacity",
+  "Strategy, technical planning, and vendor coordination",
+  "Emergency or expedited support outside normal availability",
+  "Mini projects such as new sections, landing pages, or cleanup work",
+  "Larger builds, integrations, migrations, automations, or custom workflows",
+  "Campaign, SEO, ad landing page, or copywriting-heavy work",
 ];
 
 function formatCurrency(value: number) {
@@ -362,13 +359,13 @@ const ManagedPresence = () => {
           <Reveal className="mx-auto max-w-4xl text-center">
             <h2 className="mb-5 text-3xl font-bold md:text-4xl">Monthly Managed Presence plans</h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Choose a monthly support level, then compare commitment options. Discounts apply only to Deebo service
-              fees, not Google Workspace or other third-party software costs.
+              Choose a monthly support level, then compare simple commitment options. Discounts apply only to Deebo
+              service fees, not Google Workspace or other third-party software costs.
             </p>
           </Reveal>
 
           <Reveal className="mx-auto mt-10 max-w-5xl rounded-2xl border border-border bg-card p-4">
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-3 xl:grid-cols-6">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {commitmentOptions.map((option) => (
                 <button
                   key={option.id}
@@ -571,17 +568,17 @@ const ManagedPresence = () => {
         <div className="container mx-auto px-4">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr]">
             <Reveal variant="left" className="space-y-5">
-              <h2 className="text-3xl font-bold md:text-4xl">Common add-ons</h2>
+              <h2 className="text-3xl font-bold md:text-4xl">Scoped work stays scoped</h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                When a request falls outside monthly support capacity, these rates help set a practical expectation
-                before a scoped quote.
+                Monthly plans cover reliability, small updates, and routine support. Bigger, urgent, or more strategic
+                requests are quoted separately based on complexity, turnaround expectations, and business risk.
               </p>
             </Reveal>
             <Reveal variant="right" className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {addOnRates.map((rate) => (
-                <div key={rate} className="rounded-xl border border-border bg-card p-5">
-                  <Clock className="mb-4 h-5 w-5 text-primary" />
-                  <p className="font-medium">{rate}</p>
+              {scopedWorkExamples.map((item) => (
+                <div key={item} className="rounded-xl border border-border bg-card p-5">
+                  <SlidersHorizontal className="mb-4 h-5 w-5 text-primary" />
+                  <p className="font-medium">{item}</p>
                 </div>
               ))}
             </Reveal>
