@@ -63,12 +63,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  AI Systems
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Website Consulting
+                  Services Overview
                 </Link>
               </li>
               <li>
@@ -76,12 +71,7 @@ const Footer = () => {
                   href="/managed-presence"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Managed Presence
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  SaaS Solutions
+                  Managed Presence & Website Consulting
                 </Link>
               </li>
             </ul>
