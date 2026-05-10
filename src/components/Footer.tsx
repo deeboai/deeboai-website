@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="space-y-4">
             <img src={logoMark} alt="DeeboAI brand" className="h-20 w-auto" loading="lazy" />
             <p className="text-sm text-muted-foreground">
-              Building AI systems that work where it matters.
+              Technical support and software capability for businesses that need reliable digital systems.
             </p>
             <p className="text-xs leading-relaxed text-muted-foreground">
               Minneapolis, MN ·{" "}
@@ -93,7 +93,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Custom AI Solutions
+                  Custom Software & Workflow Systems
                 </Link>
               </li>
             </ul>

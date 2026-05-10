@@ -84,7 +84,7 @@ type GoogleAppointmentButtonProps = {
 };
 
 export function GoogleAppointmentButton({
-  label = "Book an appointment",
+  label = "Book a consultation",
   color = "#039BE5",
   className,
 }: GoogleAppointmentButtonProps) {

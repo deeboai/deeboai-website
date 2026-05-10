@@ -30,18 +30,18 @@ const Hero = () => {
             ref={headingRef}
             className="mx-auto text-4xl font-bold leading-tight tracking-tight reveal-element sm:text-5xl md:text-7xl"
           >
-            Build{" "}
-            <span className="text-gradient">intelligent experiences</span>{" "}
-            that feel human, fast, and effortless.
+            Websites, email, and{" "}
+            <span className="text-gradient">digital systems</span>{" "}
+            that keep your business reachable.
           </h1>
 
           <p
             ref={textRef}
             className="mx-auto max-w-3xl text-lg text-muted-foreground reveal-element sm:text-xl md:text-2xl"
           >
-            DeeboAI builds clinical intelligence software, risk assessment tools, and custom AI
-            systems that help healthcare teams and operators move faster with more confidence. We
-            turn high-stakes workflows into practical, production-ready products.
+            DeeboAI helps businesses build, manage, and support the website, domain, forms, and
+            professional email systems they rely on, with deeper software and product capability
+            when the work requires more than a standard website.
           </p>
 
           <div
@@ -53,8 +53,8 @@ const Hero = () => {
               size="lg"
               className="group hover:shadow-lg hover:shadow-primary/45 transition-all duration-300"
             >
-              <Link href="/contact">
-                Build With Us
+              <Link href="/managed-presence">
+                View Managed Presence Plans
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
             </Button>
@@ -71,9 +71,9 @@ const Hero = () => {
           {/* Long stat labels need more breathing room on tablets before expanding to three columns. */}
           <div ref={statsRef} className="grid grid-cols-1 gap-6 pt-6 reveal-element sm:grid-cols-2 xl:grid-cols-3">
             {[
-              { value: "2", label: "Current flagship healthcare products on the roadmap" },
-              { value: "1", label: "Mayo Clinic-aligned risk assessment collaboration highlighted today" },
-              { value: "100%", label: "Practical builds designed around real operator workflows" },
+              { value: "Support", label: "Practical help for websites, domains, forms, and business email." },
+              { value: "Depth", label: "Product and workflow experience shaped by higher-context software work." },
+              { value: "Clarity", label: "Monthly plans for ongoing care plus scoped projects when complexity changes." },
             ].map((stat) => (
               <div
                 key={stat.label}

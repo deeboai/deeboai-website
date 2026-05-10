@@ -7,24 +7,24 @@ import Link from "next/link";
 const services = [
   {
     icon: Brain,
-    title: "AI Systems & Product Development",
-    description: "End-to-end ML product teams delivering automation, NLP, and predictive analytics.",
-    features: ["Model architecture & training", "MLOps, monitoring, compliance", "Applied research sprints"],
-    caption: "From zero to production with measurable ROI in weeks, not quarters.",
+    title: "Managed Presence",
+    description: "Ongoing website, domain, forms, and email support for businesses that need technical ownership after launch.",
+    features: ["Website upkeep and small updates", "Domain, SSL, DNS, and form support", "Professional email support where applicable"],
+    caption: "Built for businesses that want their digital presence maintained, monitored, and easier to trust.",
   },
   {
     icon: Code,
-    title: "Experiential Web & Digital Platforms",
-    description: "High-impact marketing and corporate websites handcrafted without relying on AI.",
-    features: ["Dynamic storytelling websites", "Headless CMS + marketing ops", "Accessibility + performance audits"],
-    caption: "Recent work includes Linque Resourcing and Bigue Allure across business website and consumer brand needs.",
+    title: "Website Builds & Technical Cleanup",
+    description: "Launch a credible business website, repair broken setups, or clean up the technical issues slowing your business down.",
+    features: ["Business websites and landing pages", "Rescue work for forms, email, and domain issues", "Scoped improvements after launch"],
+    caption: "Best for businesses that need a stronger online home or a cleaner technical setup.",
   },
   {
     icon: Cloud,
-    title: "Industry SaaS & Integrations",
-    description: "Regulated-ready SaaS and data products for healthcare teams and specialized operators.",
-    features: ["Clinical workflow tools", "Event-driven integrations", "Analytics & business intelligence"],
-    caption: "Current work spans ZynthRx, MyelomaRisk, and custom systems for high-context teams.",
+    title: "Custom Systems & Specialized Software",
+    description: "For teams that need internal tools, workflow systems, healthcare tooling, or more advanced software support.",
+    features: ["Workflow-specific software", "Dashboards, integrations, and internal tools", "Specialized product planning and scoped builds"],
+    caption: "Current work spans healthcare tooling, business systems, and more specialized software contexts.",
   },
 ];
 
@@ -45,7 +45,7 @@ const ServicesPreview = () => {
             Our <span className="text-gradient">Services</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Strategic partners for teams building practical AI products from discovery through deployment.
+            Clear support paths for businesses that need a stronger online presence, cleaner technical operations, or more specialized software work.
           </p>
         </div>
 
@@ -88,22 +88,26 @@ const ServicesPreview = () => {
           className="reveal-element max-w-4xl mx-auto glass-panel border border-border/80 rounded-3xl px-10 py-12 text-center space-y-6"
         >
           <p className="text-sm uppercase tracking-[0.35em] text-primary/70">
-            Workshop To Launch
+            Start With The Right Level Of Support
           </p>
           <h3 className="text-2xl font-semibold">
-            Plug our founders directly into your product lifecycle for rapid discovery, design
-            sprints, and technical validation.
+            Some businesses need a dependable monthly support plan. Others need a scoped website
+            build, rescue project, or custom system.
           </h3>
+          <p className="text-muted-foreground">
+            We help you choose the lowest sensible next step based on your actual needs, current
+            setup, and business risk.
+          </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg">
-              <Link href="/services">
-                View All Services
+              <Link href="/managed-presence">
+                Compare Monthly Plans
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="hover:bg-primary/10">
               <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
-                Book a discovery call
+                Talk Through Your Project
               </a>
             </Button>
           </div>

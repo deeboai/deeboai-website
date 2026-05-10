@@ -6,18 +6,18 @@ import { Target, Zap, Users } from "lucide-react";
 const values = [
   {
     icon: Target,
-    title: "Mission-Driven",
-    description: "Every build starts with a real operator, clinician, or creative in mind.",
+    title: "Practical By Default",
+    description: "We prioritize solutions businesses can actually use, maintain, and trust.",
   },
   {
     icon: Zap,
-    title: "Innovation First",
-    description: "Emerging research moves from lab to production through rapid experimentation.",
+    title: "Workflow-Aware",
+    description: "We build around real operating conditions instead of idealized assumptions.",
   },
   {
     icon: Users,
-    title: "People-Centric",
-    description: "We ship intuitive tools that scale without sacrificing human context.",
+    title: "Technically Grounded",
+    description: "From website reliability to specialized software, the work is structured to hold up over time.",
   },
 ];
 
@@ -72,31 +72,31 @@ const AboutSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Founded by <span className="text-foreground font-medium">Amadou Touré</span>, DeeboAI
-            is an applied AI company focused on clinical intelligence, risk assessment, and
-            production-grade software for teams working in complex environments. Past work including
-            Deebo Studio helped shape our product instincts, but today our focus is healthcare
-            tooling and durable operator-facing systems.
+            is a founder-led technology company focused on practical software, digital operations
+            support, and workflow-oriented product development. We help businesses build and
+            maintain the systems they depend on, and we bring deeper product capability when the
+            work requires more than routine web support.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left text-sm text-muted-foreground/90 glass-panel border border-border/80 rounded-2xl p-8">
             <div className="space-y-2">
               <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Clinical AI</p>
               <p>
-                Risk assessment, medication intelligence, and decision-support software built for
-                real healthcare workflows.
+                Higher-context product work around medication understanding, risk support, and
+                software built for real healthcare workflows.
               </p>
             </div>
             <div className="space-y-2">
-              <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Healthcare</p>
+              <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Managed Support</p>
               <p>
-                Patient-friendly transparency and clinician-aligned product design embedded into
-                existing care systems.
+                Website, domain, forms, and professional email support for businesses that need
+                ongoing technical ownership.
               </p>
             </div>
             <div className="space-y-2">
               <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Enterprise</p>
               <p>
-                Full-stack SaaS, analytics infrastructure, and custom software for operators scaling
-                specialized services.
+                Full-stack software, workflow systems, and custom tooling for operators managing
+                more specialized needs.
               </p>
             </div>
           </div>

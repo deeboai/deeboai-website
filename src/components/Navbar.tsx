@@ -118,7 +118,7 @@ const Navbar = () => {
                 className="hover:shadow-lg hover:shadow-primary/40 transition-all duration-300"
               >
                 <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
-                  Book an Appointment
+                  Book a Consultation
                 </a>
               </Button>
             </div>
@@ -155,7 +155,7 @@ const Navbar = () => {
               })}
               <Button asChild variant="default" size="sm" className="w-full">
                 <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
-                  Book an Appointment
+                  Book a Consultation
                 </a>
               </Button>
             </div>

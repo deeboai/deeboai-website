@@ -13,7 +13,7 @@ const products = [
     name: "ZynthRx",
     tagline: "Medication Intelligence",
     description:
-      "Patient-friendly medication intelligence layered into care workflows with clearer indications, context, and decision support.",
+      "Medication intelligence designed to make treatment context easier to understand and easier to act on across patient and provider workflows.",
     status: "In Development",
     image: synnovaImage,
   },
@@ -21,7 +21,7 @@ const products = [
     name: "MyelomaRisk",
     tagline: "Clinical Risk Assessment",
     description:
-      "Risk stratification and prognosis tooling for multiple myeloma and related plasma cell disorders, carried into DeeboAI in 2026 after the collaboration began in 2023.",
+      "Clinical risk assessment tooling built around myeloma-related decision support, education, and workflow use.",
     status: "Active Collaboration",
     image: heroImage,
   },
@@ -40,10 +40,10 @@ const ProductsPreview = () => {
           className="max-w-3xl mx-auto text-center space-y-4 mb-16 reveal-element"
         >
           <h2 className="text-4xl md:text-5xl font-bold">
-            Featured <span className="text-gradient">Products</span>
+            Work That Shows Our <span className="text-gradient">Technical Depth</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Crafting intelligent solutions that free teams to focus on what matters.
+            DeeboAI also works on healthcare and workflow-oriented software products, bringing product and systems thinking into client work.
           </p>
         </div>
 
@@ -96,8 +96,8 @@ const ProductsPreview = () => {
               <div className="space-y-3">
                 <h3 className="text-2xl font-bold text-foreground">Need something purpose-built?</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  We partner with teams that need custom AI software, clinical workflow tools, and
-                  operator-ready systems rather than off-the-shelf demos.
+                  We work with teams that need workflow-specific software, specialized tools, and
+                  more technical structure than a standard website project.
                 </p>
               </div>
             </div>
@@ -112,7 +112,7 @@ const ProductsPreview = () => {
 
         <div className="text-center mt-16">
           <Button asChild size="lg">
-            <Link href="/products">Discover All Products</Link>
+            <Link href="/products">See Product Work</Link>
           </Button>
         </div>
       </div>

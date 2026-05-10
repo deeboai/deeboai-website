@@ -112,11 +112,11 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold">
-              Let's <span className="text-gradient">Connect</span>
+              Talk through your <span className="text-gradient">project</span>, support need, or technical issue
             </h1>
             <p className="text-xl text-muted-foreground">
-              Whether you're looking to build a custom solution or explore partnership opportunities,
-              we're here to help
+              Whether you need a website, ongoing support, a digital cleanup, or a more specialized
+              software engagement, we can help you identify the right next step.
             </p>
           </Reveal>
         </div>
@@ -177,19 +177,23 @@ const Contact = () => {
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
-                    <span>Response within 24 hours</span>
+                    <span>We review your current setup, goals, and pain points.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
-                    <span>Free initial consultation</span>
+                    <span>If a monthly support plan fits, we will tell you.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
-                    <span>Detailed project assessment</span>
+                    <span>If the work needs separate scoping, we will explain why.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
-                    <span>Transparent pricing and timeline</span>
+                    <span>If there is a simpler path, we will recommend that instead.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>You leave with a clearer next step, not just a sales conversation.</span>
                   </li>
                 </ul>
               </div>
@@ -198,7 +202,7 @@ const Contact = () => {
             {/* Contact Form */}
             <Reveal className="lg:col-span-2" variant="right">
               <div className="bg-card p-8 rounded-xl border border-border">
-                <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+                <h2 className="text-2xl font-bold mb-6">Tell us what you need help with</h2>
                 <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                   <div className="hidden" aria-hidden="true">
                     <Label htmlFor="website">Website</Label>
@@ -289,11 +293,12 @@ const Contact = () => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="managed-presence">Managed Presence</SelectItem>
-                        <SelectItem value="website">Website Consulting</SelectItem>
-                        <SelectItem value="email">Email and Google Workspace</SelectItem>
-                        <SelectItem value="ai-systems">AI Systems</SelectItem>
+                        <SelectItem value="website-build">Website Build or Redesign</SelectItem>
+                        <SelectItem value="email">Email / Google Workspace Support</SelectItem>
+                        <SelectItem value="cleanup">Technical Cleanup or Rescue</SelectItem>
+                        <SelectItem value="custom-software">Custom Software / Workflow Tool</SelectItem>
                         <SelectItem value="healthcare">Healthcare Tooling</SelectItem>
-                        <SelectItem value="product">Product Information</SelectItem>
+                        <SelectItem value="product">Product Inquiry</SelectItem>
                         <SelectItem value="partnership">Partnership Proposal</SelectItem>
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>

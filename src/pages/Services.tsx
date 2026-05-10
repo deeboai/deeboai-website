@@ -28,15 +28,15 @@ const Services = () => {
       icon: Code,
       title: "Managed Presence & Website Consulting",
       description:
-        "Build, maintain, and protect the digital front door of your business: website, domain, forms, email, and ongoing support in one practical service path.",
+        "A practical support path for businesses that need a credible website, working forms, stable domain setup, professional email support, and one technical owner after launch.",
       featured: true,
       features: [
-        "Custom marketing sites & brand storytelling",
-        "Website maintenance, small updates, and reliability checks",
+        "Business website strategy and launch support",
+        "Ongoing website maintenance and small updates",
         "Domain, SSL, DNS, and form-deliverability support",
-        "Google Workspace setup and basic managed inbox administration",
-        "Responsive design tuned for trust, conversion, and credibility",
-        "SEO-ready architecture, analytics foundations, and performance cleanup",
+        "Google Workspace setup and inbox administration support",
+        "Trust, conversion, and credibility improvements over time",
+        "Clear monthly support structure after launch",
       ],
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Google Workspace", "Netlify", "DNS"],
       caseStudy: "Linque Resourcing · linqueresourcing.com",
@@ -46,29 +46,29 @@ const Services = () => {
     },
     {
       icon: Brain,
-      title: "AI Systems & Product Development",
-      description: "Design and ship AI products that solve specific workflow problems, not generic demos.",
+      title: "Website Builds, Rescue Work & Technical Cleanup",
+      description: "For businesses that need a new website, technical cleanup, launch support, or help repairing a setup that is already causing confusion or missed opportunities.",
       features: [
-        "Machine Learning Models",
-        "Natural Language Processing",
-        "Computer Vision Systems",
-        "Predictive Analytics",
-        "AI Model Training & Optimization",
-        "Custom AI Architecture Design",
+        "Launch-ready business websites",
+        "Landing pages and service-site builds",
+        "Broken form and email troubleshooting",
+        "DNS, SSL, and domain repair",
+        "Vendor and access cleanup",
+        "Scoped improvement projects after launch",
       ],
-      technologies: ["TensorFlow", "PyTorch", "scikit-learn", "OpenAI", "Hugging Face"],
+      technologies: ["Next.js", "TypeScript", "Netlify", "Google Workspace", "DNS", "Analytics"],
     },
     {
       icon: Cloud,
-      title: "SaaS Solutions",
-      description: "Full-stack software platforms built for regulated, operational, and healthcare contexts.",
+      title: "Custom Software, Workflow Systems & Specialized AI",
+      description: "For teams that need more than a marketing site: internal tools, workflow systems, dashboards, client-facing applications, or specialized operational software.",
       features: [
-        "Healthcare decision-support products",
-        "Risk calculators and clinical tools",
-        "Enterprise workflow automation",
-        "Cloud infrastructure",
-        "API development and integration",
-        "Multi-tenant architecture",
+        "Internal business tools and workflow-specific applications",
+        "Dashboards, data views, and integrations",
+        "SaaS architecture and platform support",
+        "Healthcare tooling and domain-sensitive product planning",
+        "Structured product scoping and build execution",
+        "Systems designed around operational fit, not generic demos",
       ],
       technologies: ["AWS", "PostgreSQL", "FHIR", "Docker", "TypeScript"],
       products: [
@@ -90,7 +90,7 @@ const Services = () => {
               Our <span className="text-gradient">Services</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Digital presence, product strategy, engineering, and applied AI for teams solving real business problems
+              Services built around business reliability, digital credibility, and technical ownership
             </p>
           </Reveal>
         </div>
@@ -106,22 +106,23 @@ const Services = () => {
                   Featured service
                 </p>
                 <h2 className="text-3xl font-bold md:text-4xl">
-                  Managed Presence is our website consulting service after launch.
+                  Managed Presence is our clearest ongoing support offer.
                 </h2>
                 <p className="text-lg leading-relaxed text-muted-foreground">
-                  Website consulting and Managed Presence are part of the same service path: build the site, connect the
-                  systems, keep the domain/email/forms working, and give the business one technical owner to contact
-                  when something needs attention.
+                  For many businesses, the real need is not just a website. It is ongoing confidence
+                  that the website, domain, forms, and professional email setup are working,
+                  maintained, and technically owned by someone who can step in when problems appear.
                 </p>
               </div>
               <div className="rounded-xl border border-border bg-secondary/40 p-6">
                 <p className="mb-4 font-semibold">Best for businesses that need:</p>
                 <ul className="space-y-3 text-sm text-muted-foreground">
                   {[
-                    "A credible website or landing page",
-                    "Domain, SSL, DNS, and form reliability",
-                    "Google Workspace/email setup or support",
-                    "Ongoing small updates after launch",
+                    "A professional website that stays current",
+                    "Working forms and reliable lead delivery",
+                    "Stable domain and DNS support",
+                    "Professional email setup and ongoing help",
+                    "One technical point of contact for changes and troubleshooting",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
@@ -244,14 +245,15 @@ const Services = () => {
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <Reveal className="max-w-3xl mx-auto text-center space-y-6">
-            <h2 className="text-4xl font-bold">Ready to Get Started?</h2>
+            <h2 className="text-4xl font-bold">Not Sure Which Path Fits?</h2>
             <p className="text-xl text-muted-foreground">
-              Let&apos;s choose the right service path for your website, workflow, or product.
+              If your business needs monthly support, we will tell you. If it needs scoped work, we
+              will explain why and recommend the clearest next step.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button asChild size="lg">
                 <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
-                  Book an Appointment
+                  Book a Consultation
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline">
