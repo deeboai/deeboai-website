@@ -29,7 +29,7 @@ const Products = () => {
       tagline: "Medication Intelligence Platform",
       status: "In Development",
       description:
-        "ZynthRx is DeeboAI's medication intelligence platform focused on making treatment plans easier to understand and easier to act on. The product is designed to bridge provider context, patient comprehension, and workflow-native decision support.",
+        "ZynthRx is DeeboAI's medication intelligence platform designed to make treatment and medication context easier to understand and easier to act on across patient and provider workflows.",
       features: [
         "Patient-friendly medication summaries",
         "Indication-based medication context",
@@ -45,7 +45,7 @@ const Products = () => {
       tagline: "Myeloma Risk Calculator",
       status: "Active Collaboration",
       description:
-        "MyelomaRisk provides risk stratification and prognosis calculations for multiple myeloma and related plasma cell disorders. The collaboration began in 2023 before DeeboAI was formed and was incorporated into DeeboAI's product portfolio in 2026.",
+        "MyelomaRisk provides risk stratification and prognosis tooling for myeloma-related clinical, educational, and research-oriented use cases. The collaboration began in 2023 and later became part of DeeboAI's broader product portfolio.",
       features: [
         "Risk stratification calculators",
         "Prognosis-oriented clinical workflows",
@@ -71,7 +71,7 @@ const Products = () => {
               Our <span className="text-gradient">Products</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Focused software products built around medication intelligence and clinical risk support
+              Products and collaborations shaped by real workflow problems, decision support needs, and higher-context software work
             </p>
           </Reveal>
         </div>
@@ -145,10 +145,11 @@ const Products = () => {
                         <div className="bg-secondary/50 p-6 rounded-xl">
                           <h3 className="text-xl font-semibold mb-3">Learn More</h3>
                           <p className="text-muted-foreground mb-4">
-                            Interested in {product.name}? Get in touch to see how it can transform your operations.
+                            Interested in {product.name} or in similar product work? Get in touch to
+                            discuss the underlying problem, use case, or workflow need.
                           </p>
                           <Button asChild variant="default" className="w-full">
-                            <Link href="/contact">Request Information</Link>
+                            <Link href="/contact">Discuss Similar Product Needs</Link>
                           </Button>
                         </div>
                       </div>
@@ -167,7 +168,8 @@ const Products = () => {
           <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-4xl font-bold">Want to Build Your Own?</h2>
             <p className="text-xl text-muted-foreground">
-              We partner with teams that need custom AI products, clinical tooling, and durable software systems
+              We work with teams that need workflow-specific software, clinical tooling, and more
+              technical structure than a standard website project
             </p>
             <Button asChild size="lg">
               <Link href="/services">Explore Our Services</Link>

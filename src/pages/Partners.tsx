@@ -80,10 +80,10 @@ const Partners = () => {
         <div className="container mx-auto px-4">
           <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold">
-              Our <span className="text-gradient">Partners</span>
+              Selected <span className="text-gradient">Collaborations</span> and client work
             </h1>
             <p className="text-xl text-muted-foreground">
-              Strategic collaborations shaping the healthcare and software products we are building today
+              From business websites to healthcare-oriented software collaborations, our work reflects a focus on practical outcomes, technical clarity, and workflow fit
             </p>
           </Reveal>
         </div>
@@ -162,16 +162,16 @@ const Partners = () => {
               <h2 className="text-3xl font-bold mb-6 text-center">Partnership Philosophy</h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p>
-                  At DeeboAI, the best products come from close collaboration with domain experts,
-                  operators, and teams living inside the workflow every day.
+                  At DeeboAI, the best work comes from close collaboration with domain experts,
+                  operators, and businesses dealing with real constraints.
                 </p>
                 <p>
-                  We look for partners who care about precision, usability, and real-world adoption,
-                  especially in healthcare and other high-context environments.
+                  We look for partnerships where precision, usability, credibility, and operational
+                  fit matter more than surface-level polish alone.
                 </p>
                 <p>
-                  Whether the work is a clinical tool, a product platform, or a high-performance
-                  digital experience, we build best when the collaboration is hands-on and outcome-driven.
+                  Whether the work is a clinical tool, a business website, or a more specialized
+                  software system, the collaboration works best when it is hands-on and outcome-driven.
                 </p>
               </div>
             </div>
@@ -185,7 +185,8 @@ const Partners = () => {
           <Reveal className="max-w-3xl mx-auto text-center space-y-6">
             <h2 className="text-4xl font-bold">Interested in Partnering?</h2>
             <p className="text-xl text-muted-foreground">
-              Let's explore how we can build something great together
+              Let&apos;s talk through the business context, the technical need, and what a useful
+              collaboration would look like
             </p>
             <Button asChild size="lg">
               <Link href="/contact">Get in Touch</Link>

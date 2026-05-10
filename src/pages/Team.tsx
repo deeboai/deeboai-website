@@ -134,13 +134,11 @@ const Team = () => {
               DeeboAI Leadership
             </div>
             <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-              Builders who blend{" "}
-              <span className="text-gradient">engineering rigor</span> with real-world domain context.
+              A small team with <span className="text-gradient">product judgment</span>, technical range, and workflow focus.
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We build for people operating inside complex systems. The focus now is clinical
-              intelligence, decision support, and trustworthy software that fits naturally into the
-              way teams already work.
+              DeeboAI works at the intersection of business systems, software delivery, and
+              higher-context product thinking, with a focus on useful, credible, well-scoped work.
             </p>
           </div>
         </div>
@@ -167,10 +165,9 @@ const Team = () => {
             <div className="space-y-6">
               <h2 className="text-3xl font-semibold">How We Operate</h2>
               <p className="text-muted-foreground leading-relaxed">
-                AI should be invisible until the moment it adds value. We prototype fast, validate
-                in real environments, and harden systems with measurable success criteria. The goal
-                is software that earns adoption because it is genuinely useful, not because it is
-                flashy.
+                We move quickly, but not vaguely. The goal is to solve the right problem, scope the
+                work honestly, and deliver software or support that holds up in the real operating
+                environment.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
@@ -227,11 +224,11 @@ const Team = () => {
               Collaborate With Us
             </p>
             <h2 className="text-3xl font-semibold">
-              Want to build with the founding team? Let's architect something extraordinary.
+              Need a technical partner who can think beyond the surface layer?
             </h2>
             <p className="text-muted-foreground">
-              From strategic advisory to product co-creation, we partner with leaders who want to
-              embed AI seamlessly into their workflows.
+              We work with businesses and teams that need more than a generic website vendor, but
+              still want practical execution and clear scope.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild size="lg">

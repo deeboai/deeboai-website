@@ -25,21 +25,21 @@ const coleClean = "/assets/deeboai_page/j.-cole-clean.mov";
 
 const services = [
   {
-    title: "AI-powered Audio Censoring",
+    title: "Audio Censoring",
     description:
-      "Instantly detect and intelligently mute explicit phrases without disrupting the mix. Our models understand context across 50+ languages and dialects.",
+      "Detect and mute explicit phrases quickly without disrupting the mix, with language-aware handling across a wide range of dialects and delivery styles.",
     image: dawImage,
   },
   {
-    title: "AI Imputation Technology",
+    title: "Audio Reconstruction",
     description:
-      "Seamless interpolation fills gaps created by censoring, preserving timing, emotion, and clarity so audiences hear the intended performance.",
+      "Reconstruct the gaps created by censoring while preserving timing, energy, and clarity so the cleaned track still feels intentional.",
     image: rapperImage,
   },
   {
     title: "Dynamic Lyric Generation",
     description:
-      "Suggest clean lyric alternatives on the fly, tuned to the artist’s cadence and delivery so teams ship clean edits faster.",
+      "Suggest cleaner lyric alternatives tuned to cadence and delivery so teams can move through edit decisions faster.",
     image: writingImage,
   },
 ];
@@ -108,13 +108,13 @@ const DeeboAIStudio = () => {
               ref={heroHeadingRef}
               className="text-4xl md:text-6xl font-bold leading-tight"
             >
-              Revolutionizing
+              Faster clean edits
             </h1>
             <h1
               ref={heroHeadingRef}
               className="text-4xl md:text-6xl font-bold leading-tight"
             >
-              <span className="text-gradient">AI-powered Audio Editing</span>
+              <span className="text-gradient">for audio teams</span>
             </h1>
             <h2
               ref={heroSubtitleRef}
@@ -123,9 +123,9 @@ const DeeboAIStudio = () => {
               Right in Your DAW
             </h2>
             <p ref={heroParagraphRef} className="text-lg text-muted-foreground leading-relaxed">
-              Deebo Studio automates explicit content editing, reconstructs pristine audio, and keeps
-              your creative intent front and center—whether you are prepping for broadcast, sync, or
-              global streaming.
+              Deebo Studio helps editors, engineers, and rights teams move through explicit-content
+              cleanup faster while preserving timing, clarity, and the feel of the original
+              performance.
             </p>
             <div
               ref={heroCtaRef}
@@ -141,7 +141,7 @@ const DeeboAIStudio = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Try our MVP!
+                  Try the MVP
                 </a>
               </Button>
               <Button 
@@ -171,8 +171,8 @@ const DeeboAIStudio = () => {
           >
             <h3 className="text-3xl font-semibold">Precision tooling for modern audio teams</h3>
             <p className="text-muted-foreground">
-              Each capability is crafted with mixers, editors, and compliance teams embedded in our
-              build loop.
+              Each capability is designed around the practical needs of mixers, editors, and
+              compliance-minded audio workflows.
             </p>
           </div>
 
@@ -214,8 +214,8 @@ const DeeboAIStudio = () => {
               <span className="text-primary font-bold">15 seconds</span> with 50+ languages.
             </h3>
             <p className="text-muted-foreground text-base">
-              See Deebo Studio transform explicit tracks into clean releases—maintaining energy,
-              timing, and clarity automatically.
+              See how Deebo Studio converts explicit tracks into cleaner releases while preserving
+              energy, timing, and clarity.
             </p>
           </div>
 
@@ -313,9 +313,9 @@ const DeeboAIStudio = () => {
             ref={testimonialsHeadingRef}
             className="max-w-3xl mx-auto text-center space-y-4 mb-12"
           >
-            <h3 className="text-3xl font-semibold text-foreground">Testimonials</h3>
+            <h3 className="text-3xl font-semibold text-foreground">Early Feedback</h3>
             <p className="text-muted-foreground">
-              Drop real-world feedback from your engineers, editors, and label partners.
+              Early reactions from people who already work close to the clean-edit process.
             </p>
           </div>
 
