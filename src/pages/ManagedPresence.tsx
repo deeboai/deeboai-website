@@ -43,58 +43,26 @@ const projectPathways = [
   {
     title: "Rescue Diagnostic",
     description: "For broken websites, email issues, DNS confusion, SSL problems, forms not delivering, or unclear vendor/domain access.",
-    pricing: "Scoped after review",
-    rationale: "The right fix depends on the current setup, access situation, and business risk.",
-    label: "Contact us for a scoped next step",
+    pricing: "Reviewed first, then quoted",
+    rationale: "Best when something is already broken or nobody knows who controls the setup.",
   },
   {
-    title: "Strategy Blueprint",
-    description: "For unclear or complex projects that need planning before implementation.",
-    pricing: "Planning-first engagement",
-    rationale: "Best when the business needs recommendations, structure, and technical direction before implementation.",
-    label: "Recommended before complex builds",
-  },
-  {
-    title: "Email Setup Only",
+    title: "Email & Domain Setup",
     description: "For Google Workspace setup, domain verification, MX/SPF/DKIM/DMARC records, inbox setup, aliases, routing, and basic testing.",
-    pricing: "Custom-scoped",
-    rationale: "Final pricing depends on user count, routing needs, and the current domain or mailbox state.",
-    label: "Contact us for a scoped quote",
+    pricing: "Quoted after setup review",
+    rationale: "Best when the business needs professional email properly connected to its domain.",
   },
   {
-    title: "Presence Launch",
-    description: "For simple, credible websites or landing pages for solo operators, consultants, freelancers, and new local businesses.",
-    pricing: "Scope depends on page count and setup needs",
-    rationale: "Best when the business needs a professional web presence without heavier custom workflow requirements.",
-    label: "Book a consultation",
+    title: "Website Presence Build",
+    description: "For simple websites, landing pages, service pages, trust-building, and lead capture.",
+    pricing: "Scoped by page count and setup needs",
+    rationale: "Best when the business needs a credible online home before ongoing support begins.",
   },
   {
-    title: "Credibility Website",
-    description: "For small businesses that need a stronger, more professional online home with service pages, trust-building, and lead capture.",
-    pricing: "Custom-scoped with a clearer build range after discovery",
-    rationale: "Scope increases with content volume, positioning support, and lead-capture requirements.",
-    label: "Book a consultation",
-  },
-  {
-    title: "Business Engine Website",
-    description: "For businesses where the website supports leads, bookings, applications, recruiting, or trust.",
-    pricing: "Consultation required",
-    rationale: "Scope changes when the website becomes part of a real business workflow rather than a brochure presence.",
-    label: "Book a consultation",
-  },
-  {
-    title: "Growth System",
-    description: "For companies with more content, integrations, recurring campaigns, stakeholder review, and more serious digital operations needs.",
-    pricing: "Custom-scoped",
-    rationale: "Complexity rises with integrations, review cycles, campaign support, and ongoing operational demands.",
-    label: "Book a consultation",
-  },
-  {
-    title: "Custom Platform",
-    description: "For larger organizations, multiple departments, multiple websites, advanced forms, workflows, integrations, or custom systems.",
+    title: "Custom Digital System",
+    description: "For advanced forms, booking flows, payment workflows, automations, integrations, multiple websites, or custom business systems.",
     pricing: "Custom scope required",
-    rationale: "This work depends heavily on stakeholder count, system dependencies, workflow design, and support expectations.",
-    label: "Custom scope required",
+    rationale: "Best when the website is part of a larger business workflow.",
   },
 ];
 
@@ -110,90 +78,75 @@ const managedPlans: ManagedPlan[] = [
     name: "Essential Website Care",
     standardPrice: 99,
     achPrice: 95,
-    bestFor: "Simple websites with no business email responsibility",
+    bestFor: "Simple websites that need basic maintenance, checks, and small updates",
     includes: [
       "Website health checks",
-      "Basic monitoring where applicable",
-      "Backups where applicable",
+      "Basic uptime or availability checks when supported",
+      "Backup checks when supported",
       "SSL/domain support tied to the website",
-      "Contact form check",
-      "Small edits up to 30 minutes/month",
-    ],
-    excludes: [
-      "Google Workspace",
-      "Inboxes",
-      "Mailbox support",
-      "New pages",
-      "Redesigns",
-      "Integrations",
-      "Urgent support",
-      "Employee IT support",
+      "Contact form testing",
+      "Up to 30 minutes/month of small edits",
     ],
   },
   {
     name: "Website + Email Care",
     standardPrice: 169,
     achPrice: 160,
-    bestFor: "Website plus basic professional email handling",
+    bestFor: "Websites that also need basic professional email support",
     includes: [
       "Everything in Essential Website Care",
-      "One managed Google Workspace inbox admin support",
+      "Admin support for one managed Google Workspace inbox",
       "DNS/MX/SPF/DKIM/DMARC support",
       "Contact form deliverability support",
-      "Aliases/routing within reason",
+      "Simple aliases and routing for the included account",
       "Small edits up to 45 minutes/month",
       "Basic monthly website/email check",
     ],
-    note:
-      "Includes one basic Google Workspace user when Deebo is managing professional email. Additional users, upgraded Workspace tiers, and special routing needs are priced in the quote.",
   },
   {
     name: "Managed Presence",
     standardPrice: 295,
     achPrice: 280,
-    bestFor: "Real small businesses that want website, forms, domain, and email confidence",
+    bestFor: "Owner-led businesses that want website, form, domain, and email confidence",
     featured: true,
     includes: [
       "Everything in Website + Email Care",
       "Up to 75 minutes/month of small updates/support",
-      "Higher priority than lower plans",
+      "Priority handling ahead of entry-level plans",
       "Monthly form and key-page check",
       "Basic analytics/performance review if configured",
       "Redirects, aliases, and simple DNS changes",
-      "Light UX/content/trust recommendations",
+      "Practical recommendations to improve clarity, trust, and lead capture",
     ],
-    note:
-      "Includes one basic Google Workspace user when Deebo is managing professional email. Additional users, upgraded Workspace tiers, and special routing needs are priced in the quote.",
   },
   {
     name: "Growth Support",
     standardPrice: 495,
     achPrice: 470,
-    bestFor: "Businesses that need regular updates and lead-generation support",
+    bestFor: "Businesses that need regular updates, lead-capture improvements, and light strategy support",
     includes: [
       "Everything in Managed Presence",
       "Up to 2 hours/month of small updates/support",
-      "Stronger priority handling",
+      "Priority request handling",
       "Monthly planning/review call if needed",
       "Form, routing, and conversion checks",
       "Light strategy guidance",
-      "Basic landing page/content improvements",
+      "Small landing page and content improvements",
     ],
-    note: "Includes one basic Google Workspace user when Deebo is managing professional email. Additional users and upgraded Workspace tiers are quoted separately.",
   },
   {
     name: "Partner Desk",
     standardPrice: 850,
     achPrice: 815,
-    bestFor: "Teams with multiple stakeholders and priority support needs",
+    bestFor: "Teams with multiple stakeholders, recurring requests, and higher support needs",
     includes: [
       "Everything in Growth Support",
       "Up to 3.5 hours/month of support/change capacity",
       "Higher response priority",
       "Quarterly roadmap review",
       "Stakeholder coordination",
-      "Support queue management",
-      "Light conversion and messaging guidance",
+      "Request tracking and follow-through",
+      "Practical conversion and messaging guidance",
       "Proactive risk review",
       "Recurring technical ownership",
     ],
@@ -203,10 +156,10 @@ const managedPlans: ManagedPlan[] = [
     standardPrice: null,
     achPrice: null,
     customPriceLabel: "Starts at $1,500+/mo",
-    bestFor: "Larger teams, multiple websites, 10+ inboxes, frequent requests, integrations, or custom workflows",
+    bestFor: "Larger teams with multiple websites, 10+ inboxes, frequent requests, integrations, or custom workflows",
     includes: [
       "Custom support capacity",
-      "Custom response expectations",
+      "Custom response expectations and support process",
       "Multiple website support",
       "Larger email/admin footprint",
       "Workflow/integration monitoring",
@@ -215,7 +168,6 @@ const managedPlans: ManagedPlan[] = [
       "Custom reporting if needed",
     ],
     cta: "Book a consultation",
-    note: "Always custom scoped.",
   },
 ];
 
@@ -225,8 +177,6 @@ const reliabilityItems = [
   { label: "SSL working", icon: ShieldCheck },
   { label: "Forms delivering", icon: MailCheck },
   { label: "Business email configured", icon: MailCheck },
-  { label: "DNS stable", icon: ServerCog },
-  { label: "Customers can reach you", icon: CheckCircle2 },
   { label: "Technical ownership", icon: SlidersHorizontal },
 ];
 
@@ -243,29 +193,11 @@ const includedSupport = [
 ];
 
 const separatelyQuoted = [
-  "New pages",
-  "Redesigns",
-  "New funnels",
-  "Booking/payment workflows",
-  "CRM setup",
-  "Automations",
-  "Advanced integrations",
-  "Email migrations",
-  "Device-specific IT support",
-  "Cold email infrastructure",
-  "SEO campaigns",
-  "Ad landing page systems",
-  "Copywriting-heavy work",
-  "Emergency support outside normal availability",
-];
-
-const scopedWorkExamples = [
-  "One-off website changes that exceed monthly support capacity",
-  "Strategy, technical planning, and vendor coordination",
-  "Emergency or expedited support outside normal availability",
-  "Mini projects such as new sections, landing pages, or cleanup work",
-  "Larger builds, integrations, migrations, automations, or custom workflows",
-  "Campaign, SEO, ad landing page, or copywriting-heavy work",
+  "New pages, funnels, major redesigns, or larger website changes",
+  "Booking, payment, CRM, automation, or advanced integration work",
+  "Email migrations, device-specific IT support, or cold email infrastructure",
+  "SEO campaigns, ad landing page systems, or major copywriting projects",
+  "Emergency or expedited work outside normal availability",
 ];
 
 function formatCurrency(value: number) {
@@ -295,11 +227,13 @@ const ManagedPresence = () => {
         <div className="container mx-auto px-4">
           <Reveal className="mx-auto max-w-4xl space-y-8 text-center">
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-              Managed website, email, and digital presence support for businesses that need things to keep working
+              Managed website, email, and digital presence support for businesses that cannot afford broken systems
             </h1>
             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              Deebo AI helps businesses keep their website, domain, forms, and professional email
-              setup stable, supported, and technically owned through clear monthly service plans.
+              Deebo AI helps small businesses keep their website live, forms working, domain stable, and
+              professional email properly configured without needing to hire a full-time technical team.
+              We handle the ongoing technical ownership behind your digital presence, so customers can
+              reach you and your business stays credible.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button asChild size="lg">
@@ -320,13 +254,13 @@ const ManagedPresence = () => {
           <Reveal className="mx-auto max-w-4xl text-center">
             <h2 className="mb-5 text-3xl font-bold md:text-4xl">Why businesses choose this</h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Most businesses do not need a full-time technical team. They do need someone who can
-              keep the website current, the forms working, the domain stable, and the business
-              reachable when something breaks or needs attention.
+              Most small businesses do not need a full-time IT or web team. They do need someone
+              responsible when the website goes down, forms stop delivering, email records break,
+              SSL expires, or nobody knows how the domain is configured.
             </p>
           </Reveal>
 
-          <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {reliabilityItems.map((item, index) => (
               <Reveal
                 key={item.label}
@@ -343,43 +277,16 @@ const ManagedPresence = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <Reveal className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-5 text-3xl font-bold md:text-4xl">Initial project pathways</h2>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              Consultations, diagnostics, builds, rescue work, and custom platforms are scoped based
-              on complexity, urgency, and business risk. The goal is to make the next step clear,
-              not vague.
-            </p>
-          </Reveal>
-
-          <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {projectPathways.map((pathway, index) => (
-              <Reveal key={pathway.title} delayMs={index * 35} className="rounded-xl border border-border bg-card p-6">
-                <h3 className="mb-3 text-xl font-semibold">{pathway.title}</h3>
-                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{pathway.description}</p>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary/80">
-                  Pricing posture
-                </p>
-                <p className="mb-4 text-sm text-muted-foreground">{pathway.pricing}</p>
-                <p className="mb-5 text-sm leading-relaxed text-muted-foreground">{pathway.rationale}</p>
-                <p className="text-sm font-medium text-primary">{pathway.label}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="monthly-plans" className="scroll-mt-24 py-24">
+      <section id="monthly-plans" className="scroll-mt-24 py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <Reveal className="mx-auto max-w-4xl text-center">
             <h2 className="mb-5 text-3xl font-bold md:text-4xl">Monthly plans for ongoing support</h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
               If your website and business communication systems are already live, monthly support
-              can be the simplest way to keep everything maintained, reachable, and under control.
-              Email-supported plans include one basic Google Workspace user unless your quote says
-              otherwise, and discounts apply to the managed service portion of the plan.
+              can keep them maintained, reachable, and under control. Email-supported plans can
+              include one basic Google Workspace user when Deebo manages your professional email.
+              Extra users, migrations, upgraded Workspace tiers, and special routing needs are
+              quoted separately.
             </p>
           </Reveal>
 
@@ -446,23 +353,27 @@ const ManagedPresence = () => {
                       </div>
                     ) : (
                       <>
+                        {selectedCommitment.discount > 0 || selectedCommitment.prepaid ? (
+                          <p className="text-sm font-medium text-primary">With selected commitment:</p>
+                        ) : null}
                         <div className="flex items-start justify-between gap-4">
-                          <div>
-                            <p className="text-sm text-muted-foreground">Card price</p>
-                            <p className="text-2xl font-bold">{formatCurrency(plan.standardPrice)}/mo</p>
+                          <div className="space-y-3">
+                            <div>
+                              <p className="text-sm text-muted-foreground">Card</p>
+                              <p className="text-2xl font-bold">
+                                {formatCurrency(adjustedCardPrice ?? plan.standardPrice)}/mo
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-sm text-muted-foreground">ACH/bank</p>
+                              <p className="text-2xl font-bold">
+                                {formatCurrency(adjustedAchPrice ?? plan.achPrice ?? 0)}/mo
+                              </p>
+                            </div>
                           </div>
                           <CreditCard className="h-5 w-5 text-primary" />
                         </div>
                         <div>
-                          <p className="text-sm text-muted-foreground">ACH / bank price</p>
-                          <p className="text-2xl font-bold">{formatCurrency(plan.achPrice ?? 0)}/mo</p>
-                        </div>
-                        <div className="border-t border-border pt-3">
-                          <p className="text-sm text-muted-foreground">Commitment-adjusted monthly service price</p>
-                          <p className="text-xl font-semibold">
-                            {formatCurrency(adjustedCardPrice ?? 0)}/mo standard card ·{" "}
-                            {formatCurrency(adjustedAchPrice ?? 0)}/mo ACH/bank
-                          </p>
                           {prepaidTotal !== null && (
                             <p className="mt-2 text-sm text-primary">
                               Estimated prepaid Deebo service total: {formatCurrency(prepaidTotal)}
@@ -471,9 +382,6 @@ const ManagedPresence = () => {
                         </div>
                       </>
                     )}
-                    <p className="text-xs leading-relaxed text-muted-foreground">
-                      Email-supported plans include one basic Google Workspace user unless the final quote says otherwise.
-                    </p>
                   </div>
 
                   <div>
@@ -516,24 +424,87 @@ const ManagedPresence = () => {
         </div>
       </section>
 
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <h2 className="mb-5 text-3xl font-bold md:text-4xl">Initial project pathways</h2>
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              One-time setup, rescue work, and larger builds are reviewed before quoting so the
+              next step matches the current setup, access situation, and business need.
+            </p>
+          </Reveal>
+
+          <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {projectPathways.map((pathway, index) => (
+              <Reveal key={pathway.title} delayMs={index * 35} className="rounded-xl border border-border bg-card p-6">
+                <h3 className="mb-3 text-xl font-semibold">{pathway.title}</h3>
+                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{pathway.description}</p>
+                <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary/80">
+                  How pricing works
+                </p>
+                <p className="mb-4 text-sm font-medium">{pathway.pricing}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{pathway.rationale}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <h2 className="mb-5 text-3xl font-bold md:text-4xl">What monthly support covers</h2>
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              Monthly support is for routine reliability, small updates, and ongoing technical help.
+              Larger builds, urgent deadlines, new workflows, and deeper technical work are quoted
+              separately before work begins.
+            </p>
+          </Reveal>
+
+          <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
+            <Reveal className="rounded-2xl border border-border bg-card p-8">
+              <h3 className="mb-6 text-2xl font-semibold">Included in monthly support</h3>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {includedSupport.map((item) => (
+                  <div key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+            <Reveal className="rounded-2xl border border-border bg-card p-8">
+              <h3 className="mb-6 text-2xl font-semibold">Quoted separately</h3>
+              <div className="grid grid-cols-1 gap-3">
+                {separatelyQuoted.map((item) => (
+                  <div key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-muted-foreground/60" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr]">
             <Reveal variant="left" className="space-y-5">
-              <h2 className="text-3xl font-bold md:text-4xl">Google Workspace ownership stays clear</h2>
+              <h2 className="text-3xl font-bold md:text-4xl">How email ownership works</h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Clients keep ownership of their domain and Google Workspace account. For plans that include email
-                support, Deebo can cover and manage one basic Google Workspace user as part of the quoted monthly plan.
+                Clients keep ownership of their domain and Google Workspace account. Deebo can be
+                added as an admin to help with setup, billing coordination, DNS, routing, and support.
               </p>
             </Reveal>
             <Reveal variant="right" className="rounded-2xl border border-border bg-card p-8">
               <ul className="space-y-4 text-muted-foreground">
                 {[
-                  "The client owns the domain and Google Workspace account so the business keeps long-term control.",
-                  "Deebo may be added as an admin for setup, billing coordination, DNS records, routing, and support.",
-                  "Eligible email-support plans include one basic Google Workspace user unless the final quote says otherwise.",
-                  "Additional users are added at the quoted per-user price.",
-                  "Higher-tier Google Workspace subscriptions, migrations, employee device support, Outlook-specific troubleshooting, and cold email infrastructure are separately quoted.",
+                  "The client owns the domain and Google Workspace account.",
+                  "Deebo may be added as an admin for setup, DNS, billing coordination, routing, and support.",
+                  "Email-supported plans can include one basic Google Workspace user when Deebo manages professional email.",
+                  "Additional users, migrations, upgraded Workspace tiers, employee device support, Outlook-specific troubleshooting, and cold email infrastructure are quoted separately.",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <MailCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
@@ -548,72 +519,11 @@ const ManagedPresence = () => {
 
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <Reveal className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-5 text-3xl font-bold md:text-4xl">What monthly support covers and what gets scoped separately</h2>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              Monthly support is designed for routine reliability, small changes, and ongoing
-              technical help. Larger requests are scoped separately when the size, urgency,
-              complexity, or business risk changes.
-            </p>
-          </Reveal>
-
-          <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
-            <Reveal className="rounded-2xl border border-border bg-card p-8">
-              <h3 className="mb-6 text-2xl font-semibold">Included monthly support may include</h3>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {includedSupport.map((item) => (
-                  <div key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal className="rounded-2xl border border-border bg-card p-8">
-              <h3 className="mb-6 text-2xl font-semibold">Not included unless separately quoted</h3>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {separatelyQuoted.map((item) => (
-                  <div key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-muted-foreground/60" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-            <Reveal variant="left" className="space-y-5">
-              <h2 className="text-3xl font-bold md:text-4xl">When work becomes a separate project</h2>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                Some requests stop being routine support because they involve larger build effort,
-                tighter deadlines, more stakeholders, or deeper technical dependencies. When that
-                happens, the work is scoped separately so expectations stay clear.
-              </p>
-            </Reveal>
-            <Reveal variant="right" className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {scopedWorkExamples.map((item) => (
-                <div key={item} className="rounded-xl border border-border bg-card p-5">
-                  <SlidersHorizontal className="mb-4 h-5 w-5 text-primary" />
-                  <p className="font-medium">{item}</p>
-                </div>
-              ))}
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24">
-        <div className="container mx-auto px-4">
           <Reveal className="mx-auto max-w-3xl space-y-6 text-center">
-            <h2 className="text-3xl font-bold md:text-4xl">Need help choosing the right level of support?</h2>
+            <h2 className="text-3xl font-bold md:text-4xl">Not sure what level of support you need?</h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Book a consultation and we&apos;ll recommend the lowest sensible plan or project path
-              based on what your business actually needs.
+              Book a consultation. We will review your current setup and recommend the lowest
+              sensible plan or project path for what your business actually needs.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button asChild size="lg">
