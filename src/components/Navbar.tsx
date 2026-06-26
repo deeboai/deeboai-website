@@ -65,17 +65,13 @@ const Navbar = () => {
             : "bg-transparent"
         }`}
       >
-        <div className="absolute inset-0 pointer-events-none hidden md:block">
-          <div className="h-full w-full animated-aurora opacity-60" />
-        </div>
-
         <div className="container mx-auto px-4 relative">
           <div className="flex min-h-16 items-center justify-between py-3 sm:min-h-[4.5rem] md:min-h-20">
             <Link href="/" className="flex items-center space-x-3 group">
               <img
                 src={logoMark}
                 alt="DeeboAI brand"
-                className="h-12 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-14 md:h-20"
+                className="h-10 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-11 md:h-14"
               />
             </Link>
 
@@ -111,15 +107,18 @@ const Navbar = () => {
                   </Link>
                 );
               })}
+              <Button asChild variant="outline" size="sm">
+                <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
+                  Book a Call
+                </a>
+              </Button>
               <Button
                 asChild
                 variant="default"
                 size="sm"
                 className="hover:shadow-lg hover:shadow-primary/40 transition-all duration-300"
               >
-                <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
-                  Book a Consultation
-                </a>
+                <Link href="/start">Start a Project</Link>
               </Button>
             </div>
 
@@ -154,8 +153,11 @@ const Navbar = () => {
                 );
               })}
               <Button asChild variant="default" size="sm" className="w-full">
+                <Link href="/start">Start a Project</Link>
+              </Button>
+              <Button asChild variant="outline" size="sm" className="w-full">
                 <a href={GOOGLE_APPOINTMENT_SCHEDULING_URL} target="_blank" rel="noreferrer">
-                  Book a Consultation
+                  Book a Call
                 </a>
               </Button>
             </div>

@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
-            <img src={logoMark} alt="DeeboAI brand" className="h-20 w-auto" loading="lazy" />
+            <img src={logoMark} alt="DeeboAI brand" className="h-14 w-auto" loading="lazy" />
             <p className="text-sm text-muted-foreground">
               Technical support and software capability for businesses that need reliable digital systems.
             </p>

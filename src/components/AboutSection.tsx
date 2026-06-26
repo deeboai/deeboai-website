@@ -30,7 +30,7 @@ const milestones = [
   {
     year: "2024",
     title: "Applied AI Product Work",
-    description: "Early work on products including Deebo Studio sharpened our approach to workflow-native AI and rapid product iteration.",
+    description: "Early applied-AI product work sharpened our approach to workflow-native software and rapid product iteration.",
   },
   {
     year: "2025",

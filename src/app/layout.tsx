@@ -1,9 +1,25 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 
 import "@/index.css";
 
 import { AppProviders } from "@/components/providers/app-providers";
 import { ScrollToTop } from "@/components/scroll-to-top";
+
+// Real webfonts, loaded and self-hosted by next/font. Previously --font-sans named
+// "Avenir Next" with no @font-face, so every page silently rendered a system fallback.
+const fontSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans-loaded",
+});
+
+const fontMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  variable: "--font-mono-loaded",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://deeboai.com"),
@@ -55,7 +71,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+      className={`${fontSans.variable} ${fontMono.variable}`}
+    >
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <AppProviders>
           <ScrollToTop />

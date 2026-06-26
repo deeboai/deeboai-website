@@ -5,6 +5,7 @@ import {
   CircleDollarSign,
   CreditCard,
   House,
+  Inbox,
   ReceiptText,
   Settings,
   ShieldAlert,
@@ -18,6 +19,12 @@ export const ADMIN_NAVIGATION: AdminNavigationItem[] = [
     href: "/admin",
     label: "Dashboard",
     icon: ChartSpline,
+  },
+  {
+    section: "Pipeline",
+    href: "/admin/intake",
+    label: "Project Intake",
+    icon: Inbox,
   },
   {
     section: "Operations",

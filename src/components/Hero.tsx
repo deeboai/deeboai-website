@@ -21,7 +21,7 @@ const Hero = () => {
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
-        <div className="absolute inset-x-0 -top-32 h-64 blur-[120px] bg-primary/40 opacity-60" />
+        <div className="absolute inset-x-0 -top-32 h-64 blur-[120px] bg-primary/25 opacity-50" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 pb-16 pt-28 sm:pt-32">
@@ -71,9 +71,9 @@ const Hero = () => {
           {/* Long stat labels need more breathing room on tablets before expanding to three columns. */}
           <div ref={statsRef} className="grid grid-cols-1 gap-6 pt-6 reveal-element sm:grid-cols-2 xl:grid-cols-3">
             {[
-              { value: "Support", label: "Practical help for websites, domains, forms, and business email." },
-              { value: "Depth", label: "Product and workflow experience shaped by higher-context software work." },
-              { value: "Clarity", label: "Monthly plans for ongoing care plus scoped projects when complexity changes." },
+              { value: "Websites & email", label: "Built, maintained, and supported so your business stays reachable and credible." },
+              { value: "Custom software", label: "Workflow tools, dashboards, and integrations for when off-the-shelf falls short." },
+              { value: "Healthcare-grade", label: "Product work shaped by real clinical and high-context software experience." },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -81,7 +81,7 @@ const Hero = () => {
               >
                 <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 animated-aurora" />
                 <div className="relative space-y-2">
-                  <p className="text-3xl font-bold text-primary">{stat.value}</p>
+                  <p className="text-lg font-semibold text-foreground">{stat.value}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{stat.label}</p>
                 </div>
               </div>

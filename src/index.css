@@ -8,8 +8,8 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
-    --font-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
+    --font-sans: var(--font-sans-loaded), "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
+    --font-mono: var(--font-mono-loaded), "SFMono-Regular", "Menlo", monospace;
     --background: 220 14% 6%;
     --foreground: 220 18% 96%;
 
@@ -21,6 +21,11 @@ All colors MUST be HSL.
 
     --primary: 208 92% 62%;
     --primary-foreground: 0 0% 100%;
+
+    /* Secondary brand accent — a restrained deep teal that complements the primary blue for
+       the rare moment a second hue is genuinely useful. Deliberately not a neon violet. */
+    --brand-2: 190 70% 48%;
+    --brand-2-foreground: 0 0% 100%;
 
     --secondary: 220 12% 13%;
     --secondary-foreground: 220 18% 92%;
@@ -41,7 +46,9 @@ All colors MUST be HSL.
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(208 92% 62%), hsl(200 80% 54%));
+    /* A restrained within-blue gradient. Earlier this jumped blue->violet, which read as a
+       generic "AI startup" treatment; keeping it inside the brand hue feels more deliberate. */
+    --gradient-primary: linear-gradient(135deg, hsl(210 90% 66%), hsl(202 92% 50%));
     --gradient-dark: linear-gradient(180deg, hsl(220 14% 6%), hsl(220 12% 10%));
     --gradient-subtle: linear-gradient(135deg, hsl(220 12% 12%), hsl(220 12% 18%));
     
@@ -71,6 +78,15 @@ All colors MUST be HSL.
     font-feature-settings: "cv11", "ss01";
     font-optical-sizing: auto;
     font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings get tighter tracking and balanced wrapping for a more deliberate,
+     less default typographic feel across every page. */
+  h1, h2, h3 {
+    letter-spacing: -0.02em;
+    text-wrap: balance;
   }
 
   html {
@@ -130,10 +146,12 @@ All colors MUST be HSL.
                 border-color 0.3s ease;
   }
   
+  /* A restrained lift — no scale (the scale-on-hover bounce reads as a generated effect) and a
+     softer shadow. Used on cards and small chips alike, so it must stay subtle. */
   .hover-lift:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 60px -10px hsla(217, 91%, 60%, 0.3),
-                0 10px 30px -5px hsla(0, 0%, 0%, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px -12px hsla(217, 40%, 10%, 0.6),
+                0 4px 12px -6px hsla(0, 0%, 0%, 0.35);
   }
 
   .hover-glow {
@@ -221,7 +239,7 @@ All colors MUST be HSL.
                 transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
                 filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: opacity, transform, filter;
-    filter: blur(6px);
+    filter: blur(4px);
   }
 
   .reveal-element.is-visible {
@@ -258,15 +276,17 @@ All colors MUST be HSL.
     }
   }
 
+  /* A faint, mostly-neutral sheen used only to lift a surface on hover. Kept low-contrast and
+     slow on purpose — the old version was a saturated, fast colour shimmer that looked generated. */
   .animated-aurora {
     background: linear-gradient(120deg,
-      hsla(210, 40%, 75%, 0.15),
-      hsla(200, 90%, 60%, 0.18),
-      hsla(220, 30%, 30%, 0.28),
-      hsla(200, 15%, 18%, 0.35)
+      hsla(210, 20%, 70%, 0.05),
+      hsla(208, 40%, 55%, 0.07),
+      hsla(220, 16%, 30%, 0.10),
+      hsla(210, 12%, 18%, 0.14)
     );
     background-size: 200% 200%;
-    animation: aurora-fill 14s ease infinite;
+    animation: aurora-fill 22s ease infinite;
   }
 
   .glass-panel {
