@@ -1,4 +1,4 @@
-import IndexPage from "@/pages/Index";
+import IndexPage from "@/views/Index";
 
 export default function Page() {
   return <IndexPage />;

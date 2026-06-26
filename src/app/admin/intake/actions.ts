@@ -5,16 +5,18 @@ import { revalidatePath } from "next/cache";
 import { requireAdminUser } from "@/lib/auth";
 import { getSupabaseServiceClient } from "@/lib/supabase/service";
 
-type AcademyIntakeStatus = "new" | "contacted" | "converted";
+export type ProjectIntakeStatus = "new" | "reviewing" | "quoted" | "won" | "lost";
 
-async function updateIntakeStatus(submissionId: string, status: AcademyIntakeStatus) {
+const VALID_STATUSES: ProjectIntakeStatus[] = ["new", "reviewing", "quoted", "won", "lost"];
+
+async function updateStatus(submissionId: string, status: ProjectIntakeStatus) {
   await requireAdminUser();
 
-  // The generated Supabase types in this app are not narrow enough for admin updates, so the
-  // service client is cast the same way the existing moderation actions already do.
+  // The generated Supabase types do not yet include this table, so the service client is cast the
+  // same way the existing admin moderation actions already do.
   const supabase = getSupabaseServiceClient() as any;
   const { error } = await supabase
-    .from("academy_intake_submissions")
+    .from("project_intake_submissions")
     .update({ status })
     .eq("id", submissionId);
 
@@ -22,41 +24,25 @@ async function updateIntakeStatus(submissionId: string, status: AcademyIntakeSta
     throw error;
   }
 
-  // Revalidate the admin intake page after every status change so the queue stays current.
   revalidatePath("/admin/intake");
 }
 
-export async function markAcademyIntakeNew(formData: FormData) {
+export async function setProjectIntakeStatus(formData: FormData) {
   const submissionId = String(formData.get("submission_id") ?? "").trim();
+  const status = String(formData.get("status") ?? "").trim() as ProjectIntakeStatus;
 
   if (!submissionId) {
     throw new Error("Missing intake submission id.");
   }
 
-  await updateIntakeStatus(submissionId, "new");
-}
-
-export async function markAcademyIntakeContacted(formData: FormData) {
-  const submissionId = String(formData.get("submission_id") ?? "").trim();
-
-  if (!submissionId) {
-    throw new Error("Missing intake submission id.");
+  if (!VALID_STATUSES.includes(status)) {
+    throw new Error("Invalid intake status.");
   }
 
-  await updateIntakeStatus(submissionId, "contacted");
+  await updateStatus(submissionId, status);
 }
 
-export async function markAcademyIntakeConverted(formData: FormData) {
-  const submissionId = String(formData.get("submission_id") ?? "").trim();
-
-  if (!submissionId) {
-    throw new Error("Missing intake submission id.");
-  }
-
-  await updateIntakeStatus(submissionId, "converted");
-}
-
-export async function deleteAcademyIntakeSubmission(formData: FormData) {
+export async function deleteProjectIntakeSubmission(formData: FormData) {
   const submissionId = String(formData.get("submission_id") ?? "").trim();
 
   if (!submissionId) {
@@ -65,10 +51,9 @@ export async function deleteAcademyIntakeSubmission(formData: FormData) {
 
   await requireAdminUser();
 
-  // The service-role client needs the same cast used in the existing admin moderation flows.
   const supabase = getSupabaseServiceClient() as any;
   const { error } = await supabase
-    .from("academy_intake_submissions")
+    .from("project_intake_submissions")
     .delete()
     .eq("id", submissionId);
 
@@ -76,6 +61,5 @@ export async function deleteAcademyIntakeSubmission(formData: FormData) {
     throw error;
   }
 
-  // Revalidate after deletion so removed submissions disappear immediately from the dashboard.
   revalidatePath("/admin/intake");
 }

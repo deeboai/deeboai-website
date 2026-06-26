@@ -1,4 +1,4 @@
-import ServicesPage from "@/pages/Services";
+import ServicesPage from "@/views/Services";
 
 export default function Page() {
   return <ServicesPage />;

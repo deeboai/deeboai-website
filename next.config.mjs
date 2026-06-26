@@ -44,8 +44,13 @@ const securityHeaders = [
   },
 ];
 
+// Opt-in escape hatch for fast local builds on slow machines: SKIP_BUILD_CHECKS=1 skips
+// the (very slow) TypeScript phase of `next build`. CI and production builds leave it unset.
+const skipBuildChecks = process.env.SKIP_BUILD_CHECKS === "1";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  typescript: { ignoreBuildErrors: skipBuildChecks },
   async redirects() {
     // The main DeeboAI site should hand Academy traffic off to the standalone Academy deployment.
     return [
@@ -58,6 +63,12 @@ const nextConfig = {
         source: "/academy/:path*",
         destination: `${academySiteUrl}/:path*`,
         permanent: false,
+      },
+      {
+        // The Deebo Studio product page was retired; send any lingering inbound links to Products.
+        source: "/deeboai",
+        destination: "/products",
+        permanent: true,
       },
     ];
   },

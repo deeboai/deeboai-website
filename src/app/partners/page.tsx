@@ -1,4 +1,4 @@
-import PartnersPage from "@/pages/Partners";
+import PartnersPage from "@/views/Partners";
 
 export default function Page() {
   return <PartnersPage />;
