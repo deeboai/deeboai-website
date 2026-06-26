@@ -16,6 +16,8 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   hour: "numeric",
   minute: "2-digit",
+  timeZone: "America/New_York",
+  timeZoneName: "short",
 });
 
 const STATUS_FLOW: ProjectIntakeStatus[] = ["new", "reviewing", "quoted", "won", "lost"];
