@@ -496,16 +496,18 @@ const ManagedPresence = () => {
             <Reveal variant="left" className="space-y-5">
               <h2 className="text-3xl font-bold md:text-4xl">How email ownership works</h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Clients keep ownership of their domain and Google Workspace account. Deebo can be
-                added as an admin to help with setup, billing coordination, DNS, routing, and support.
+                Deebo AI purchases and holds billing for the included Google Workspace subscription on
+                the client's behalf as part of the Managed Presence subscription fee, and administers
+                setup, DNS, billing, routing, and support for that subscription.
               </p>
             </Reveal>
             <Reveal variant="right" className="rounded-2xl border border-border bg-card p-8">
               <ul className="space-y-4 text-muted-foreground">
                 {[
-                  "The client owns the domain and Google Workspace account.",
-                  "Deebo may be added as an admin for setup, DNS, billing coordination, routing, and support.",
-                  "Email-supported plans can include one basic Google Workspace user when Deebo manages professional email.",
+                  "Deebo AI purchases and holds billing for the included Google Workspace subscription on the client's behalf as part of the Managed Presence subscription fee.",
+                  "Deebo AI administers setup, DNS, billing, routing, and support for that subscription.",
+                  "Email-supported plans can include one basic Google Workspace user under this arrangement.",
+                  "If the Managed Presence subscription is cancelled or not renewed, the client may either take over billing and ownership of the Workspace subscription directly with Google, or have Deebo AI cancel it. If cancelled, associated email, files, and calendar data may be permanently deleted per Google's own account-closure policies — clients should export anything they want to keep before that happens.",
                   "Additional users, migrations, upgraded Workspace tiers, employee device support, Outlook-specific troubleshooting, and cold email infrastructure are quoted separately.",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
