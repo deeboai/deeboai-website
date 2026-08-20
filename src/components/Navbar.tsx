@@ -50,7 +50,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
     { name: "Products", path: "/products" },
-    { name: "Academy", path: "https://academy.deeboai.com", external: true },
+
     { name: "Partners", path: "/partners" },
     { name: "Team", path: "/team" },
     { name: "Contact", path: "/contact" },
