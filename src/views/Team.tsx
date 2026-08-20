@@ -130,13 +130,13 @@ const Team = () => {
           >
             <div className="inline-flex items-center gap-3 rounded-full border border-border/60 bg-background/60 px-5 py-2 text-xs uppercase tracking-[0.35em] text-muted-foreground">
               <span className="inline-flex h-2 w-2 rounded-full bg-primary" />
-              DeeboAI Leadership
+              Deebo Leadership
             </div>
             <h1 className="text-5xl md:text-6xl font-bold leading-tight">
               A small team with <span className="text-gradient">product judgment</span>, technical range, and workflow focus.
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              DeeboAI works at the intersection of business systems, software delivery, and
+              Deebo works at the intersection of business systems, software delivery, and
               higher-context product thinking, with a focus on useful, credible, well-scoped work.
             </p>
           </div>
@@ -150,7 +150,7 @@ const Team = () => {
           ))}
           <div className="mx-auto max-w-3xl rounded-2xl border border-border/60 bg-background/40 px-6 py-5 text-center text-sm text-muted-foreground">
             <span className="font-medium text-foreground">Legacy note:</span> Albert Osakwe was one
-            of DeeboAI&apos;s co-founders and helped shape the company&apos;s earliest technical vision.
+            of Deebo&apos;s co-founders and helped shape the company&apos;s earliest technical vision.
           </div>
         </div>
       </section>
@@ -204,7 +204,7 @@ const Team = () => {
                 <div className="flex flex-col">
                   <span className="font-medium">Amadou Touré</span>
                   <span className="text-xs text-primary/70 tracking-[0.35em] uppercase">
-                    Founder · DeeboAI
+                    Founder · Deebo
                   </span>
                 </div>
               </div>

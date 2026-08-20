@@ -26,7 +26,7 @@ export const teamMembers: TeamMember[] = [
     title: "Founder · Chief Executive Officer",
     roleLabel: "Founder & CEO",
     bio:
-      "Amadou brings a multidisciplinary background in computer science, data analytics, computer security, and machine learning. He leads DeeboAI's product direction across clinical intelligence, decision support, and applied AI systems built for real operators.",
+      "Amadou brings a multidisciplinary background in computer science, data analytics, computer security, and machine learning. He leads Deebo's product direction across clinical intelligence, decision support, and applied AI systems built for real operators.",
     expertise: [
       "Applied Machine Learning",
       "Healthcare AI",
@@ -38,7 +38,7 @@ export const teamMembers: TeamMember[] = [
       "Designing secure, scalable AI workflows",
       "Building clinical and operational tools that teams will actually adopt",
     ],
-    currentRole: "Founder · DeeboAI",
+    currentRole: "Founder · Deebo",
     highlight:
       "Leads collaborations spanning medication intelligence, clinical risk assessment, and custom product development with a focus on trustworthy deployment.",
     quote:
@@ -62,12 +62,12 @@ export const teamMembers: TeamMember[] = [
     ],
     focus: [
       "Mentoring early-stage product and sales strategy",
-      "Connecting DeeboAI with healthcare and enterprise partners",
+      "Connecting Deebo with healthcare and enterprise partners",
       "Scaling responsible data practices across offerings",
     ],
     currentRole: "Product Strategy Leader · Formerly Optum (UnitedHealth)",
     highlight:
-      "Guided DeeboAI through its formative milestones with a focus on customer impact and resilient growth.",
+      "Guided Deebo through its formative milestones with a focus on customer impact and resilient growth.",
     quote: "",
     linkedin: "https://www.linkedin.com/in/waltenbaugh/",
     image: kurtImage,

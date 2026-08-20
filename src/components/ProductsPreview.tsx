@@ -43,7 +43,7 @@ const ProductsPreview = () => {
             Work That Shows Our <span className="text-gradient">Technical Depth</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            DeeboAI also works on healthcare and workflow-oriented software products, bringing product and systems thinking into client work.
+            Deebo also works on healthcare and workflow-oriented software products, bringing product and systems thinking into client work.
           </p>
         </div>
 

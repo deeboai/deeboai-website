@@ -19,7 +19,7 @@ type Partner = {
 };
 
 const Partners = () => {
-  // This page is reserved for external collaborators and partner categories rather than DeeboAI's
+  // This page is reserved for external collaborators and partner categories rather than Deebo's
   // own product lineup. If a product is listed here, it should be because the collaboration itself
   // is part of the story, not because the product exists.
   const partners: Partner[] = [
@@ -67,7 +67,7 @@ const Partners = () => {
       description:
         "Physicians, specialists, and healthcare domain experts who help pressure-test product assumptions and keep clinical software grounded in real care settings.",
       collaboration: "Advisory input, workflow validation, and domain expertise across healthcare-facing products",
-      impact: "Improving the precision, safety, and usability of the tools DeeboAI brings to market.",
+      impact: "Improving the precision, safety, and usability of the tools Deebo brings to market.",
     },
   ];
 
@@ -162,7 +162,7 @@ const Partners = () => {
               <h2 className="text-3xl font-bold mb-6 text-center">Partnership Philosophy</h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p>
-                  At DeeboAI, the best work comes from close collaboration with domain experts,
+                  At Deebo, the best work comes from close collaboration with domain experts,
                   operators, and businesses dealing with real constraints.
                 </p>
                 <p>

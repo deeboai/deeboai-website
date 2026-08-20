@@ -10,8 +10,8 @@ import { CheckCircle2 } from "lucide-react";
 const synnovaImage = "/assets/srx.jpg";
 const heroImage = "/assets/hero-ai-network.jpg";
 
-// These are the active DeeboAI product initiatives that should appear as current offerings.
-// Historical projects that are no longer owned by DeeboAI belong in About, not here.
+// These are the active Deebo product initiatives that should appear as current offerings.
+// Historical projects that are no longer owned by Deebo belong in About, not here.
 type ProductCard = {
   name: string;
   tagline: string;
@@ -29,7 +29,7 @@ const Products = () => {
       tagline: "Medication Intelligence Platform",
       status: "In Development",
       description:
-        "ZynthRx is DeeboAI's medication intelligence platform designed to make treatment and medication context easier to understand and easier to act on across patient and provider workflows.",
+        "ZynthRx is Deebo's medication intelligence platform designed to make treatment and medication context easier to understand and easier to act on across patient and provider workflows.",
       features: [
         "Patient-friendly medication summaries",
         "Indication-based medication context",
@@ -45,7 +45,7 @@ const Products = () => {
       tagline: "Myeloma Risk Calculator",
       status: "Active Collaboration",
       description:
-        "MyelomaRisk provides risk stratification and prognosis tooling for myeloma-related clinical, educational, and research-oriented use cases. The collaboration began in 2023 and later became part of DeeboAI's broader product portfolio.",
+        "MyelomaRisk provides risk stratification and prognosis tooling for myeloma-related clinical, educational, and research-oriented use cases. The collaboration began in 2023 and later became part of Deebo's broader product portfolio.",
       features: [
         "Risk stratification calculators",
         "Prognosis-oriented clinical workflows",

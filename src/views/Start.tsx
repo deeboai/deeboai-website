@@ -71,7 +71,7 @@ const ENGAGEMENT_TYPES = ["One-time project", "Ongoing monthly support", "Both",
 
 const BUSINESS_STAGES = ["Established business", "New venture / startup", "Personal / side project"];
 
-const MAINTENANCE_OWNERS = ["You / your team", "DeeboAI", "Not sure yet"];
+const MAINTENANCE_OWNERS = ["You / your team", "Deebo", "Not sure yet"];
 
 type FormState = {
   fullName: string;
@@ -672,7 +672,7 @@ const Start = () => {
                       className="mt-0.5"
                     />
                     <span className="text-sm text-muted-foreground">
-                      I'm happy for the DeeboAI team to contact me about this project at the email and phone
+                      I'm happy for the Deebo team to contact me about this project at the email and phone
                       number I provided.
                     </span>
                   </label>

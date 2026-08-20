@@ -225,7 +225,7 @@ function buildConfirmationHtml(fields: SanitizedIntake) {
       )}.</h1>
       <p style="margin:0 0 16px;">
         We received your project details and will review them carefully. You can expect a thoughtful
-        response from the DeeboAI team, usually within one to two business days.
+        response from the Deebo team, usually within one to two business days.
       </p>
       <p style="margin:0 0 16px;">Here is a quick summary of what you shared:</p>
       <ul style="margin:0 0 16px;padding-left:18px;">
@@ -238,7 +238,7 @@ function buildConfirmationHtml(fields: SanitizedIntake) {
         If anything changes or you want to add detail in the meantime, just reply to this email and it
         will reach us directly.
       </p>
-      <p style="margin:0;">— The DeeboAI team<br/>
+      <p style="margin:0;">— The Deebo team<br/>
         <a href="mailto:${DEEBOAI_CONTACT_EMAIL}" style="color:#2563eb;">${DEEBOAI_CONTACT_EMAIL}</a>
       </p>
     </div>`;
@@ -249,7 +249,7 @@ function buildConfirmationText(fields: SanitizedIntake) {
     `Thanks for reaching out, ${fields.fullName.split(" ")[0] || fields.fullName}.`,
     "",
     "We received your project details and will review them carefully. You can expect a thoughtful",
-    "response from the DeeboAI team, usually within one to two business days.",
+    "response from the Deebo team, usually within one to two business days.",
     "",
     "Here is a quick summary of what you shared:",
     `- What you want built: ${optionalList(fields.projectTypes)}`,
@@ -259,7 +259,7 @@ function buildConfirmationText(fields: SanitizedIntake) {
     "",
     "If anything changes or you want to add detail, just reply to this email and it will reach us directly.",
     "",
-    `— The DeeboAI team`,
+    `— The Deebo team`,
     DEEBOAI_CONTACT_EMAIL,
   ].join("\n");
 }
@@ -385,7 +385,7 @@ export async function POST(request: Request) {
       from: fromEmail,
       to: fields.email,
       replyTo: toEmail,
-      subject: "We received your project request — DeeboAI",
+      subject: "We received your project request — Deebo",
       html: buildConfirmationHtml(fields),
       text: buildConfirmationText(fields),
     });

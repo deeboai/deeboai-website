@@ -2,7 +2,7 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Target, Zap, Users } from "lucide-react";
 
 // Keep this section aligned with the current company narrative. Historical entries may include
-// pre-incorporation work when it directly explains today's DeeboAI products and positioning.
+// pre-incorporation work when it directly explains today's Deebo products and positioning.
 const values = [
   {
     icon: Target,
@@ -25,7 +25,7 @@ const milestones = [
   {
     year: "2023",
     title: "MyelomaRisk Collaboration Begins",
-    description: "The underlying MyelomaRisk collaboration started before DeeboAI existed, laying the foundation for later clinical risk tooling work.",
+    description: "The underlying MyelomaRisk collaboration started before Deebo existed, laying the foundation for later clinical risk tooling work.",
   },
   {
     year: "2024",
@@ -44,8 +44,8 @@ const milestones = [
   },
   {
     year: "2026",
-    title: "MyelomaRisk Joins DeeboAI",
-    description: "The ongoing MyelomaRisk work was brought into DeeboAI's portfolio, connecting a 2023 clinical collaboration to the company's healthcare product direction.",
+    title: "MyelomaRisk Joins Deebo",
+    description: "The ongoing MyelomaRisk work was brought into Deebo's portfolio, connecting a 2023 clinical collaboration to the company's healthcare product direction.",
   },
   {
     year: "2026",
@@ -68,10 +68,10 @@ const AboutSection = () => {
           className="max-w-4xl mx-auto text-center space-y-6 mb-20 reveal-element"
         >
           <h2 className="text-4xl md:text-5xl font-bold">
-            About <span className="text-gradient">DeeboAI</span>
+            About <span className="text-gradient">Deebo</span>
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Founded by <span className="text-foreground font-medium">Amadou Touré</span>, DeeboAI
+            Founded by <span className="text-foreground font-medium">Amadou Touré</span>, Deebo
             is a founder-led technology company focused on practical software, digital operations
             support, and workflow-oriented product development. We help businesses build and
             maintain the systems they depend on, and we bring deeper product capability when the

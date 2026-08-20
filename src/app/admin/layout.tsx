@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: {
     default: "Admin",
-    template: "%s | DeeboAI Admin",
+    template: "%s | Deebo Admin",
   },
   robots: {
     index: false,
