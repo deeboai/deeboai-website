@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 
-const synnovaImage = "/assets/srx.jpg";
 const heroImage = "/assets/hero-ai-network.jpg";
 
 // These are the active Deebo product initiatives that should appear as current offerings.
@@ -24,22 +23,6 @@ type ProductCard = {
 
 const Products = () => {
   const products: ProductCard[] = [
-    {
-      name: "ZynthRx",
-      tagline: "Medication Intelligence Platform",
-      status: "In Development",
-      description:
-        "ZynthRx is Deebo's medication intelligence platform designed to make treatment and medication context easier to understand and easier to act on across patient and provider workflows.",
-      features: [
-        "Patient-friendly medication summaries",
-        "Indication-based medication context",
-        "Clinical workflow alignment",
-        "Provider-facing decision support views",
-        "Interoperability-minded architecture",
-      ],
-      technologies: ["React", "TypeScript", "FHIR", "Clinical Data Modeling", "AWS"],
-      image: synnovaImage,
-    },
     {
       name: "MyelomaRisk",
       tagline: "Myeloma Risk Calculator",

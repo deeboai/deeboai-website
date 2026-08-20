@@ -38,19 +38,9 @@ const milestones = [
     description: "Expanded clinical advisory and product discovery efforts around medication transparency and decision support.",
   },
   {
-    year: "2025",
-    title: "ZynthRx Platform Direction",
-    description: "Refined our medication intelligence platform around patient-friendly understanding, provider context, and workflow fit.",
-  },
-  {
     year: "2026",
     title: "MyelomaRisk Joins Deebo",
     description: "The ongoing MyelomaRisk work was brought into Deebo's portfolio, connecting a 2023 clinical collaboration to the company's healthcare product direction.",
-  },
-  {
-    year: "2026",
-    title: "Deebo Academy Launches",
-    description: "Deebo Academy launched as a separate education vertical for structured tutoring, extending the company's systems-oriented operating model into academic support.",
   },
 ];
 

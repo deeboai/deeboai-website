@@ -75,11 +75,6 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link href="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  ZynthRx
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   MyelomaRisk
                 </Link>
               </li>
