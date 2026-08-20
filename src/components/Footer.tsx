@@ -36,14 +36,7 @@ const Footer = () => {
                   Home
                 </Link>
               </li>
-              <li>
-                <a
-                  href="https://academy.deeboai.com"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Academy
-                </a>
-              </li>
+
               <li>
                 <Link href="/team" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Team

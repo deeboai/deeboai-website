@@ -11,16 +11,3 @@
   # Force Netlify's Next.js runtime so the deploy includes the server function and middleware instead of publishing `.next` as a static folder.
   package = "@netlify/plugin-nextjs"
 
-[[redirects]]
-  # Production traffic for Academy should leave the main site and land on the standalone Academy deployment.
-  from = "/academy"
-  to = "https://academy.deeboai.com"
-  status = 302
-  force = true
-
-[[redirects]]
-  # Nested Academy routes should keep their path when the main site forwards them to the Academy subdomain.
-  from = "/academy/*"
-  to = "https://academy.deeboai.com/:splat"
-  status = 302
-  force = true
