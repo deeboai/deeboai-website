@@ -48,7 +48,7 @@ export function AdminShell({ title, subtitle, userEmail, children }: AdminShellP
         >
           <div className="flex h-full flex-col">
             <div>
-              <p className="text-xs uppercase tracking-[0.35em] text-primary/70">DeeboAI</p>
+              <p className="text-xs uppercase tracking-[0.35em] text-primary/70">Deebo</p>
               <h1 className="mt-3 text-2xl font-semibold">Finance Admin</h1>
               <p className="mt-2 text-sm text-muted-foreground">
                 Internal operating system for personal finance and self-employment tracking.

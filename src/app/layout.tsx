@@ -24,23 +24,23 @@ const fontMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://deeboai.com"),
   title: {
-    default: "DeeboAI",
-    template: "%s | DeeboAI",
+    default: "Deebo",
+    template: "%s | Deebo",
   },
   description:
-    "DeeboAI builds AI systems, software products, and durable internal tools for complex workflows.",
+    "Deebo builds AI systems, software products, and durable internal tools for complex workflows.",
   openGraph: {
-    title: "DeeboAI",
+    title: "Deebo",
     description:
-      "DeeboAI builds AI systems, software products, and durable internal tools for complex workflows.",
+      "Deebo builds AI systems, software products, and durable internal tools for complex workflows.",
     url: "https://deeboai.com",
-    siteName: "DeeboAI",
+    siteName: "Deebo",
     images: [
       {
         url: "/assets/logos/white_on_black.PNG",
         width: 1200,
         height: 1200,
-        alt: "DeeboAI logo",
+        alt: "Deebo logo",
       },
     ],
     locale: "en_US",
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DeeboAI",
+    title: "Deebo",
     description:
-      "DeeboAI builds AI systems, software products, and durable internal tools for complex workflows.",
+      "Deebo builds AI systems, software products, and durable internal tools for complex workflows.",
     images: ["/assets/logos/white_on_black.PNG"],
   },
   icons: {

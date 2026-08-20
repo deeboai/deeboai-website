@@ -39,7 +39,7 @@ const Hero = () => {
             ref={textRef}
             className="mx-auto max-w-3xl text-lg text-muted-foreground reveal-element sm:text-xl md:text-2xl"
           >
-            DeeboAI helps businesses build, manage, and support the website, domain, forms, and
+            Deebo helps businesses build, manage, and support the website, domain, forms, and
             professional email systems they rely on, with deeper software and product capability
             when the work requires more than a standard website.
           </p>

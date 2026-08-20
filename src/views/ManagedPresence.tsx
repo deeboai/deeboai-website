@@ -230,7 +230,7 @@ const ManagedPresence = () => {
               Managed website, email, and digital presence support for businesses that cannot afford broken systems
             </h1>
             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              Deebo AI helps small businesses keep their website live, forms working, domain stable, and
+              Deebo helps small businesses keep their website live, forms working, domain stable, and
               professional email properly configured without needing to hire a full-time technical team.
               We handle the ongoing technical ownership behind your digital presence, so customers can
               reach you and your business stays credible.
@@ -496,7 +496,7 @@ const ManagedPresence = () => {
             <Reveal variant="left" className="space-y-5">
               <h2 className="text-3xl font-bold md:text-4xl">How email ownership works</h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Deebo AI purchases and holds billing for the included Google Workspace subscription on
+                Deebo purchases and holds billing for the included Google Workspace subscription on
                 the client's behalf as part of the Managed Presence subscription fee, and administers
                 setup, DNS, billing, routing, and support for that subscription.
               </p>
@@ -504,10 +504,10 @@ const ManagedPresence = () => {
             <Reveal variant="right" className="rounded-2xl border border-border bg-card p-8">
               <ul className="space-y-4 text-muted-foreground">
                 {[
-                  "Deebo AI purchases and holds billing for the included Google Workspace subscription on the client's behalf as part of the Managed Presence subscription fee.",
-                  "Deebo AI administers setup, DNS, billing, routing, and support for that subscription.",
+                  "Deebo purchases and holds billing for the included Google Workspace subscription on the client's behalf as part of the Managed Presence subscription fee.",
+                  "Deebo administers setup, DNS, billing, routing, and support for that subscription.",
                   "Email-supported plans can include one basic Google Workspace user under this arrangement.",
-                  "If the Managed Presence subscription is cancelled or not renewed, the client may either take over billing and ownership of the Workspace subscription directly with Google, or have Deebo AI cancel it. If cancelled, associated email, files, and calendar data may be permanently deleted per Google's own account-closure policies — clients should export anything they want to keep before that happens.",
+                  "If the Managed Presence subscription is cancelled or not renewed, the client may either take over billing and ownership of the Workspace subscription directly with Google, or have Deebo cancel it. If cancelled, associated email, files, and calendar data may be permanently deleted per Google's own account-closure policies — clients should export anything they want to keep before that happens.",
                   "Additional users, migrations, upgraded Workspace tiers, employee device support, Outlook-specific troubleshooting, and cold email infrastructure are quoted separately.",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">

@@ -42,7 +42,7 @@ function buildEmailHtml(fields: Required<Omit<ContactRequestBody, "website">>, t
 
   return `
     <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.5;">
-      <h1 style="font-size: 20px; margin: 0 0 16px;">New Deebo AI contact form submission</h1>
+      <h1 style="font-size: 20px; margin: 0 0 16px;">New Deebo contact form submission</h1>
       <p style="margin: 0 0 20px;">This message came from deeboai.com.</p>
       <table style="border-collapse: collapse; width: 100%; margin-bottom: 20px;">
         <tbody>
@@ -70,7 +70,7 @@ function buildEmailHtml(fields: Required<Omit<ContactRequestBody, "website">>, t
 
 function buildEmailText(fields: Required<Omit<ContactRequestBody, "website">>, timestamp: string) {
   return [
-    "New Deebo AI contact form submission",
+    "New Deebo contact form submission",
     "This message came from deeboai.com.",
     "",
     `Name: ${fields.name}`,
@@ -142,7 +142,7 @@ export async function POST(request: Request) {
       from: fromEmail,
       to: toEmail,
       replyTo,
-      subject: "New Deebo AI contact form submission",
+      subject: "New Deebo contact form submission",
       html: buildEmailHtml(fields, timestamp),
       text: buildEmailText(fields, timestamp),
     });
