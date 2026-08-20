@@ -3,20 +3,11 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-const synnovaImage = "/assets/srx.jpg";
 const heroImage = "/assets/hero-ai-network.jpg";
 
 // Homepage product preview stays intentionally small: current flagship products plus a clear
 // services CTA in the third slot so the section does not imply a nonexistent third flagship.
 const products = [
-  {
-    name: "ZynthRx",
-    tagline: "Medication Intelligence",
-    description:
-      "Medication intelligence designed to make treatment context easier to understand and easier to act on across patient and provider workflows.",
-    status: "In Development",
-    image: synnovaImage,
-  },
   {
     name: "MyelomaRisk",
     tagline: "Clinical Risk Assessment",

@@ -72,7 +72,6 @@ const Services = () => {
       ],
       technologies: ["AWS", "PostgreSQL", "FHIR", "Docker", "TypeScript"],
       products: [
-        { name: "ZynthRx", status: "In Development" },
         { name: "MyelomaRisk", status: "Active Collaboration" },
       ],
     },
