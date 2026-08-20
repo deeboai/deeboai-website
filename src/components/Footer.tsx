@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
-            <img src={logoMark} alt="DeeboAI brand" className="h-14 w-auto" loading="lazy" />
+            <img src={logoMark} alt="Deebo brand" className="h-14 w-auto" loading="lazy" />
             <p className="text-sm text-muted-foreground">
               Technical support and software capability for businesses that need reliable digital systems.
             </p>
@@ -36,7 +36,6 @@ const Footer = () => {
                   Home
                 </Link>
               </li>
-
               <li>
                 <Link href="/team" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Team
@@ -94,7 +93,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} DeeboAI. All rights reserved.</p>
+          <p>&copy; {currentYear} Deebo. All rights reserved.</p>
         </div>
       </div>
     </footer>
