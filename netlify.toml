@@ -11,3 +11,23 @@
   # Force Netlify's Next.js runtime so the deploy includes the server function and middleware instead of publishing `.next` as a static folder.
   package = "@netlify/plugin-nextjs"
 
+
+# The finance admin moved to amadoutoure.com/admin. Keep the old hostname and the old
+# deeboai.com/admin paths working for anyone with a bookmark.
+[[redirects]]
+  from = "https://admin.deeboai.com/*"
+  to = "https://amadoutoure.com/admin/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/admin/*"
+  to = "https://amadoutoure.com/admin/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/admin"
+  to = "https://amadoutoure.com/admin"
+  status = 301
+  force = true
